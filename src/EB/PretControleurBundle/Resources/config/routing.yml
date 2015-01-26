@@ -1,0 +1,88 @@
+eb_pret_controleur_homepage:
+    path:     /
+    defaults: { _controller: EBPretControleurBundle:Accueil:index }
+eb_pret_controleur_emprunter:
+    path:     /Administration/emprunter
+    defaults: { _controller: EBPretControleurBundle:Emprunter:index }
+eb_pret_controleur_Region:
+    path:     /region/ajout
+    defaults: { _controller: EBPretControleurBundle:Region:index }
+eb_pret_controleur_AjoutRegion:
+    path:     /region/ajout
+    defaults: { _controller: EBPretControleurBundle:Region:ajout }
+eb_pret_controleur_AjoutDepartement:
+    path:     /departement/ajout
+    defaults: { _controller: EBPretControleurBundle:Departement:ajout }
+eb_pret_controleur_Centre:
+    path:     /Administration/centre
+    defaults: { _controller: EBPretControleurBundle:Centre:index }
+eb_pret_controleur_AjoutCentre:
+    path:     /Administration/centre/ajout
+    defaults: { _controller: EBPretControleurBundle:Centre:ajout }
+eb_pret_controleur_EditCentre:
+    path:     /Administration/centre/edit/{id}
+    defaults: { _controller: EBPretControleurBundle:Centre:edit }
+    requirements:
+        id: \d+
+eb_pret_controleur_ResponsableCentre:
+    path:     /responsable/ajout
+    defaults: { _controller: EBPretControleurBundle:Responsable:ajout }
+eb_pret_controleur_AjoutAdresse:
+    path:     /adresse/ajout
+    defaults: { _controller: EBPretControleurBundle:Adresse:ajout }
+eb_pret_controleur_Controleur:
+    path:     /Administration/controleur
+    defaults: { _controller: EBPretControleurBundle:Controleur:index }
+eb_pret_controleur_AjoutControleur:
+    path:     /Administration/controleur/ajout
+    defaults: { _controller: EBPretControleurBundle:Controleur:ajout }
+eb_pret_controleur_EditControleur:
+    path:     /Administration/controleur/edit/{id}
+    defaults: { _controller: EBPretControleurBundle:Controleur:edit }
+    requirements:
+        id: \d+
+eb_pret_controleur_DemandeRecuControleur:
+    path:     /Administration/disponibilite/demande/liste
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:demandeRecu }
+eb_pret_controleur_ReponseDemandeDisponibilite:
+    path:     /Administration/disponibilite/demande/reponse/{idDisponibilite}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:ReponseDispo }
+    requirements:
+        idControleur: \d+
+eb_pret_controleur_AjoutDisponibilite:
+    path:     /Administration/disponibilite/ajout/{idControleur}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:ajout }
+    requirements:
+        idControleur: \d+
+eb_pret_controleur_ListeDisponibilite:
+    path:     /Administration/disponibilite/liste/{departement}/{page}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:listDispo, page: 1}
+    options:
+        expose: true
+eb_pret_controleur_Disponibilite:
+    path:     /Administration/disponibilite/{idControleur}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:index }
+    requirements:
+        idControleur: \d+
+eb_pret_controleur_EditDisponibilite:
+    path:     /Administration/disponibilite/edit/{idDisponibilite}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:edit }
+    requirements:
+        idDisponibilite: \d+
+eb_pret_controleur_DetailDisponibilite:
+    path:     /Administration/disponibilite/detailControleur/{idDisponibilite}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:PriseDispo}
+    requirements:
+        idDisponibilite: \d+
+eb_pret_controleur_ListDepParRegion:
+    path:     /ListDepartement
+    defaults: { _controller: EBPretControleurBundle:Departement:lstdep }
+    options:
+        expose: true
+eb_pret_controleur_DepByRegion:
+    pattern:   /adresse/rempliProduct/{regionId}
+    defaults: { _controller: EBPretControleurBundle:Adresse:ajout }
+    requirements:
+        regionId: \d+
+    options:
+        expose: true

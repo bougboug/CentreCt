@@ -1,0 +1,25 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>   
+        </div>    
+    </div>
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>Modifier la date pour votre controleur</h3>
+        </div>
+            <div class="panel-body">  
+                    <div class="form-group">
+                                <label>Saisir une nouvelle date</label>
+                                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                            {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                            {{ form_end(form) }}
+            </div>   
+                            {{ form_rest(form._token) }}
+    </div>
+{% endblock %}

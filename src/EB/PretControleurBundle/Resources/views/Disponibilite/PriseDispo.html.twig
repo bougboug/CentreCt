@@ -1,0 +1,28 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+
+{% block EBPretcontroleur_body %}
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+            <div class="panel-body">  
+                <label>
+                  Mr {{ disponibilite.controleur.nom }} {{ disponibilite.controleur.prenom }} sera disponible le {{ disponibilite.date|date('d/m/Y') }}.</br>
+                  Il possède {{ disponibilite.controleur.experience }} d'année(s) d'expérience.</br>
+                  Il habite au : {{ disponibilite.controleur.adresse.adresse }}, {{ disponibilite.controleur.adresse.codePostal }} à 
+                  {{ disponibilite.controleur.adresse.ville }}
+                </label>
+                    <div class="form-group">
+                        <label>Pour quel centre voulez vous affecter le controleur ? </label>
+                        {{ form_widget(form.centre, {'attr': {'class': 'form-control'}}) }} 
+                   </div>
+                    <div class="form-group">
+                                <label>Pris</label>
+                                {{ form_widget(form.pris, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                    {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                    {{ form_end(form) }}
+            </div>   
+            {{ form_rest(form._token) }}
+    </div>
+
+{% endblock %}

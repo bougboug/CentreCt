@@ -1,0 +1,31 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    <div class="container content">     
+        <div class="row margin-bottom-30">
+            <div class="col-md-9 mb-margin-bottom-30">
+                <div class="headline"><h2>Ajout region</h2></div> <br />
+                {{ form_start(form)}}
+                   <label>Departement</label>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            {{ form_widget(form.region, {'attr': {'class': 'form-control'}}) }}
+                        </div>                
+                    </div>
+                    <br>
+                    <label>Nom de la region</label>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
+                        </div>                
+                    </div>
+                    <br>
+                    <label>code de la region</label>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            {{ form_widget(form.code, {'attr': {'class': 'form-control'}}) }}
+                        </div>                
+                    </div>
+                {{ form_end(form) }}
+            </div>
+{% endblock %}

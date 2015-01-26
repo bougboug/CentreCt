@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    <div class="container content">     
+        <div class="row margin-bottom-30">
+            <div class="col-md-9 mb-margin-bottom-30">
+                <div class="headline"><h2>Ajout adresse</h2></div> <br />
+                {{ form_start(form)}}
+                     <div class="form-group">
+                                <label>Adresse postal</label>
+                                Région : {{ form_widget(form.region, {'attr': {'class': 'form-control'}}) }} 
+                                Département : {{ form_widget(form.departement, {'attr': {'class': 'form-control'}}) }} 
+                                Adresse 1 : {{ form_widget(form.adress1, {'attr': {'class': 'form-control'}}) }} 
+                                Adresse 2 : {{ form_widget(form.adresse2, {'attr': {'class': 'form-control'}}) }} 
+                                Adresse 3 : {{ form_widget(form.adresse3, {'attr': {'class': 'form-control'}}) }} 
+                                Adresse 4 : {{ form_widget(form.adresse4, {'attr': {'class': 'form-control'}}) }} 
+                                Code Postal : {{ form_widget(form.codePostal, {'attr': {'class': 'form-control'}}) }} 
+                                Ville : {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                {{ form_end(form) }}
+            </div>
+{% endblock %}

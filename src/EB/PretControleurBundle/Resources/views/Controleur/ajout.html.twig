@@ -1,0 +1,124 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>   
+        </div>    
+    </div>
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>completer le formulaire pour ajouter votre centre</h3>
+        </div>
+            <div class="panel-body"> 
+                   <div class="form-group">
+                                <label>Choisir le centre pour lequel vous voulez ajouter votre controleur </label>
+                                {{ form_widget(form.centre, {'attr': {'class': 'form-control'}}) }} 
+                   </div>
+                   <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Nom </label>
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Prénom </label>
+                                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Experience </label>
+                                {{ form_widget(form.experience, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Numéro d'agrement</label>
+                               {{ form_widget(form.numAgrement, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                               <label>Date d'agrement</label>
+                              {{ form_widget(form.dateAgrement, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Attestation d'agrement</label>
+                        {{ form_widget(form.AttestationAgrement, {'attr': {'class': 'form-control'}}) }} 
+                    </div>        
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Region</label>
+                                {{ form_widget(form.adresse.region, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Departement</label>
+                                {{ form_widget(form.adresse.departement, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                                <label>Adresse</label>
+                                {{ form_widget(form.adresse.adresse, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                    <div class="form-group">
+                                <label>Complément d'adresse</label>
+                                {{ form_widget(form.adresse.adresse2, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Code postal</label>
+                                {{ form_widget(form.adresse.codePostal, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Ville</label>
+                                {{ form_widget(form.adresse.ville, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Téléphone</label>
+                              {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>E-mail</label>
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Attestation formation 20H</label>
+                        {{ form_widget(form.AttestationFormationVingtHeure, {'attr': {'class': 'form-control'}}) }} 
+                    </div> 
+                    <div class="form-group">
+                        <label>Attestation des 300 contrôles</label>
+                        {{ form_widget(form.AttestationTroisCentControle, {'attr': {'class': 'form-control'}}) }} 
+                    </div> 
+                    <div class="form-group">
+                        <label>Attestation de l'accord signé par le contrôleur</label>
+                        {{ form_widget(form.AttestationBonPourAccord, {'attr': {'class': 'form-control'}}) }} 
+                    </div> 
+                    <div align="right">
+                            <button class="btn-u btn-u-blue" type="button">
+                                <a href="{{ path('eb_pret_controleur_Controleur') }}">
+                                <font color="white">Précedent</font>
+                              </a>
+                            </button>
+                            {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                    </div>
+                            {{ form_end(form) }}
+            </div>   
+                            {{ form_rest(form._token) }}
+    </div>
+{% endblock %}

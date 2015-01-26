@@ -1,0 +1,5 @@
+services:
+    eb_user.registration.form.type:
+        class: EB\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: eb_user_registration }

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="fr" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="fr" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="fr"> <!--<![endif]-->  
+<head>
+    <title>{% block title %}Bienvenue!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/bootstrap/css/bootstrap.min.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/style.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/line-icons/line-icons.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/font-awesome/css/font-awesome.min.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/flexslider/flexslider.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/owl-carousel/owl-carousel/owl.carousel.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/css/layerslider.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/theme-colors/default.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/custom.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jqvmap.css') }}" type="text/css" />
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+</head> 
+<body>
+<div class="wrapper">    
+    <!--=== Header ===-->    
+    <div class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <!-- Topbar Navigation -->
+                <ul class="loginbar pull-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                     Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                    {% else %}
+                      <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                    {% endif %}
+                </ul>
+                <!-- End Topbar Navigation -->
+            </div>
+        </div>
+        <!-- End Topbar -->
+    
+        <!-- Navbar -->
+        <div class="navbar navbar-default mega-menu" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img id="logo-header" src="{{ asset('img/logo1-default.png') }}" alt="Logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Home -->
+                        <li>
+                            <a href="{{ path('eb_pret_controleur_homepage') }}">Accueil</a>
+                        </li>
+                        <!-- End Home -->
+                        
+                        <!-- Pages -->                       
+                        <li><a href="{{ path('eb_pret_controleur_emprunter') }}">Emprunter</a></li>
+                        <!--End Pages -->
+                        <!-- Pages -->                        
+                        <li><a href="{{ path('eb_pret_controleur_Centre') }}">Paramètres</a></li>
+                        <!-- End Pages -->
+                        <!-- Contacts -->
+                        <li><a href="page_contact1.html">Nous contacter</a></li>                  
+                        <!-- End Contacts -->
+                    </ul>
+                </div><!--/navbar-collapse-->
+            </div>    
+        </div>            
+        <!-- End Navbar -->
+    </div>
+    <!--=== End Header ===--> 
+    <!--=== Content Part ===-->
+    {% block body %}
+         
+
+    {% endblock %}   
+    <!-- End Content Part -->
+
+    <!--=== Footer Version 1 ===-->
+    <div class="footer-v1">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- About -->
+                    <div class="col-md-3 md-margin-bottom-40">
+                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="{{ asset('img/logo2-default.png') }}" alt=""></a>
+                        <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
+                        <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>    
+                    </div><!--/col-md-3-->
+                    <!-- End About -->                
+
+                    <!-- Address -->
+                    <div class="col-md-3 map-img md-margin-bottom-40">
+                        <div class="headline"><h2>Contact</h2></div>                         
+                        <address class="md-margin-bottom-40">
+                            8 Rue Pierre Lefort <br />
+                            76500 Elbeuf<br />
+                            Téléphone : 02.35.87.03.31<br />
+                            Email: <a href="mailto:info@anybiz.com" class="">info@autosur-elbeuf.com</a>
+                        </address>
+                    </div><!--/col-md-3-->
+                    <!-- End Address -->
+                </div>
+            </div> 
+        </div><!--/footer-->
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">                     
+                        <p>
+                            2014 &copy; All Rights Reserved.
+                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                        </p>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="col-md-6">
+                        <ul class="footer-socials list-inline">
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+                                    <i class="fa fa-skype"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Social Links -->
+                </div>
+            </div> 
+        </div><!--/copyright-->
+    </div>     
+    <!--=== End Footer Version 1 ===-->
+</div><!--/wrapper-->
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jquery/jquery-migrate.min.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/back-to-top.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/flexslider/jquery.flexslider-min.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/owl-carousel/owl-carousel/owl.carousel.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/js/greensock.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/js/layerslider.transitions.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/js/layerslider.kreaturamedia.jquery.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/js/custom.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/js/app.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/layer-slider.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/owl-recent-works.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jquery.vmap.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
+
+  <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+  <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+  <script type="text/javascript"> 
+            jQuery(document).ready(function() {
+            App.init();
+            App.initSliders();
+            LayerSlider.initLayerSlider();   
+            OwlRecentWorks.initOwlRecentWorksV2();
+             });
+  </script>
+  <script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#vmap').vectorMap({
+            map: 'france_fr',
+            onRegionClick: function(element, code, region)
+            {
+                location.href=Routing.generate('eb_pret_controleur_ListeDisponibilite', {'departement':code.toUpperCase()});   
+            }
+        });
+    });
+    </script>
+    <script type="text/javascript">
+        $("#eb_pretcontroleurbundle_centre_adresse_region").change(function() {
+         
+            var vendor = $("#eb_pretcontroleurbundle_centre_adresse_region option:selected").val();
+            var DATA = 'id=' + vendor;
+            var path = Routing.generate('eb_pret_controleur_DepByRegion');
+         
+            $.ajax({
+                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
+                type: 'POST',
+                dataType: 'json',
+                data: DATA,
+                success: function(data)
+                {
+                    $('#eb_pretcontroleurbundle_centre_adresse_departement').find("option").remove();
+                    $.each(data, function(cle, valeur){     
+                        var item = valeur;
+                        item = $.parseJSON(item);  
+                    $('#eb_pretcontroleurbundle_centre_adresse_departement').append(new Option(item.libelle, item.id));    
+                    });
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+        }); 
+
+        $("#eb_pretcontroleurbundle_controleur_adresse_region").change(function() {
+         
+            var vendor = $("#eb_pretcontroleurbundle_controleur_adresse_region option:selected").val();
+            var DATA = 'id=' + vendor;
+            var path = Routing.generate('eb_pret_controleur_DepByRegion');
+         
+            $.ajax({
+                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
+                type: 'POST',
+                dataType: 'json',
+                data: DATA,
+                success: function(data)
+                {
+                    $('#eb_pretcontroleurbundle_controleur_adresse_departement').find("option").remove();
+                    $.each(data, function(cle, valeur){     
+                        var item = valeur;
+                        item = $.parseJSON(item);  
+                    $('#eb_pretcontroleurbundle_controleur_adresse_departement').append(new Option(item.libelle, item.id));    
+                    });
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+        }); 
+    </script>
+  <!--[if lt IE 9]>
+    <script src="assets/plugins/respond.js"></script>
+    <script src="assets/plugins/html5shiv.js"></script>
+    <script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+  xs<![endif]-->
+</body>
+</html> 

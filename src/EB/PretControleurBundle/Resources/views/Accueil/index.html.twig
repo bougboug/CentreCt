@@ -1,0 +1,201 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+
+    <h1 class="pull-left"></h1>
+
+    <!--=== Slider ===-->
+    <div id="layerslider" style="width: 100%; height: 500px; margin: 0px auto;">
+        <!-- First slide -->
+        <div class="ls-slide" data-ls="slidedelay:4500;transition2d:25;">
+            <img src="{{ asset('img/sliders/layer/bg_slider_1.jpg') }}" class="ls-bg" alt="Slide background"/>
+
+            <img class="ls-l" src="{{ asset('img/mockup/man-colors.png') }}" style="top: 85%; left: 44%;" 
+            data-ls="offsetxin:left; durationin:1500; delayin:900; fadein:false; offsetxout:left; durationout:1000; fadeout:false;" />
+            
+            <img src="{{ asset('img/mockup/woman.png') }}" alt="Slider image" class="ls-s-1" style=" top:62px; left: 29%;" 
+            data-ls="offsetxin:left; durationin:1500; delayin:1500; fadein:false; offsetxout:left; durationout:1000; fadeout:false;">
+
+        </div>
+
+        <!--Second Slide-->
+        <div class="ls-slide" data-ls="transition2d:93;">
+            <img src="{{ asset('img/bg/5.jpg') }}" class="ls-bg" alt="Slide background">
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:70px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 1500; durationout : 500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:70px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 1500; durationout : 500; ">
+                Accroissement d'activité ? Départ en congés ? Maladie?
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:120px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 2500; durationout : 1500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:120px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 2500; durationout : 1500; ">
+                Besoin d'un controleur ? 
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:170px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 3500; durationout : 3500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:170px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 2500; ">
+                Avec CONTROLIZOR vous trouvez votre contôleur à proximité
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:220px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 4500; durationout : 3500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:220px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 4500; durationout : 3500; ">
+               En toute sécurité et confidentialité
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:270px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 5500; durationout : 4500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:270px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 5500; durationout : 4500; ">
+                CONTROLIZOR votre solution contrôle
+            </span>
+
+            <img src="{{ asset('img/mockup/slider-man.png') }}" alt="Slider Image" class="ls-s-1" style=" top:30px; left: 650px; slidedirection : right; slideoutdirection : bottom; durationin : 1500; durationout : 1500; ">
+        </div>                
+
+        <!--End Third Slide-->
+    </div><!--/layer_slider-->
+    <!--=== End Slider ===-->
+        <!--=== Purchase Block ===-->
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 animated fadeInLeft">
+                    <span>Bienvenue sur Controlizor le premier site qui vous permet de trouver et de prêter un contrôleur près de votre centre.</span>
+                    <p>Vous avez un surcroît d’activité, besoin d’un contrôleur ne cherchez plus Controlizor est là pour vous aider.</p>
+                    <p>Votre centre ferme pour des vacances bien méritées, vous avez un contrôleur de disponible, n’hésitez plus prêtez-le à un centre voisin…</p>
+                </div>  
+            </div>
+        </div>
+    </div><!--/row-->
+    <!-- End Purchase Block -->
+    <div class="container content">
+        <div class="margin-bottom-10"></div>
+        <!-- Service Blocks -->
+        <h3>Trouver, prêter votre contrôleur sur Controlizor , en 3 étapes c’est sécurisé, rapide et simple !</h3></br>
+        <div class="row content-boxes-v2 margin-bottom-30">
+            <div class="col-md-4 md-margin-bottom-30">                
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-rocket"></i>
+                        <span>1ère étape</span>
+                    </a>
+                </h2>
+                <p class="text-justify">Vous inscrivez votre centre sur le site en remplissant notre formulaire. Notre équipe valide votre inscription en moins de 6h.</p>
+            </div>
+            <div class="col-md-4 md-margin-bottom-30">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-rocket"></i>
+                        <span>2ème étape</span>
+                    </a>
+                </h2>
+                <p class="text-justify">Vous cherchez un contrôleur ou vous mettez un contrôleur disponible.</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-rocket"></i>
+                        <span>3ème étape</span>
+                    </a>
+                </h2>
+                <p class="text-justify">Vous trouvez votre solution (ou bonheur) sur controlizor ! Et le tour est joué.</p>
+            </div>
+        </div>
+
+     <!--   <div class="row content-boxes-v2 margin-bottom-30">
+            <div class="col-md-4 md-margin-bottom-30">                
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-support"></i>
+                        <span>Dedicated Support</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+            <div class="col-md-4 md-margin-bottom-30">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark fa fa-thumbs-o-up"></i> 
+                        <span>Premium Sliders</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-present"></i>
+                        <span>FREE Updates</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+        </div> -->
+        <!-- End Service Blokcs -->    
+
+        <!-- Our Clients -->
+        <div id="clients-flexslider" class="flexslider home clients">
+            <div class="headline"><h2>Nos clients</h2></div>    
+            <ul class="slides">
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/autosur.jpg') }}" alt=""> 
+                        <img src="{{ asset('img/clients/autosur.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/securitest.jpg') }}" alt="">
+                        <img src="{{ asset('img/clients/securitest.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/norisko.jpg') }}"  alt=""> 
+                        <img src="{{ asset('img/clients/norisko.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/autovision.jpg') }}" alt=""> 
+                        <img src="{{ asset('img/clients/autovision.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/autosecurite.jpg') }}" alt=""> 
+                        <img src="{{ asset('img/clients/autosecurite.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/dekra.jpg') }}" alt=""> 
+                        <img src="{{ asset('img/clients/dekra.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/veritas.jpg') }}" alt=""> 
+                        <img src="{{ asset('img/clients/veritas.jpg') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/logosecta.jpg') }}" alt=""> 
+                        <img src="{{ asset('img/clients/logosecta.jpg') }}" class="color-img" alt="">
+                    </a>  
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/tuv.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/tuv.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div><!--/flexslider-->
+        <!-- End Our Clients -->    
+    </div>  
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+
+{% block EBPretcontroleur_body %}
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+            <div class="panel-body">  
+                <label>
+                  Mr {{demande.centre.user.Username}} responsable du centre {{demande.centre.nom}} , souhaite vous emprunter le controleur
+                  {{demande.controleur.nom}} {{demande.controleur.prenom}} (centre : {{demande.controleur.centre.nom}}) en date du 
+                  {{ demande.date|date('d/m/Y') }}.
+                </label>
+                    <div class="form-group">
+                                <label>Acceptez vous la demande ? (Laissez decocher si vous refusez la demande)</label>
+                                {{ form_widget(form.statut) }} 
+                    </div>
+                    {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                    {{ form_end(form) }}
+            </div>   
+            {{ form_rest(form._token) }}
+    </div>
+
+{% endblock %}

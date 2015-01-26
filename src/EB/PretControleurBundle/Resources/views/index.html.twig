@@ -1,0 +1,465 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+
+    <h1 class="pull-left">Hello</h1>
+
+    <!--=== Slider ===-->
+    <div id="layerslider" style="width: 100%; height: 500px; margin: 0px auto;">
+        <!-- First slide -->
+        <div class="ls-slide" data-ls="slidedelay:4500;transition2d:25;">
+            <img src="{{ asset('img/sliders/layer/bg1.jpg') }}" class="ls-bg" alt="Slide background"/>
+
+            <img class="ls-l" src="{{ asset('img/mockup/iphone1.png') }}" style="top: 85%; left: 44%;" 
+            data-ls="offsetxin:left; durationin:1500; delayin:900; fadein:false; offsetxout:left; durationout:1000; fadeout:false;" />
+            
+            <img src="{{ asset('img/mockup/iphone1.png') }}" alt="Slider image" class="ls-s-1" style=" top:62px; left: 29%;" 
+            data-ls="offsetxin:left; durationin:1500; delayin:1500; fadein:false; offsetxout:left; durationout:1000; fadeout:false;">
+        
+            <span class="ls-s-1" style=" text-transform: uppercase; line-height: 45px; font-size:35px; color:#fff; top:200px; left: 590px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 3500; delayin : 1000;">
+                Fully Responsive <br> Bootstrap 3 Template
+            </span>
+
+            <a class="btn-u btn-u-orange ls-s-1" href="#" style=" padding: 9px 20px; font-size:25px; top:340px; left: 590px; slidedirection : bottom; slideoutdirection : top; durationin : 3500; durationout : 2500; delayin : 1000; ">
+                Download Now
+            </a>
+        </div>
+
+        <!--Second Slide-->
+        <div class="ls-slide" data-ls="transition2d:93;">
+            <img src="{{ asset('img/bg/5.jpg') }}" class="ls-bg" alt="Slide background">
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:70px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 1500; durationout : 500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:70px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 1500; durationout : 500; ">
+                Fully Responsive and Easy to Customize
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:120px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 2500; durationout : 1500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:120px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 2500; durationout : 1500; ">
+                Revolution and Layer Slider Included 
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:170px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 3500; durationout : 3500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:170px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 2500; ">
+                1000+ Glyphicons Pro and Font Awesome Icons 
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:220px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 4500; durationout : 3500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:220px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 4500; durationout : 3500; ">
+                Revolution and Layer Slider Included 
+            </span>
+
+            <i class="fa fa-chevron-circle-right ls-s-1" style=" color: #fff; font-size: 24px; top:270px; left: 40px; slidedirection : left; slideoutdirection : top; durationin : 5500; durationout : 4500; "></i> 
+
+            <span class="ls-s-2" style=" color: #fff; font-weight: 200; font-size: 22px; top:270px; left: 70px; slidedirection : top; slideoutdirection : bottom; durationin : 5500; durationout : 4500; ">
+                60+ Template Pages and 20+ Plugins Included
+            </span>
+
+            <a class="btn-u btn-u-blue ls-s1" href="#" style=" padding: 9px 20px; font-size:25px; top:340px; left: 40px; slidedirection : bottom; slideoutdirection : bottom; durationin : 6500; durationout : 3500; ">
+                Twitter Bootstrap 3
+            </a>
+
+            <img src="{{ asset('img/mockup/iphone1.png') }}" alt="Slider Image" class="ls-s-1" style=" top:30px; left: 650px; slidedirection : right; slideoutdirection : bottom; durationin : 1500; durationout : 1500; ">
+        </div>                
+
+        <!--Third Slide-->
+        <div class="ls-slide" style="slidedirection: right; transition2d: 92,93,105; ">
+            <img src="{{ asset('img/sliders/layer/bg2.jpg') }}" class="ls-bg" alt="Slide background">
+
+            <span class="ls-s-1" style=" color: #777; line-height:45px; font-weight: 200; font-size: 35px; top:100px; left: 50px; slidedirection : top; slideoutdirection : bottom; durationin : 1000; durationout : 1000; ">
+                Unify is Fully Responsive <br> Twitter Bootstrap 3 Template
+            </span>
+
+            <a class="btn-u btn-u-green ls-s-1" href="#" style=" padding: 9px 20px; font-size:25px; top:220px; left: 50px; slidedirection : bottom; slideoutdirection : bottom; durationin : 2000; durationout : 2000; ">
+                Find Out More
+            </a>
+
+            <img src="{{ asset('img/mockup/iphone.png') }}" alt="Slider Image" class="ls-s-1" style=" top:30px; left: 670px; slidedirection : right; slideoutdirection : bottom; durationin : 3000; durationout : 3000; ">
+        </div>
+        <!--End Third Slide-->
+    </div><!--/layer_slider-->
+    <!--=== End Slider ===-->
+        <!--=== Purchase Block ===-->
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 animated fadeInLeft">
+                    <span>Unify is a clean and fully responsive incredible Template.</span>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi  vehicula sem ut volutpat. Ut non libero magna fusce condimentum eleifend enim a feugiat corrupti quos.</p>
+                </div>            
+                <div class="col-md-3 btn-buy animated fadeInRight">
+                    <a href="#" class="btn-u btn-u-lg"><i class="fa fa-cloud-download"></i> Download Now</a>
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+    <!-- End Purchase Block -->
+    <div class="container content">
+        <div class="margin-bottom-10"></div>
+        <!-- Service Blocks -->
+        <div class="row content-boxes-v2 margin-bottom-30">
+            <div class="col-md-4 md-margin-bottom-30">                
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark fa fa-compress"></i>
+                        <span>Fully Responsive</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+            <div class="col-md-4 md-margin-bottom-30">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark fa fa-html5"></i> 
+                        <span>HTML5 + CSS3</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-rocket"></i>
+                        <span>Launch Ready</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+        </div>
+
+        <div class="row content-boxes-v2 margin-bottom-30">
+            <div class="col-md-4 md-margin-bottom-30">                
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-support"></i>
+                        <span>Dedicated Support</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+            <div class="col-md-4 md-margin-bottom-30">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark fa fa-thumbs-o-up"></i> 
+                        <span>Premium Sliders</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="heading-sm">
+                    <a class="link-bg-icon" href="#">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-present"></i>
+                        <span>FREE Updates</span>
+                    </a>
+                </h2>
+                <p class="text-justify">At vero eos et accusamus et iusto odio dignissimos ducimus. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been..</p>
+            </div>
+        </div>
+        <!-- End Service Blokcs -->    
+
+        <!-- Recent Works -->
+        <div class="owl-carousel-v1 owl-work-v1 margin-bottom-40">
+            <div class="headline"><h2 class="pull-left">Recent Works</h2>
+                <div class="owl-navigation">
+                    <div class="customNavigation">
+                        <a class="owl-btn prev-v2"><i class="fa fa-angle-left"></i></a>
+                        <a class="owl-btn next-v2"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div><!--/navigation-->
+            </div>
+
+            <div class="owl-recent-works-v1">
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/1.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Happy New Year</strong>
+                            <i>Anim pariatur cliche reprehenderit</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/2.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Award Winning Agency</strong>
+                            <i>Responsive Bootstrap Template</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/3.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Wolf Moon Officia</strong>
+                            <i>Pariatur prehe cliche reprehrit</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/4.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Food Truck Quinoa Nesciunt</strong>
+                            <i>Craft labore wes anderson cred</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/5.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Happy New Year</strong>
+                            <i>Anim pariatur cliche reprehenderit</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/1.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Happy New Year</strong>
+                            <i>Anim pariatur cliche reprehenderit</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/2.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Award Winning Agency</strong>
+                            <i>Responsive Bootstrap Template</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/3.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Wolf Moon Officia</strong>
+                            <i>Pariatur prehe cliche reprehrit</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/4.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Food Truck Quinoa Nesciunt</strong>
+                            <i>Craft labore wes anderson cred</i>
+                        </span>
+                    </a>    
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <em class="overflow-hidden">
+                            <img class="img-responsive" src="{{ asset('img/main/5.jpg') }}" alt="">
+                        </em>    
+                        <span>
+                            <strong>Happy New Year</strong>
+                            <i>Anim pariatur cliche reprehenderit</i>
+                        </span>
+                    </a>    
+                </div>
+            </div>
+        </div>
+        <!-- End Recent Works -->
+
+        <!-- Info Blokcs -->
+        <div class="row margin-bottom-20">
+            <!-- Welcome Block -->
+            <div class="col-md-8 md-margin-bottom-40">
+                <div class="headline"><h2>Welcome To Unify</h2></div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="img-responsive margin-bottom-20" src="{{ asset('img/new/img15.jpg') }}" alt="">
+                    </div>
+                    <div class="col-sm-8">
+                        <p>Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers, tablets and phone.</p>
+                        <ul class="list-unstyled margin-bottom-20">
+                            <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
+                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
+                            <li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
+                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
+                        </ul>                    
+                    </div>
+                </div>
+
+                <blockquote class="hero-unify">
+                    <p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why. Unify is an incredibly beautiful responsive Bootstrap Template for corporate professionals.</p>
+                    <small>CEO, Jack Bour</small>
+                </blockquote>
+            </div><!--/col-md-8-->        
+
+            <!-- Latest Shots -->
+            <div class="col-md-4 md-margin-bottom-20">
+                <div class="headline"><h2>Latest Shots</h2></div>
+                <div id="myCarousel" class="carousel slide carousel-v1">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="{{ asset('img/main/5.jpg') }}" alt="">
+                            <div class="carousel-caption">
+                                <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{{ asset('img/main/4.jpg') }}" alt="">
+                            <div class="carousel-caption">
+                                <p>Cras justo odio, dapibus ac facilisis into egestas.</p>
+                            </div>
+                            </div>
+                        <div class="item">
+                            <img src="{{ asset('img/main/3.jpg') }}" alt="">
+                            <div class="carousel-caption">
+                                <p>Justo cras odio apibus ac afilisis lingestas de.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-arrow">
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div><!--/col-md-4-->
+        </div><!--/row-->   
+        <!-- End Info Blokcs -->
+
+        <!-- Our Clients -->
+        <div id="clients-flexslider" class="flexslider home clients">
+            <div class="headline"><h2>Our Clients</h2></div>    
+            <ul class="slides">
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/hp_grey.png') }}" alt="">
+                        <img src="{{ asset('img/clients/hp.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/igneus_grey.png') }}"  alt=""> 
+                        <img src="{{ asset('img/clients/igneus.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/vadafone_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/vadafone.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/walmart_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/walmart.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/shell_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/shell.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/natural_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/natural.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/aztec_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/aztec.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/gamescast_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/gamescast.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/cisco_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/cisco.png') }}" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/everyday_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/everyday.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/cocacola_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/cocacola.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/spinworkx_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/spinworkx.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/shell_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/shell.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/natural_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/natural.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/gamescast_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/gamescast.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/everyday_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/everyday.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{{ asset('img/clients/spinworkx_grey.png') }}" alt=""> 
+                        <img src="{{ asset('img/clients/spinworkx.png') }}" class="color-img" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div><!--/flexslider-->
+        <!-- End Our Clients -->    
+    </div>  
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+ <div class="container content">
+        <div class="row">
+            <!-- Begin Sidebar Menu -->
+            <div class="col-md-3">
+                <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+                    <!-- Typography -->
+                    <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography">Centres</a>
+                        <ul id="collapse-typography" class="collapse">
+                            <li><a href="{{ path('eb_pret_controleur_Centre') }}">Liste de vos centre</a></li>
+                            <li>
+                                <a href="{{ path('eb_pret_controleur_AjoutCentre') }}">Ajouter un centre</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Typography -->
+                     <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-buttons">Controleurs</a>
+                        <ul id="collapse-buttons" class="collapse">
+                            <li><a href="{{ path('eb_pret_controleur_Controleur') }}"> Listes de vos controleur</a></li>
+                            <li>                          
+                                <a href="{{ path('eb_pret_controleur_AjoutControleur') }}">Ajouter un controleur</a>
+                            </li>
+                            <li>
+                                <span class="badge badge-u">New</span>                            
+                                <a href="{{ path('eb_pret_controleur_DemandeRecuControleur') }}"></i> Demande reçu</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- end controleurs-->
+                </ul>
+            </div>      
+            <div class="col-md-9">
+                <div class="tag-box tag-box-v3 tag-text-space margin-bottom-40">         
+                  {% block EBPretcontroleur_body %}
+                  {% endblock %}
+                </div>   
+            </div>
+        </div>       
+ </div>  
+{% endblock %}

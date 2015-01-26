@@ -1,0 +1,45 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+                <div class="panel panel-green margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de vos centres</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Légende : </p>
+                        <span class="label label-info">En cours de validation.</span>Nos services véréfie votre dossier.
+                    </div>                                      
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom du centre</th>
+                                <th>Numéro d'agrement</th>
+                                <th>Date de création</th>
+                                <th>Statut</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for centre in listeCentres %}
+                            <tr>
+                            <td>{{ centre.nom }}</td>
+                            <td>{{ centre.numAgrement }}</td>
+                            <td>{{ centre.dateCreation|date('d/m/Y') }}</td>
+                            <td>
+                               {% if centre.statut == false %}
+                                <span class="label label-info">En cours de validation.</span>
+                                {% else %}
+                                <span class="label label-success">Success</span>
+                                {% endif %}
+                            </td>
+                            <td><button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> 
+                            <a href="{{ path('eb_pret_controleur_EditCentre', {'id': centre.id}) }}">
+                            <font color="white">Edit</font>
+                            </a></button>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+{% endblock %}

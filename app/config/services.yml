@@ -1,0 +1,12 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    EB.PretControleurBundle.calendar_listener:
+#        class: EB\PretControleurBundle\EventListener\CalendarEventListener
+#        arguments: [ @doctrine.orm.entity_manager ]
+#        tags:
+#            - { name:"kernel.event_listener", event:"calendar.load_events", method:"loadEvents" }
+
