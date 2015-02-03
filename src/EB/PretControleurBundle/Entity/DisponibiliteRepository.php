@@ -35,19 +35,22 @@ class DisponibiliteRepository extends EntityRepository
    * @param string $sortby
    * @return Paginator
    */
-  public function LstDispoByUser($user, $codeDep, $page=1, $maxperpage=4)
+  public function LstDispoByUser($user, $codeDep, $page=1, $maxperpage=4,$date)
   {
     $q = $this->createQueryBuilder('d')
-        	  ->leftJoin('d.controleur', 'c')
+            ->leftJoin('d.controleur', 'c')
             ->leftJoin('c.adresse', 'a')
             ->leftJoin('a.departement', 'dep')
-        	  ->leftJoin('c.centre', 'e')
-        	  ->addSelect('c')
-        	  ->where('e.user != :user')
+            ->leftJoin('c.centre', 'e')
+            ->addSelect('c')
+            ->where('e.user != :user')
             ->andWhere('dep.code = :code')
             ->andWhere('d.statut = false')
-        	  ->setParameter('user', $user)
-            ->setParameter('code', $codeDep);
+            ->andWhere('d.date >= :date')
+            ->orderBy('d.date','DESC')
+            ->setParameter('user', $user)
+            ->setParameter('code', $codeDep)
+            ->setParameter('date', $date->format('Y-m-d'));
 
     $q->setFirstResult(($page-1) * $maxperpage)
       ->setMaxResults($maxperpage);

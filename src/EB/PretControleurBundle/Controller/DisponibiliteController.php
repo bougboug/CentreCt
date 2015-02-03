@@ -45,7 +45,7 @@ class DisponibiliteController extends Controller
         //liste pour la pagination
         $listeDispo = $this->getDoctrine()
                            ->getRepository('EBPretControleurBundle:Disponibilite')
-                           ->LstDispoByUser($user, $departement, $page, $maxDispo);
+                           ->LstDispoByUser($user, $departement, $page, $maxDispo,new \DateTime('now'));
  
         return $this->render('EBPretControleurBundle:Disponibilite:ListeDispo.html.twig', array(
             'listeDispo' => $listeDispo,
