@@ -196,8 +196,8 @@
   <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/owl-recent-works.js') }}"></script>
 
   <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-   <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jquery.vmap.js') }}"></script>
-   <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jquery.vmap.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
   <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
   <script type="text/javascript"> 
             jQuery(document).ready(function() {
@@ -207,7 +207,6 @@
             OwlRecentWorks.initOwlRecentWorksV2();
              });
   </script>
-
   <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#vmap').vectorMap({
@@ -219,7 +218,6 @@
         });
     });
     </script>
-
     <script type="text/javascript">
         $("#eb_pretcontroleurbundle_centre_adresse_region").change(function() {
          
@@ -250,7 +248,8 @@
                 }
             });
         }); 
-
+    </script>
+    <script type="text/javascript">
         $("#eb_pretcontroleurbundle_controleur_adresse_region").change(function() {
          
             var vendor = $("#eb_pretcontroleurbundle_controleur_adresse_region option:selected").val();
