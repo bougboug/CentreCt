@@ -8,8 +8,8 @@
     <div class="panel panel-blue margin-bottom-40">
             <div class="panel-body">  
                 <label>
-                  Mr {{ disponibilite.controleur.nom }} {{ disponibilite.controleur.prenom }} sera disponible le {{ disponibilite.date|date('d/m/Y') }}.</br>
-                  Il possède {{ disponibilite.controleur.experience }} d'année(s) d'expérience.</br>
+                  {{ disponibilite.controleur.nom }} {{ disponibilite.controleur.prenom }} sera disponible le {{ disponibilite.date|date('d/m/Y') }}.</br>
+                  Ce contrôleur possède {{ disponibilite.controleur.experience }} d'année(s) d'expérience.</br>
                   Il habite au : {{ disponibilite.controleur.adresse.adresse }}, {{ disponibilite.controleur.adresse.codePostal }} à 
                   {{ disponibilite.controleur.adresse.ville }}</br></br>
                 </label>
@@ -21,6 +21,11 @@
                         <label>Souhaitez-vous emprunter ce controleur ?</label>
                         {{ form_widget(form.pris) }} 
                     </div>
+                    <button class="btn-u btn-u-blue" type="button">
+                        <a href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': departement} ) }}">
+                            <font color="white">Précedent</font>
+                        </a>
+                    </button>
                     {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
                     {{ form_end(form) }}
             </div>   

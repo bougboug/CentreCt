@@ -43,11 +43,19 @@
                         {% endif %}
                     </td>
                     <td>
+                         {% if dispo.pris == false %}
                         <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> 
                          <a href="{{ path('eb_pret_controleur_DetailDisponibilite', {'idDisponibilite': dispo.id}) }}">
                          <font color="white">Emprunter</font>
                          </a>
                         </button>
+                        {% else %}
+                         <button class="btn btn-warning btn-xs disabled" disabled="disabled"><i class="fa fa-pencil"></i> 
+                         <a href="{{ path('eb_pret_controleur_DetailDisponibilite', {'idDisponibilite': dispo.id}) }}">
+                         <font color="white">Emprunter</font>
+                         </a>
+                        </button>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

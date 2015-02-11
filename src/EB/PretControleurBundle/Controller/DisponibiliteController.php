@@ -4,6 +4,7 @@ namespace EB\PretControleurBundle\Controller;
 
 use EB\PretControleurBundle\Entity\Disponibilite;
 use EB\PretControleurBundle\Entity\Controleur;
+use EB\PretControleurBundle\Entity\Centre;
 use EB\UserBundle\Entity\User;
 use EB\PretControleurBundle\Form\DisponibiliteType;
 use EB\PretControleurBundle\Form\PriseDisponibiliteType;
@@ -50,7 +51,7 @@ class DisponibiliteController extends Controller
         return $this->render('EBPretControleurBundle:Disponibilite:ListeDispo.html.twig', array(
             'listeDispo' => $listeDispo,
             'pagination' => $pagination,
-            'nbDispo'    => $dispo_count 
+            'nbDispo'    => $dispo_count
         ));
     }
 
@@ -106,6 +107,12 @@ class DisponibiliteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user=$this->container->get('security.context')->getToken()->getUser();
+        
+        //$centre = new Centre;
+       // $centre->setUser($this->container->get('security.context')->getToken()->getUser());
+         //       $em->getRepository('EBPretControleurBundle:Centre')->find($id);
+
+        $codeDepartement = $disponibilite->getControleur()->getAdresse()->getDepartement()->getCode();
 
         $form = $this->get('form.factory')->create(new PriseDisponibiliteType($user), $disponibilite);
 
@@ -118,12 +125,13 @@ class DisponibiliteController extends Controller
 
          $request->getSession()->getFlashBag()->add('controleur', 'le controleur a bien enregistrée.');
 
-         $codeDepartement = $disponibilite->getControleur()->getAdresse()->getDepartement()->getCode();
+         //$codeDepartement = $disponibilite->getControleur()->getAdresse()->getDepartement()->getCode();
          //return $this->redirect($this->generateUrl('eb_pret_controleur_Disponibilite', array('idControleur' => $idControleur)));
          return $this->redirect($this->generateUrl('eb_pret_controleur_ListeDisponibilite', array('departement' => $codeDepartement)));
          
         }
-        return $this->render('EBPretControleurBundle:Disponibilite:PriseDispo.html.twig', array('form' => $form->createView(),'disponibilite' => $disponibilite));
+        return $this->render('EBPretControleurBundle:Disponibilite:PriseDispo.html.twig', array('form' => $form->createView(),'disponibilite' => $disponibilite,
+            'departement' => $codeDepartement ));//, 'centre' =>  $centre));
     }
 
    /**
