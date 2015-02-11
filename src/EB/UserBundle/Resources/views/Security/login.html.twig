@@ -33,7 +33,9 @@
 			        </div>
 			        <hr>
 			        <h4>Mot de passe oublié ?</h4>
-                    <p>Pas de problème, <a class="color-green" href="#">cliquer içi</a> pour réinitiliser votre mot de passe</p>
+                    <p><a class="color-green" href="{{ path('fos_user_resetting_request') }}">cliquer ici</a> pour réinitiliser votre mot de passe.</p>
+                	<h4>Vous n'avez pas de compte ?</h4>
+                	<p><a class="color-green" href="{{ path('fos_user_registration_register') }}">cliquer ici</a> pour en créer un.</p>
     	        </form>
 			</div>
 		</div>
