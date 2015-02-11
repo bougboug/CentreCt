@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use EB\PretControleurBundle\Entity\CentreRepository;
 
-class ControleurType extends AbstractType
+class EditControleurType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -25,20 +25,16 @@ class ControleurType extends AbstractType
             ->add('telephone', 'text', array('max_length' => 10))
             ->add('email','text')
             ->add('experience','text', array('max_length' => 2))
-           /*->add('centre', 'entity', array(
-                  'class'    => 'EBPretControleurBundle:Centre',
-                  'property' => 'nom',
-                  'multiple' => false))*/
             ->add('centre', 'entity', array(
                 'class'         => 'EBPretControleurBundle:Centre',
                 'property'      => 'nom',
                 'query_builder' => function(CentreRepository $repo) use($user) {
                   return $repo->LstCentreByUserQb($user);
                   }))
-            ->add('AttestationAgrement',      new FichierType()) 
-            ->add('AttestationFormationVingtHeure',      new FichierType()) 
-            ->add('AttestationTroisCentControle',      new FichierType()) 
-            ->add('AttestationBonPourAccord',      new FichierType()) 
+            ->add('AttestationAgrement',      new FichierType(), array('required' => false)) 
+            ->add('AttestationFormationVingtHeure',      new FichierType(), array('required' => false)) 
+            ->add('AttestationTroisCentControle',      new FichierType(), array('required' => false)) 
+            ->add('AttestationBonPourAccord',      new FichierType(), array('required' => false)) 
             ->add('Enregistrer',      'submit')
         ;
     }
@@ -65,6 +61,6 @@ class ControleurType extends AbstractType
      */
     public function getName()
     {
-        return 'eb_pretcontroleurbundle_controleur';
+        return 'eb_pretcontroleurbundle_edit_controleur';
     }
 }

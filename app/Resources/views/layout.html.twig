@@ -67,10 +67,17 @@
                         <!-- End Home -->
                         
                         <!-- Pages -->                       
-                        <li><a href="{{ path('eb_pret_controleur_emprunter') }}">Emprunter</a></li>
+                        <li><a href="{{ path('eb_pret_controleur_emprunter') }}">Rechercher</a></li>
                         <!--End Pages -->
                         <!-- Pages -->                        
-                        <li><a href="{{ path('eb_pret_controleur_Centre') }}">Paramètres</a></li>
+                        {% if is_granted('ROLE_USER') %}   
+                        <li><a href="{{ path('eb_pret_controleur_Centre') }}">Gestion</a></li>
+                        {% endif %}
+                        <!-- End Pages -->
+                        <!-- Pages -->   
+                        {% if is_granted('ROLE_ADMIN') %}                     
+                        <li><a href="{{ path('eb_pret_controleur_Administration') }}">Administration</a></li>
+                        {% endif %}
                         <!-- End Pages -->
                         <!-- Contacts -->
                         <li><a href="page_contact1.html">Nous contacter</a></li>                  
@@ -97,9 +104,8 @@
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
                         <a href="index.html"><img id="logo-footer" class="footer-logo" src="{{ asset('img/logo2-default.png') }}" alt=""></a>
-                        <p>Bienvenue sur le Controlisor</p>
-                        <p>Le 1er site vous permettant de prêter et de réserver votre contrôleur.</p>
-                        <p>Controlisor, trouvez votre contrôleur en un temps record !</p>    
+                        <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
+                        <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>    
                     </div><!--/col-md-3-->
                     <!-- End About -->                
 
@@ -188,10 +194,10 @@
   <script src="{{ asset('bundles/ebpretcontroleur/js/app.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/layer-slider.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/owl-recent-works.js') }}"></script>
-  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jquery.vmap.js') }}"></script>
-  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
 
   <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+   <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jquery.vmap.js') }}"></script>
+   <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
   <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
   <script type="text/javascript"> 
             jQuery(document).ready(function() {
@@ -201,6 +207,7 @@
             OwlRecentWorks.initOwlRecentWorksV2();
              });
   </script>
+
   <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#vmap').vectorMap({
@@ -212,6 +219,7 @@
         });
     });
     </script>
+
     <script type="text/javascript">
         $("#eb_pretcontroleurbundle_centre_adresse_region").change(function() {
          

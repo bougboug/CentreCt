@@ -1,8 +1,16 @@
 eb_pret_controleur_homepage:
     path:     /
     defaults: { _controller: EBPretControleurBundle:Accueil:index }
+eb_pret_controleur_Administration:
+    path:     /Administration
+    defaults: { _controller: EBPretControleurBundle:Administration:index }
+eb_pret_controleur_Administration_EditCentre:
+    path:     /Administration/centre/edit/{id}
+    defaults: { _controller: EBPretControleurBundle:Administration:edit }
+    requirements:
+        id: \d+
 eb_pret_controleur_emprunter:
-    path:     /Administration/emprunter
+    path:     /Gestion/emprunter
     defaults: { _controller: EBPretControleurBundle:Emprunter:index }
 eb_pret_controleur_Region:
     path:     /region/ajout
@@ -14,13 +22,13 @@ eb_pret_controleur_AjoutDepartement:
     path:     /departement/ajout
     defaults: { _controller: EBPretControleurBundle:Departement:ajout }
 eb_pret_controleur_Centre:
-    path:     /Administration/centre
+    path:     /Gestion/centre
     defaults: { _controller: EBPretControleurBundle:Centre:index }
 eb_pret_controleur_AjoutCentre:
-    path:     /Administration/centre/ajout
+    path:     /Gestion/centre/ajout
     defaults: { _controller: EBPretControleurBundle:Centre:ajout }
 eb_pret_controleur_EditCentre:
-    path:     /Administration/centre/edit/{id}
+    path:     /Gestion/centre/edit/{id}
     defaults: { _controller: EBPretControleurBundle:Centre:edit }
     requirements:
         id: \d+
@@ -31,46 +39,46 @@ eb_pret_controleur_AjoutAdresse:
     path:     /adresse/ajout
     defaults: { _controller: EBPretControleurBundle:Adresse:ajout }
 eb_pret_controleur_Controleur:
-    path:     /Administration/controleur
+    path:     /Gestion/controleur
     defaults: { _controller: EBPretControleurBundle:Controleur:index }
 eb_pret_controleur_AjoutControleur:
-    path:     /Administration/controleur/ajout
+    path:     /Gestion/controleur/ajout
     defaults: { _controller: EBPretControleurBundle:Controleur:ajout }
 eb_pret_controleur_EditControleur:
-    path:     /Administration/controleur/edit/{id}
+    path:     /Gestion/controleur/edit/{id}
     defaults: { _controller: EBPretControleurBundle:Controleur:edit }
     requirements:
         id: \d+
 eb_pret_controleur_DemandeRecuControleur:
-    path:     /Administration/disponibilite/demande/liste
+    path:     /Gestion/disponibilite/demande/liste
     defaults: { _controller: EBPretControleurBundle:Disponibilite:demandeRecu }
 eb_pret_controleur_ReponseDemandeDisponibilite:
-    path:     /Administration/disponibilite/demande/reponse/{idDisponibilite}
+    path:     /Gestion/disponibilite/demande/reponse/{idDisponibilite}
     defaults: { _controller: EBPretControleurBundle:Disponibilite:ReponseDispo }
     requirements:
         idControleur: \d+
 eb_pret_controleur_AjoutDisponibilite:
-    path:     /Administration/disponibilite/ajout/{idControleur}
+    path:     /Gestion/disponibilite/ajout/{idControleur}
     defaults: { _controller: EBPretControleurBundle:Disponibilite:ajout }
     requirements:
         idControleur: \d+
 eb_pret_controleur_ListeDisponibilite:
-    path:     /Administration/disponibilite/liste/{departement}/{page}
+    path:     /Gestion/disponibilite/liste/{departement}/{page}
     defaults: { _controller: EBPretControleurBundle:Disponibilite:listDispo, page: 1}
     options:
         expose: true
 eb_pret_controleur_Disponibilite:
-    path:     /Administration/disponibilite/{idControleur}
+    path:     /Gestion/disponibilite/{idControleur}
     defaults: { _controller: EBPretControleurBundle:Disponibilite:index }
     requirements:
         idControleur: \d+
 eb_pret_controleur_EditDisponibilite:
-    path:     /Administration/disponibilite/edit/{idDisponibilite}
+    path:     /Gestion/disponibilite/edit/{idDisponibilite}
     defaults: { _controller: EBPretControleurBundle:Disponibilite:edit }
     requirements:
         idDisponibilite: \d+
 eb_pret_controleur_DetailDisponibilite:
-    path:     /Administration/disponibilite/detailControleur/{idDisponibilite}
+    path:     /Gestion/disponibilite/detailControleur/{idDisponibilite}
     defaults: { _controller: EBPretControleurBundle:Disponibilite:PriseDispo}
     requirements:
         idDisponibilite: \d+

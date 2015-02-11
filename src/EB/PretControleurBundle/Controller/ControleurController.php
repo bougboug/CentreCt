@@ -6,6 +6,7 @@ use EB\PretControleurBundle\Entity\Controleur;
 use EB\UserBundle\Entity\User;
 use EB\PretControleurBundle\Entity\Disponibilite;
 use EB\PretControleurBundle\Form\ControleurType;
+use EB\PretControleurBundle\Form\EditControleurType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +53,7 @@ class ControleurController extends Controller
             throw new NotFoundHttpException("le controleur d'id ".$id." n'existe pas.");
         }
 
-        $form = $this->get('form.factory')->create(new ControleurType($user), $controleur);
+        $form = $this->get('form.factory')->create(new EditControleurType($user), $controleur);
 
          if ($form->handleRequest($request)->isValid()) {
          $em->persist($controleur);

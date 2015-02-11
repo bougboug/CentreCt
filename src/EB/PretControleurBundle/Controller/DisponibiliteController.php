@@ -34,7 +34,7 @@ class DisponibiliteController extends Controller
         //calcul le nombre de controleur par departement, pr la pagination
         $dispo_count = $this->getDoctrine()
                             ->getRepository('EBPretControleurBundle:Disponibilite')
-                            ->countDispos($user, $departement);
+                            ->countDispos($user, $departement, new \DateTime('now'));
 
         $pagination = array(
             'page'         => $page,
@@ -113,8 +113,8 @@ class DisponibiliteController extends Controller
          $em->persist($disponibilite);
          $em->flush();
 
-         //$this->EnvoieMailControleur($request, $disponibilite);
-         //$this->EnvoieMailCentre($request, $disponibilite);
+         $this->EnvoieMailControleur($request, $disponibilite);
+         $this->EnvoieMailCentre($request, $disponibilite);
 
          $request->getSession()->getFlashBag()->add('controleur', 'le controleur a bien enregistrée.');
 
@@ -147,8 +147,8 @@ class DisponibiliteController extends Controller
          $em->persist($disponibilite);
          $em->flush();
 
-         //$this->EnvoieMailControleur($request, $disponibilite);
-         //$this->EnvoieMailCentre($request, $disponibilite);
+         $this->EnvoieMailControleur($request, $disponibilite);
+         $this->EnvoieMailCentre($request, $disponibilite);
 
          $request->getSession()->getFlashBag()->add('disponibilite', 'la réponse a bien enregistrée.');
 

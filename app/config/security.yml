@@ -8,7 +8,7 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       ROLE_USER, ROLE_CENTRE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
@@ -41,5 +41,7 @@ security:
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/book/security.html#security-book-access-control-matching-options
     access_control:
+        # Partie Administration reserver à l'administrateur
         - { path: ^/Administration/, roles: ROLE_ADMIN}
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        # Pour voir le détail d'un controleur, faut être connecter donc inscrit
+        - { path: ^/Gestion/disponibilite/detailControleur/, roles: ROLE_USER }

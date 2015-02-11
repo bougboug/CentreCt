@@ -24,9 +24,18 @@ class CentreRepository extends EntityRepository
 
   public function LstCentreByUserQb($user)
   {
-      $qb = $this->createQueryBuilder('a');   
-      $qb->where('a.user = :user')
-         ->setParameter('user', $user);
-      return $qb;
+    $qb = $this->createQueryBuilder('a');   
+    $qb->where('a.user = :user')
+       ->setParameter('user', $user);
+    return $qb;
   }
+
+  public function LstCentre()
+  {
+    return  $this->createQueryBuilder('a')
+        -> where('a.statut = false')
+        ->getQuery()
+        ->getResult();
+  }
+
 }

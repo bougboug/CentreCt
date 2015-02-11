@@ -10,6 +10,7 @@
    {{ form_start(form)}}
     <div class="panel panel-blue margin-bottom-40">
         <div class="panel-heading">
+            {{ form_errors(form) }}
             <h3 class="panel-title"><i class="fa fa-tasks"></i>Modifier le formulaire pour mettre à jour votre controleur</h3>
         </div>
             <div class="panel-body"> 
@@ -34,6 +35,7 @@
                             <div class="col-sm-6">
                                 <label>Experience </label>
                                 {{ form_widget(form.experience, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.experience) }}
                             </div>
                         </div>
                     </div>
@@ -42,6 +44,7 @@
                             <div class="col-sm-6">
                                 <label>Numéro d'agrement</label>
                                {{ form_widget(form.numAgrement, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.numAgrement) }}
                             </div>
                             <div class="col-sm-6">
                                <label>Date d'agrement</label>
@@ -95,10 +98,12 @@
                             <div class="col-sm-6">
                                 <label>Téléphone</label>
                               {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.telephone) }}
                             </div>
                             <div class="col-sm-6">
                                 <label>E-mail</label>
                                 {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.email, {'attr': {'color': 'red'}}) }}
                             </div>
                         </div>
                     </div>

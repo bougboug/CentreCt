@@ -35,20 +35,20 @@ class DisponibiliteRepository extends EntityRepository
    * @param string $sortby
    * @return Paginator
    */
-  public function LstDispoByUser($user, $codeDep, $page=1, $maxperpage=4,$date)
+  public function LstDispoByUser($user, $codeDep, $page=1, $maxperpage=4, $date)
   {
     $q = $this->createQueryBuilder('d')
-            ->leftJoin('d.controleur', 'c')
+        	  ->leftJoin('d.controleur', 'c')
             ->leftJoin('c.adresse', 'a')
             ->leftJoin('a.departement', 'dep')
-            ->leftJoin('c.centre', 'e')
-            ->addSelect('c')
-            ->where('e.user != :user')
+        	  ->leftJoin('c.centre', 'e')
+        	  ->addSelect('c')
+        	  ->where('e.user != :user')
             ->andWhere('dep.code = :code')
             ->andWhere('d.statut = false')
             ->andWhere('d.date >= :date')
             ->orderBy('d.date','DESC')
-            ->setParameter('user', $user)
+        	  ->setParameter('user', $user)
             ->setParameter('code', $codeDep)
             ->setParameter('date', $date->format('Y-m-d'));
 
@@ -58,7 +58,7 @@ class DisponibiliteRepository extends EntityRepository
     return new Paginator($q);
   }
 
-  public function countDispos($user, $codeDep)
+  public function countDispos($user, $codeDep, $date)
   {
     $query = $this->createQueryBuilder('a')
                   ->select('COUNT(a)')  
@@ -67,9 +67,11 @@ class DisponibiliteRepository extends EntityRepository
                   ->leftJoin('ad.departement', 'dep')
                   ->leftJoin('c.centre', 'e')
                   ->where('e.user != :user')
+                  ->andWhere('a.date >= :date')
                   ->andWhere('dep.code = :code')
                   ->setParameter('user', $user)
-                  ->setParameter('code', $codeDep);
+                  ->setParameter('code', $codeDep)
+                  ->setParameter('date', $date->format('Y-m-d'));
            
   	return $query->getQuery()->getSingleScalarResult();
   }
