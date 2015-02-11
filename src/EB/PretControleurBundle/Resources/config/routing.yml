@@ -90,7 +90,5 @@ eb_pret_controleur_ListDepParRegion:
 eb_pret_controleur_DepByRegion:
     pattern:   /adresse/rempliProduct/{regionId}
     defaults: { _controller: EBPretControleurBundle:Adresse:ajout }
-    requirements:
-        regionId: \d+
     options:
         expose: true
