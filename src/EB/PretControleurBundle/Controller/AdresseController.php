@@ -38,7 +38,7 @@ class AdresseController extends Controller
 
     public function rempliProductAction($regionId) {
       $request = $this->getRequest();
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       if($request->isXmlHttpRequest()) {
        //  $id = $request->get('id');
         $region = $em->getRepository('EBPretControleurBundle:Region')->find($regionId);
