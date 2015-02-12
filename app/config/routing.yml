@@ -34,9 +34,4 @@ fos_user_change_password:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-eb_pret_controleur_DepByRegion:
-    pattern:   /adresse/rempliProduct/{regionId}
-    defaults: { _controller: EBPretControleurBundle:Adresse:rempliProduct }
-    options:
-        expose: true
 
