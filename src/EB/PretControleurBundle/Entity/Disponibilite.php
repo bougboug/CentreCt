@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Disponibilite
  *
- * @ORM\Table()
+ * @ORM\Table(name="disponibilite")
  * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\DisponibiliteRepository")
  */
 class Disponibilite

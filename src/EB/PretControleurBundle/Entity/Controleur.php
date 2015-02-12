@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Controleur
  *
- * @ORM\Table()
+ * @ORM\Table(name="controleur")
  * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\ControleurRepository")
  */
 class Controleur

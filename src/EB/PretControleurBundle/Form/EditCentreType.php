@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CentreType extends AbstractType
+class EditCentreType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -23,7 +23,7 @@ class CentreType extends AbstractType
             ->add('dateAgrement','date')
             ->add('dateCreation','date')
             ->add('adresse',      new AdresseType())
-            ->add('attestationAgrement',      new FichierType()) 
+            ->add('attestationAgrement',      new FichierType(),array('required' => false)) 
             ->add('save',        'submit')
         ;
     }
@@ -43,6 +43,6 @@ class CentreType extends AbstractType
      */
     public function getName()
     {
-        return 'eb_pretcontroleurbundle_centre';
+        return 'eb_pretcontroleurbundle_edit_centre';
     }
 }

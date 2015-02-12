@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Fichier
  *
- * @ORM\Table()
+ * @ORM\Table(name="fichier")
  * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\FichierRepository")
  * @ORM\HasLifecycleCallbacks
  */

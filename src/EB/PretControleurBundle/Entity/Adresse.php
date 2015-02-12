@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Adresse
  *
- * @ORM\Table()
+ * @ORM\Table(name="adresse") 
  * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\AdresseRepository")
  */
 class Adresse

@@ -5,6 +5,7 @@ namespace EB\PretControleurBundle\Controller;
 use EB\PretControleurBundle\Entity\Centre;
 use EB\UserBundle\Entity\User;
 use EB\PretControleurBundle\Form\CentreType;
+use EB\PretControleurBundle\Form\EditCentreType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +52,7 @@ class CentreController extends Controller
             throw new NotFoundHttpException("le centre d'id ".$id." n'existe pas.");
         }
 
-        $form = $this->get('form.factory')->create(new CentreType, $centre);
+        $form = $this->get('form.factory')->create(new EditCentreType, $centre);
 
          if ($form->handleRequest($request)->isValid()) {
         // $em = $this->getDoctrine()->getManager();

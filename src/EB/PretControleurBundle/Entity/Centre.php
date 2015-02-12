@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Centre
  *
- * @ORM\Table()
+ * @ORM\Table(name="centre")
  * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\CentreRepository")
  */
 class Centre
