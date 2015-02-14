@@ -15,7 +15,7 @@ class EditCentreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('siret','integer')
+            ->add('siret','text', array('max_length' => 14))
             ->add('nom',         'text')
             ->add('telephone',   'text', array('max_length' => 10))
             ->add('email',       'text')
@@ -24,7 +24,7 @@ class EditCentreType extends AbstractType
             ->add('dateCreation','date')
             ->add('adresse',      new AdresseType())
             ->add('attestationAgrement',      new FichierType(),array('required' => false)) 
-            ->add('save',        'submit')
+            ->add('enregistrer',        'submit')
         ;
     }
     

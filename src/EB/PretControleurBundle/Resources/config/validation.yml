@@ -5,7 +5,7 @@ EB\PretControleurBundle\Entity\Controleur:
             - Regex:
                 pattern: "/([0-9]{3})([A-Z]{1})([0-9]{4})/"
                 match:   true
-                message: Votre numéro d'agrement n'est pas valide
+                message: Votre numéro d'agrement n'est pas valide.
         email:
             - Email:
                 message: "'{{ value }}' n'est pas un email valide."
@@ -14,9 +14,25 @@ EB\PretControleurBundle\Entity\Controleur:
             - Regex:
                 pattern: "/([0-9]{10})/"
                 match:   true
-                message: Veuillez saisir un numéro de téléphone valide
+                message: Veuillez saisir un numéro de téléphone valide.
         experience:
             - Regex:
                 pattern: "/([0-9]{2})/"
                 match:   true
-                message: Veuillez saisir une expérience valide
+                message: Veuillez saisir une expérience valide.
+EB\PretControleurBundle\Entity\Centre:
+    properties:
+        numAgrement:
+            - Regex:
+                pattern: "/([A-Z]{1})([0-9]{3})([A-Z]{1})([0-9]{3})/"
+                match:   true
+                message: Votre numéro d'agrement n'est pas valide.
+        email:
+            - Email:
+                message: "'{{ value }}' n'est pas un email valide."
+                checkMX: true
+        telephone:
+            - Regex:
+                pattern: "/([0-9]{10})/"
+                match:   true
+                message: Veuillez saisir un numéro de téléphone valide.

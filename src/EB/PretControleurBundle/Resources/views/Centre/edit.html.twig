@@ -67,6 +67,7 @@
                             <div class="col-sm-6"> 
                                 <label>Numéro Siret</label>
                                 {{ form_widget(form.siret, {'attr': {'class': 'form-control'}}) }}  
+                                {{ form_errors(form.siret) }}
                             </div>
                         </div>    
                     </div>
@@ -75,6 +76,7 @@
                         <div class="col-sm-6">
                             <label>Numéro d'agrement</label>
                                {{ form_widget(form.numAgrement, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.numAgrement) }}
                         </div>
                         <div class="col-sm-6">
                             <label>Date d'agrement</label>
@@ -131,10 +133,12 @@
                             <div class="col-sm-6">
                                 <label>Téléphone</label>
                               {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }} 
+                              {{ form_errors(form.telephone) }}
                             </div>
                             <div class="col-sm-6">
                                 <label>E-mail</label>
                                 {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.email) }}
                             </div>
                         </div>    
                     </div>
@@ -145,7 +149,7 @@
                                 <a href="{{ path('eb_pret_controleur_Centre') }}">
                                     <button class="btn-u btn-u-blue" type="button">Précédent</button>
                                 </a>
-                                {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                                {{ form_widget(form.enregistrer, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
                             </div>
                         </div>
                     </div>
