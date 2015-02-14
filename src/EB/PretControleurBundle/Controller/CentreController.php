@@ -60,7 +60,7 @@ class CentreController extends Controller
         // $em->persist($centre->getRegion());
          $em->flush();
 
-         $request->getSession()->getFlashBag()->add('controleur', 'le controleur a bien enregistrée.');
+         $request->getSession()->getFlashBag()->add('controleur', 'le controleur a bien modifié.');
 
          return $this->redirect($this->generateUrl('eb_pret_controleur_Centre'));
         }

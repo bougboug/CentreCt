@@ -17,9 +17,9 @@ class EditCentreType extends AbstractType
         $builder
             ->add('siret','integer')
             ->add('nom',         'text')
-            ->add('telephone',   'integer')
+            ->add('telephone',   'text', array('max_length' => 10))
             ->add('email',       'text')
-            ->add('numAgrement', 'text')
+            ->add('numAgrement', 'text', array('max_length' => 8))
             ->add('dateAgrement','date')
             ->add('dateCreation','date')
             ->add('adresse',      new AdresseType())

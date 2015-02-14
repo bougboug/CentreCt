@@ -1,6 +1,9 @@
 eb_pret_controleur_homepage:
     path:     /
     defaults: { _controller: EBPretControleurBundle:Accueil:index }
+eb_pret_controleur_contact:
+    path:     /contact
+    defaults: { _controller: EBPretControleurBundle:contact:index }
 eb_pret_controleur_Administration:
     path:     /Administration
     defaults: { _controller: EBPretControleurBundle:Administration:index }

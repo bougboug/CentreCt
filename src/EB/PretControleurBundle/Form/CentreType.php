@@ -17,7 +17,7 @@ class CentreType extends AbstractType
         $builder
             ->add('siret','integer')
             ->add('nom',         'text')
-            ->add('telephone',   'integer')
+            ->add('telephone',   'text', array('max_length' => 10))
             ->add('email',       'text')
             ->add('numAgrement', 'text')
             ->add('dateAgrement','date')

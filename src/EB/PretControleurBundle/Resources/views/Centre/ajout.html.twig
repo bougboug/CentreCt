@@ -1,5 +1,45 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
 
+{% block EBPretcontroleur_stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block EBPretcontroleur_javascripts %}
+    {{ parent() }}
+        <script type="text/javascript">
+        $("#eb_pretcontroleurbundle_centre_adresse_region").change(function() {
+         
+            var vendor = $("#eb_pretcontroleurbundle_centre_adresse_region option:selected").val();
+            var DATA = 'id=' + vendor;
+            var path = Routing.generate('eb_pret_controleur_DepByRegion');
+         
+            $.ajax({
+                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
+                type: 'POST',
+                dataType: 'json',
+                data: DATA,
+                success: function(data)
+                {
+                    $('#eb_pretcontroleurbundle_centre_adresse_departement').find("option").remove();
+                    $.each(data, function(cle, valeur){     
+                        var item = valeur;
+                        item = $.parseJSON(item);  
+                    $('#eb_pretcontroleurbundle_centre_adresse_departement').append(new Option(item.libelle, item.id));    
+                    });
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+        }); 
+    </script>
+{% endblock %}
+
+
 {% block EBPretcontroleur_body %}
     <div class="col-md-9">
         <div class="row">
@@ -91,11 +131,9 @@
                         </div>    
                     </div>
                     <div align="right">
-                            <button class="btn-u btn-u-blue" type="button">
-                                <a href="{{ path('eb_pret_controleur_Centre') }}">
-                                <font color="white">Précedent</font>
-                              </a>
-                            </button>
+                        <a href="{{ path('eb_pret_controleur_Centre') }}">
+                          <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                        </a>
                             {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
                     </div>
                             {{ form_end(form) }}

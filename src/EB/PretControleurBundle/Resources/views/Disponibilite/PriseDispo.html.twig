@@ -21,11 +21,9 @@
                         <label>Souhaitez-vous emprunter ce controleur ?</label>
                         {{ form_widget(form.pris) }} 
                     </div>
-                    <button class="btn-u btn-u-blue" type="button">
-                        <a href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': departement} ) }}">
-                            <font color="white">Précedent</font>
-                        </a>
-                    </button>
+                      <a href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': departement} ) }}">
+                        <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                      </a>      
                     {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
                     {{ form_end(form) }}
             </div>   

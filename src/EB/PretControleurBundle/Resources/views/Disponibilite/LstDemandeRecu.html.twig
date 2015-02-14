@@ -3,7 +3,7 @@
 {% block EBPretcontroleur_body %}
                 <div class="panel panel-green margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i>Liste des demandes reçu pour tous vos controleur.</h3>
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i>Liste des demandes reçu pour tous vos contrôleurs.</h3>
                     </div>
                     <div class="panel-body">
                         <p>Légende : </p>
@@ -36,11 +36,9 @@
                             <td>{{ demande.controleur.nom }} {{ demande.controleur.prenom }}</td>
                             <td>{{ demande.date|date('d/m/Y') }}</td>
                             <td>
-                            <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> 
                               <a href="{{ path('eb_pret_controleur_ReponseDemandeDisponibilite', {'idDisponibilite': demande.id}) }}">
-                                <font color="white">Répondre</font>
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Répondre</button>
                               </a>
-                            </button>
                             </td>
                             </tr>
                         {% endfor %}

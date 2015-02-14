@@ -36,21 +36,17 @@
                                 {% endif %}
                             </td>
                             <td>
-                            <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> 
                               <a href="{{ path('eb_pret_controleur_EditDisponibilite', {'idDisponibilite': dispo.id}) }}">
-                                <font color="white">Modifier</font>
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Modifier</button>
                               </a>
-                            </button>
                             </td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <button class="btn-u"><i class="fa fa-pencil"></i> 
-                              <a href="{{ path('eb_pret_controleur_AjoutDisponibilite', {'idControleur' : idControleur }) }}">
-                                <font color="white">Ajouter une date</font>
-                              </a>
-                </button>
+                <a href="{{ path('eb_pret_controleur_AjoutDisponibilite', {'idControleur' : idControleur }) }}">
+                    <button class="btn-u"><i class="fa fa-pencil"></i> Ajouter une date</button>
+                </a>                
 </div>    
 {% endblock %}

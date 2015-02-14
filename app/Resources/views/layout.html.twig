@@ -13,7 +13,10 @@
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/css/layerslider.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/theme-colors/default.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/custom.css') }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jqvmap.css') }}" type="text/css" />
+        
+        {% block stylesheets %}
+ 
+        {% endblock %} 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,7 +83,7 @@
                         {% endif %}
                         <!-- End Pages -->
                         <!-- Contacts -->
-                        <li><a href="page_contact1.html">Nous contacter</a></li>                  
+                        <li><a href="{{ path('eb_pret_controleur_contact') }}">Nous contacter</a></li>                  
                         <!-- End Contacts -->
                     </ul>
                 </div><!--/navbar-collapse-->
@@ -196,9 +199,13 @@
   <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/owl-recent-works.js') }}"></script>
 
   <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/jquery.vmap.js') }}"></script>
-  <script src="{{ asset('bundles/ebpretcontroleur/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
   <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+  {% block javascripts %}
+         
+
+  {% endblock %}  
+
   <script type="text/javascript"> 
             jQuery(document).ready(function() {
             App.init();
@@ -207,78 +214,7 @@
             OwlRecentWorks.initOwlRecentWorksV2();
              });
   </script>
-  <script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery('#vmap').vectorMap({
-            map: 'france_fr',
-            onRegionClick: function(element, code, region)
-            {
-                location.href=Routing.generate('eb_pret_controleur_ListeDisponibilite', {'departement':code.toUpperCase()});   
-            }
-        });
-    });
-    </script>
-    <script type="text/javascript">
-        $("#eb_pretcontroleurbundle_centre_adresse_region").change(function() {
-         
-            var vendor = $("#eb_pretcontroleurbundle_centre_adresse_region option:selected").val();
-            var DATA = 'id=' + vendor;
-            var path = Routing.generate('eb_pret_controleur_DepByRegion');
-         
-            $.ajax({
-                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
-                type: 'POST',
-                dataType: 'json',
-                data: DATA,
-                success: function(data)
-                {
-                    $('#eb_pretcontroleurbundle_centre_adresse_departement').find("option").remove();
-                    $.each(data, function(cle, valeur){     
-                        var item = valeur;
-                        item = $.parseJSON(item);  
-                    $('#eb_pretcontroleurbundle_centre_adresse_departement').append(new Option(item.libelle, item.id));    
-                    });
-                },
-                error : function(data,resultat, statut, erreur){
-                    var message = 'Resultat "'
-                    + resultat 
-                    + '" statut: '
-                    + statut + 'data ' + data;
-                    console.log(message);
-                }
-            });
-        }); 
 
-        $("#eb_pretcontroleurbundle_controleur_adresse_region").change(function() {
-         
-            var vendor = $("#eb_pretcontroleurbundle_controleur_adresse_region option:selected").val();
-            var DATA = 'id=' + vendor;
-            var path = Routing.generate('eb_pret_controleur_DepByRegion');
-         
-            $.ajax({
-                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
-                type: 'POST',
-                dataType: 'json',
-                data: DATA,
-                success: function(data)
-                {
-                    $('#eb_pretcontroleurbundle_controleur_adresse_departement').find("option").remove();
-                    $.each(data, function(cle, valeur){     
-                        var item = valeur;
-                        item = $.parseJSON(item);  
-                    $('#eb_pretcontroleurbundle_controleur_adresse_departement').append(new Option(item.libelle, item.id));    
-                    });
-                },
-                error : function(data,resultat, statut, erreur){
-                    var message = 'Resultat "'
-                    + resultat 
-                    + '" statut: '
-                    + statut + 'data ' + data;
-                    console.log(message);
-                }
-            });
-        }); 
-    </script>
   <!--[if lt IE 9]>
     <script src="assets/plugins/respond.js"></script>
     <script src="assets/plugins/html5shiv.js"></script>

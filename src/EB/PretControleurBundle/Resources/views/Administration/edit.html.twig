@@ -1,5 +1,44 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
 
+{% block EBPretcontroleur_stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block EBPretcontroleur_javascripts %}
+    {{ parent() }}
+        <script type="text/javascript">
+        $("#eb_pretcontroleurbundle_admin_centre_adresse_region").change(function() {
+         
+            var vendor = $("#eb_pretcontroleurbundle_admin_centre_adresse_region option:selected").val();
+            var DATA = 'id=' + vendor;
+            var path = Routing.generate('eb_pret_controleur_DepByRegion');
+         
+            $.ajax({
+                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
+                type: 'POST',
+                dataType: 'json',
+                data: DATA,
+                success: function(data)
+                {
+                    $('#eb_pretcontroleurbundle_admin_centre_adresse_departement').find("option").remove();
+                    $.each(data, function(cle, valeur){     
+                        var item = valeur;
+                        item = $.parseJSON(item);  
+                    $('#eb_pretcontroleurbundle_admin_centre_adresse_departement').append(new Option(item.libelle, item.id));    
+                    });
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+        }); 
+    </script>
+{% endblock %}
+
 {% block EBPretcontroleur_body %}
     <div class="col-md-9">
         <div class="row">
@@ -10,7 +49,7 @@
    {{ form_start(form)}}
     <div class="panel panel-blue margin-bottom-40">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-tasks"></i>Completer le formulaire pour modifier les informations de votre centre</h3>
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>Compléter le formulaire pour modifier les informations de votre centre</h3>
         </div>
             <div class="panel-body">  
                     <div class="form-group">
@@ -45,8 +84,12 @@
                     <div class="form-group">
                      <div class="row">
                         <div class="col-sm-6">
-                                <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.doc" class="btn btn-link">Attestation d'agrément
-                                </a>
+                            {% if controleur.AttestationAgrement.webPath is not defined %}
+                              <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
+                            {% else %}
+                              <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.doc" class="btn btn-link">Attestation d'agrément
+                              </a>
+                            {% endif %}
                                 {{ form_widget(form.attestationAgrement, {'attr': {'class': 'form-control'}}) }}   
                         </div>
                       </div>  
@@ -107,11 +150,9 @@
                        <div class="row"> 
                             <div class="col-sm-6"></div>
                             <div align="right" class="col-sm-6">
-                                 <button class="btn-u btn-u-blue" type="button">
-                                    <a href="{{ path('eb_pret_controleur_Administration') }}">
-                                        <font color="white">Précedent</font>
-                                    </a>
-                                </button>
+                                <a href="{{ path('eb_pret_controleur_Administration') }}">
+                                  <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                                </a>
                                 {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
                             </div>
                         </div>

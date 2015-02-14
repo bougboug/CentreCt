@@ -10,7 +10,7 @@ var LayerSlider = function () {
 			        responsive : true,
 			        responsiveUnder : 960,
 			        layersContainer : 960,
-			        skinsPath: 'plugins/layer-slider/layerslider/skins/'
+			        skinsPath: '../bundles/ebpretcontroleur/plugins/layer-slider/layerslider/skins/'
 			    });
 		    });     
         }

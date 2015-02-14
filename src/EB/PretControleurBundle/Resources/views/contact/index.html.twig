@@ -1,0 +1,80 @@
+{% extends '::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/pages/page_contact.css') }}" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+ {{ parent() }}
+    <script src="{{ asset('http://maps.google.com/maps/api/js?sensor=true') }}"></script>
+    <script src="{{ asset('bundles/ebpretcontroleur/plugins/gmap/gmap.js') }}"></script>
+    <script src="{{ asset('bundles/ebpretcontroleur/js/pages/page_contacts.js') }}"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initSliders();                
+        ContactPage.initMap();              
+    });
+</script>
+{% endblock %}
+
+{% block body %}
+    <!-- Google Map -->
+    <div id="map" class="map">
+    </div><!---/map-->
+    <!-- End Google Map -->
+
+ <div class="container content">        
+        <div class="row margin-bottom-30">
+            <div class="col-md-9 mb-margin-bottom-30">
+                <div class="headline"><h2>Formulaire de contact</h2></div>
+                <p>N'hesitez pas à nous laissez un message, on vous répondra dans les plus brefs délais</p><br />
+                <form>
+                    <label>Nom</label>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            <input type="text" class="form-control">
+                        </div>                
+                    </div>
+                    
+                    <label>Email <span class="color-red">*</span></label>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            <input type="text" class="form-control">
+                        </div>                
+                    </div>
+                    
+                    <label>Message</label>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-11 col-md-offset-0">
+                            <textarea rows="8" class="form-control"></textarea>
+                        </div>                
+                    </div>
+                    
+                    <p><button type="submit" class="btn-u">Envoyer Message</button></p>
+                </form>
+            </div><!--/col-md-9-->
+            
+            <div class="col-md-3">
+                <!-- Contacts -->
+                <div class="headline"><h2>Contact</h2></div>
+                <ul class="list-unstyled who margin-bottom-30">
+                    <li><a href="#"><i class="fa fa-home"></i>8 Rue Pierre Lefort, 76500 Elbeuf</a></li>
+                    <li><a href="#"><i class="fa fa-envelope"></i>contact@controlisor.fr</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i>02.35.87.03.31</a></li>
+                    <li><a href="#"><i class="fa fa-globe"></i>http://www.controlisor.com</a></li>
+                </ul>
+
+                <!-- Why we are? 
+                <div class="headline"><h2>Why we are?</h2></div>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-check color-green"></i> Odio dignissimos ducimus</li>
+                    <li><i class="fa fa-check color-green"></i> Blanditiis praesentium volup</li>
+                    <li><i class="fa fa-check color-green"></i> Eos et accusamus</li>
+                </ul>-->
+            </div><!--/col-md-3-->
+        </div><!--/row-->        
+
+   
+{% endblock %}

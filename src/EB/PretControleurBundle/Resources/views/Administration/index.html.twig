@@ -32,10 +32,10 @@
                                 <span class="label label-success">Success</span>
                                 {% endif %}
                             </td>
-                            <td><button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> 
+                            <td>
                             <a href="{{ path('eb_pret_controleur_Administration_EditCentre', {'id': centre.id}) }}">
-                            <font color="white">Valider</font>
-                            </a></button>
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Valider</button>
+                            </a>
                             </td>
                             </tr>
                         {% endfor %}

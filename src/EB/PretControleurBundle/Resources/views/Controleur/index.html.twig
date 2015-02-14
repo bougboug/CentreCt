@@ -20,11 +20,11 @@
                           <tr>
                             <td><button class="btn btn-info btn-xs">
                                   <i class="fa fa-share"></i> 
-                                  <font color="white">Disponibilite</font>
+                                  <font color="white">Disponibilité</font>
                                 </button>
                             </td>
                             <td>
-                                Ajouter une date de disponibilité pour votre controleur.
+                                Ajouter une date de disponibilité pour votre contrôleur.
                             </td>
                         </table>
                     </div>                                      
@@ -50,16 +50,12 @@
                             <td>{{ controleur.email }}</td>
                             <td>{{ controleur.experience }}</td>
                             <td>
-                            <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> 
                               <a href="{{ path('eb_pret_controleur_EditControleur', {'id': controleur.id}) }}">
-                                <font color="white">Editer</font>
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Editer</button>
                               </a>
-                            </button>
-                            <button class="btn btn-info btn-xs"><i class="fa fa-share"></i> 
-                               <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
-                                <font color="white">Disponibilite</font>
+                              <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
+                                <button class="btn btn-info btn-xs"><i class="fa fa-share"></i> Disponibilité</button>
                               </a>
-                            </button>
                             </td>
                             </tr>
                         {% endfor %}

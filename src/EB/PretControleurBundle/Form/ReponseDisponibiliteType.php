@@ -17,7 +17,7 @@ class ReponseDisponibiliteType extends AbstractType
     {
         $builder
             ->add('statut','checkbox', array('required' => false, 'label' => 'Accepter la demande ?'))
-            ->add('save',      'submit')
+            ->add('Enregistrer',      'submit')
         ;
     }
 
