@@ -25,10 +25,6 @@ class ControleurType extends AbstractType
             ->add('telephone', 'text', array('max_length' => 10))
             ->add('email','text')
             ->add('experience','text', array('max_length' => 2))
-           /*->add('centre', 'entity', array(
-                  'class'    => 'EBPretControleurBundle:Centre',
-                  'property' => 'nom',
-                  'multiple' => false))*/
             ->add('centre', 'entity', array(
                 'class'         => 'EBPretControleurBundle:Centre',
                 'property'      => 'nom',
