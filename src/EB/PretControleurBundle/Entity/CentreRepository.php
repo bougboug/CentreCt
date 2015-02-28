@@ -30,12 +30,29 @@ class CentreRepository extends EntityRepository
     return $qb;
   }
 
-  public function LstCentre()
+  // retouen la liste de tous mes centres,liste destiné à la partie administration
+  public function LstCentreInValide()
   {
     return  $this->createQueryBuilder('a')
-        -> where('a.statut = false')
-        ->getQuery()
-        ->getResult();
+                 -> where('a.statut = false')
+                 ->getQuery()
+                 ->getResult();
   }
 
+  // retouen la liste de tous mes centres,liste destiné à la partie administration
+  public function LstAllCentre()
+  {
+    return  $this->createQueryBuilder('a')
+                 ->orderBy('a.statut','DESC')
+                 ->getQuery()
+                 ->getResult();
+  }
+
+  //retourne la liste deroulante de tous les centre dont le statut est true, liste destiné a la partie abonnement
+  public function LstCentreQb()
+  {
+    $qb = $this->createQueryBuilder('a');   
+    $qb -> where('a.statut = true');
+    return $qb;
+  }
 }

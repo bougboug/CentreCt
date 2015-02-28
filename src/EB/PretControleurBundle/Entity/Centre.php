@@ -93,6 +93,7 @@ class Centre
      */
     private $AttestationAgrement;
 
+    
     public function __construct()
     {
       // Par défaut, la date de l'annonce est la date d'aujourd'hui
@@ -383,4 +384,5 @@ class Centre
     {
         return $this->dateAgrement;
     }
+
 }

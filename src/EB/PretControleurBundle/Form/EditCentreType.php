@@ -20,10 +20,12 @@ class EditCentreType extends AbstractType
             ->add('telephone',   'text', array('max_length' => 10))
             ->add('email',       'text')
             ->add('numAgrement', 'text', array('max_length' => 8))
-            ->add('dateAgrement','date')
-            ->add('dateCreation','date')
+            ->add('dateAgrement','date', array('widget' => 'single_text',
+                                               'format' => 'yyyy-MM-dd',))
+            ->add('dateCreation','date', array('widget' => 'single_text',
+                                               'format' => 'yyyy-MM-dd',))
             ->add('adresse',      new AdresseType())
-            ->add('attestationAgrement',      new FichierType(),array('required' => false)) 
+            ->add('attestationAgrement',  new FichierType(),array('required' => false)) 
             ->add('enregistrer',        'submit')
         ;
     }

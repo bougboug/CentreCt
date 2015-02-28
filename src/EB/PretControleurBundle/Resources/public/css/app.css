@@ -85,7 +85,7 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
   margin: 0 0 -2px 0;
   padding-bottom: 5px;
   display: inline-block;
-  border-bottom: 2px solid #72c02c;
+  border-bottom: 2px solid #c70817;
 }
 
 .headline-md {
@@ -239,7 +239,7 @@ h3.heading-xs {
   content: " ";
   margin-left: -35px;
   position: absolute;
-  background: #72c02c;  
+  background: #c70817;  
 }
 
 .title-v1 p {
@@ -637,7 +637,7 @@ h3.title-v3-xs {
 .tab-v1 .nav-tabs { 
   border: none;
   background: none;
-  border-bottom: solid 2px #72c02c;   
+  border-bottom: solid 2px #c70817;   
 }
 
 .tab-v1 .nav-tabs a { 
@@ -650,7 +650,7 @@ h3.title-v3-xs {
 .tab-v1 .nav-tabs > .active > a:focus { 
   color: #fff;
   border: none; 
-  background: #72c02c; 
+  background: #c70817; 
 }
 
 .tab-v1 .nav-tabs > li > a { 
@@ -658,7 +658,7 @@ h3.title-v3-xs {
 }
 .tab-v1 .nav-tabs > li > a:hover { 
   color: #fff; 
-  background: #72c02c; 
+  background: #c70817; 
 }
 
 .tab-v1 .tab-content { 
@@ -761,8 +761,8 @@ h3.title-v3-xs {
 
 .pagination li a:hover {
    color: #fff;
-   background: #5fb611;
-   border-color: #5fb611;   
+   background: #2512aa;
+   border-color: #2512aa;   
 }
 
 .pagination > .active > a, 
@@ -771,8 +771,8 @@ h3.title-v3-xs {
 .pagination > .active > span:hover, 
 .pagination > .active > a:focus, 
 .pagination > .active > span:focus {
-   border-color: #72c02c;
-   background-color: #72c02c;
+   border-color: #2512aa;
+   background-color: #2512aa;
 }
 
 /*Pagination Without Space*/
@@ -839,7 +839,7 @@ h3.title-v3-xs {
 
 .sidebar-nav-v1 ul li:hover a,
 .sidebar-nav-v1 ul li.active a {
-  color: #72c02c;
+  color: #2512aa;
 }
 
 /*Sidebar Badges*/
@@ -895,7 +895,7 @@ h3.title-v3-xs {
    font-weight: 400;
    padding: 6px 13px;
    position: relative;
-   background: #72c02c;
+   background: #c70817;
    white-space: nowrap;
    display: inline-block;
    text-decoration: none;
@@ -992,7 +992,7 @@ a.btn-u-xs {
 }
 
 .btn-u.btn-u-red {
-   background: #e74c3c;
+   background: #c70817;
 }
 .btn-u.btn-u-red:hover, 
 .btn-u.btn-u-red:focus, 
@@ -1679,15 +1679,15 @@ i.icon-4x.icon-line {
 }
 
 .link-icon:hover i {
-  color: #72c02c;
+  color: #c70817;
   background: none;
-  border: solid 1px #72c02c;
+  border: solid 1px #c70817;
 }
 
 .link-bg-icon:hover i {
-  color: #72c02c;
-  background: #72c02c;
-  border-color: #72c02c;
+  color: #c70817;
+  background: #c70817;
+  border-color: #c70817;
   color: #fff !important;
 }
 
@@ -1799,7 +1799,7 @@ i.icon-bg-blue {
    background: #3498db;
 }
 i.icon-bg-red {
-   background: #e74c3c;
+   background: #c70817;
 }
 i.icon-bg-sea {
    background: #1abc9c;

@@ -1,0 +1,25 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %} 
+<div class="container content">      
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="reg-page">
+                {% if invalid_username is defined %}
+                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                {% endif %}
+                <div class="input-group margin-bottom-20">
+                    <label>Saisir votre identifiant ou adresse mail</label>
+                        <input type="text" id="username" name="username" required="required" class="form-control"/>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn-u pull-right" id="_submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}" type="submit">Réinitialiser</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>        
+{% endblock fos_user_content %}

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Centre
  *
- * @ORM\Table()
+ * @ORM\Table(name="centre")
  * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\CentreRepository")
  */
 class Centre
@@ -93,6 +93,7 @@ class Centre
      */
     private $AttestationAgrement;
 
+    
     public function __construct()
     {
       // Par défaut, la date de l'annonce est la date d'aujourd'hui
@@ -337,4 +338,51 @@ class Centre
     {
         return $this->AttestationAgrement;
     }
+
+    /**
+     * Set siret
+     *
+     * @param integer $siret
+     * @return Centre
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return integer 
+     */
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+
+    /**
+     * Set dateAgrement
+     *
+     * @param \DateTime $dateAgrement
+     * @return Centre
+     */
+    public function setDateAgrement($dateAgrement)
+    {
+        $this->dateAgrement = $dateAgrement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAgrement
+     *
+     * @return \DateTime 
+     */
+    public function getDateAgrement()
+    {
+        return $this->dateAgrement;
+    }
+
 }

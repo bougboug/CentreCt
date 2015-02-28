@@ -12,75 +12,88 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
-  /**
-   * @ORM\Column(name="id", type="integer")
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  protected $id;
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-  /**
-   * @ORM\Column(type="string", length=255)
-   *
-   * @Assert\NotBlank(message="Veuillez entrer votre nom.", groups={"Registration", "Profile"})
-   * @Assert\Length(
-   *     min=3,
-   *     max="255",
-   *     minMessage="Le nom saisi est trop court",
-   *     maxMessage="Le nom saisi est trop long.",
-   *     groups={"Registration", "Profile"}
-   * )
-   */
-  protected $nom;
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez entrer votre nom.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="Le nom saisi est trop court",
+     *     maxMessage="Le nom saisi est trop long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $nom;
 
-  /**
-   * @ORM\Column(type="string", length=255)
-   *
-   * @Assert\NotBlank(message="Veuillez entrer votre prénom.", groups={"Registration", "Profile"})
-   * @Assert\Length(
-   *     min=3,
-   *     max="255",
-   *     minMessage="Le prénom saisi est trop court",
-   *     maxMessage="Le prénom saisi est trop long.",
-   *     groups={"Registration", "Profile"}
-   * )
-   */
-  protected $prenom;
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez entrer votre prénom.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="Le prénom saisi est trop court",
+     *     maxMessage="Le prénom saisi est trop long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $prenom;
 
-  /**
-   * @ORM\Column(type="string", length=8)
-   *
-   * @Assert\NotBlank(message="Veuillez entrer votre numéro d'agrement.", groups={"Registration", "Profile"})
-   * @Assert\Length(
-   *     min=3,
-   *     max="8",
-   *     minMessage="Le numéro d'agrement saisi est trop court",
-   *     maxMessage="Le numéro d'agrement saisi est trop long.",
-   *     groups={"Registration", "Profile"}
-   * )
-   */
-  protected $numAgrement;
+    /**
+     * @ORM\Column(type="string", length=8)
+     *
+     * @Assert\NotBlank(message="Veuillez entrer votre numéro d'agrement.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="8",
+     *     minMessage="Le numéro d'agrement saisi est trop court",
+     *     maxMessage="Le numéro d'agrement saisi est trop long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $numAgrement;
 
-  /**
-   * @ORM\Column(type="integer", length=10)
-   *
-   * @Assert\NotBlank(message="Veuillez entrer votre numéro de téléphone.", groups={"Registration", "Profile"})
-   * @Assert\Length(
-   *     min=3,
-   *     max="10",
-   *     minMessage="Le numéro de téléphone saisi est trop court",
-   *     maxMessage="Le numéro de téléphone saisi est trop long.",
-   *     groups={"Registration", "Profile"}
-   * )
-   */
-  protected $telephone;
+    /**
+     * @ORM\Column(type="integer", length=10)
+     *
+     * @Assert\NotBlank(message="Veuillez entrer votre numéro de téléphone.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="10",
+     *     minMessage="Le numéro de téléphone saisi est trop court",
+     *     maxMessage="Le numéro de téléphone saisi est trop long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $telephone;
 
+    /**
+     * @ORM\Column(name="nbAbonnement", type="integer")
+     */
+    protected $nbAbonnement = 0;
+    
+    public function ajoutAbonnement()
+    {
+      $this->nbAbonnement++;
+    }
 
-  public function eraseCredentials()
-  {
-  }
+    public function retirerAbonnement()
+    {
+      $this->nbAbonnement--;
+    }
 
-  
+    public function eraseCredentials()
+    {
+    }
+
 
     /**
      * Get id
@@ -182,5 +195,28 @@ class User extends BaseUser
         $this->telephone = $telephone;
 
         return $this;
+    }
+
+    /**
+     * Set nbAbonnement
+     *
+     * @param integer $nbAbonnement
+     * @return user
+     */
+    public function setNbAbonnement($nbAbonnement)
+    {
+        $this->nbAbonnement = $nbAbonnement;
+
+        return $this;
+    }
+
+    /**
+     * Get nbAbonnement
+     *
+     * @return integer 
+     */
+    public function getNbAbonnement()
+    {
+        return $this->nbAbonnement;
     }
 }

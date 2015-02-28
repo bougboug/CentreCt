@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="fr" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="fr"> <!--<![endif]-->  
 <head>
-    <title>{% block title %}Bienvenue!{% endblock %}</title>
+        <title>{% block title %}Bienvenue sur controlisor {% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/bootstrap/css/bootstrap.min.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/style.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/line-icons/line-icons.css') }}" type="text/css" />
@@ -12,8 +12,7 @@
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/owl-carousel/owl-carousel/owl.carousel.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/css/layerslider.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/theme-colors/default.css') }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/custom.css') }}" type="text/css" />
-        
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/custom.css') }}" type="text/css" />    
         {% block stylesheets %}
  
         {% endblock %} 
@@ -56,7 +55,7 @@
                         <span class="fa fa-bars"></span>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img id="logo-header" src="{{ asset('img/logo1-default.png') }}" alt="Logo">
+                        <img id="logo-header" style="width: 360px; height: 45px;" src="{{ asset('img/Controlisor.svg') }}" alt="Logo controlisor">
                     </a>
                 </div>
 
@@ -64,11 +63,8 @@
                 <div class="collapse navbar-collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
                         <!-- Home -->
-                        <li>
-                            <a href="{{ path('eb_pret_controleur_homepage') }}">Accueil</a>
-                        </li>
+                        <li><a href="{{ path('eb_pret_controleur_homepage') }}">Accueil</a></li>
                         <!-- End Home -->
-                        
                         <!-- Pages -->                       
                         <li><a href="{{ path('eb_pret_controleur_emprunter') }}">Rechercher</a></li>
                         <!--End Pages -->
@@ -106,7 +102,7 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="{{ asset('img/logo2-default.png') }}" alt=""></a>
+                       <!-- <a href="index.html"><img id="logo-footer" class="footer-logo" src="{{ asset('img/Controlisor.svg') }}" alt=""></a>-->
                         <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
                         <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>    
                     </div><!--/col-md-3-->
@@ -119,7 +115,7 @@
                             8 Rue Pierre Lefort <br />
                             76500 Elbeuf<br />
                             Téléphone : 02.35.87.03.31<br />
-                            Email: <a href="mailto:info@anybiz.com" class="">info@autosur-elbeuf.com</a>
+                            Email: <a href="mailto:info@autosur-elbeuf.com" style="color: white;">info@autosur-elbeuf.com</a>
                         </address>
                     </div><!--/col-md-3-->
                     <!-- End Address -->
@@ -133,7 +129,7 @@
                     <div class="col-md-6">                     
                         <p>
                             2014 &copy; All Rights Reserved.
-                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                           <a href="#" style="color: white;">Privacy Policy</a> | <a href="#" style="color: white;">Terms of Service</a>
                         </p>
                     </div>
 

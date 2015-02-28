@@ -32,7 +32,13 @@ class DisponibiliteController extends Controller
         $maxDispo = $this->container->getParameter('max_dispo_par_page');
        
         $user=$this->container->get('security.context')->getToken()->getUser();
-        //calcul le nombre de controleur par departement, pr la pagination
+        $estAbonne = false;
+       if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            if ($user->getNbAbonnement() > 0) {
+                $estAbonne = true;
+            }
+        }
+        //calcul le nombre de controleur par departement (ne prd pas en compte les controleur du responsable), pr la pagination
         $dispo_count = $this->getDoctrine()
                             ->getRepository('EBPretControleurBundle:Disponibilite')
                             ->countDispos($user, $departement, new \DateTime('now'));
@@ -51,7 +57,8 @@ class DisponibiliteController extends Controller
         return $this->render('EBPretControleurBundle:Disponibilite:ListeDispo.html.twig', array(
             'listeDispo' => $listeDispo,
             'pagination' => $pagination,
-            'nbDispo'    => $dispo_count
+            'nbDispo'    => $dispo_count,
+            'estAbonne'  => $estAbonne
         ));
     }
 
@@ -108,12 +115,10 @@ class DisponibiliteController extends Controller
 
         $user=$this->container->get('security.context')->getToken()->getUser();
         
-        //$centre = new Centre;
-       // $centre->setUser($this->container->get('security.context')->getToken()->getUser());
-         //       $em->getRepository('EBPretControleurBundle:Centre')->find($id);
-
         $codeDepartement = $disponibilite->getControleur()->getAdresse()->getDepartement()->getCode();
 
+        if($user->getNbAbonnement() > 0)
+        {
         $form = $this->get('form.factory')->create(new PriseDisponibiliteType($user), $disponibilite);
 
          if ($form->handleRequest($request)->isValid()) {
@@ -132,6 +137,11 @@ class DisponibiliteController extends Controller
         }
         return $this->render('EBPretControleurBundle:Disponibilite:PriseDispo.html.twig', array('form' => $form->createView(),'disponibilite' => $disponibilite,
             'departement' => $codeDepartement ));//, 'centre' =>  $centre));
+        }
+        else
+        {
+        return $this->redirect($this->generateUrl('eb_pret_controleur_ErreurAbonnement'));
+        }
     }
 
    /**

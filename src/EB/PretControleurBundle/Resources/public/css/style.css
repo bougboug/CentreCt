@@ -50,7 +50,7 @@ li a {
 }
 
 a {
-   color: #72c02c;
+   color: #2512aa;
    text-decoration: none;  
 }
 
@@ -64,7 +64,7 @@ a:focus {
   text-decoration: none;
 }
 a:hover {
-   color: #72c02c;
+   color: #c70817;
    text-decoration: underline;
 }
 
@@ -955,7 +955,7 @@ ul.blog-tags a:hover i {
 	margin-bottom: 6px;
 }
 .who li i { 
-	color: #72c02c; 
+	color: #c70817; 
 	font-size: 13px;
 	min-width: 15px;
 	margin-right: 8px;

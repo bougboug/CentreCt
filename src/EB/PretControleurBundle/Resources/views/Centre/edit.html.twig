@@ -1,4 +1,5 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
+{% form_theme form 'EBPretControleurBundle:Form:error.html.twig' %}
 
 {% block EBPretcontroleur_stylesheets %}
     {{ parent() }}
@@ -39,6 +40,9 @@
     </script>
 {% endblock %}
 
+
+
+
 {% block EBPretcontroleur_body %}
     <div class="col-md-9">
         <div class="row">
@@ -76,7 +80,7 @@
                         <div class="col-sm-6">
                             <label>Numéro d'agrement</label>
                                {{ form_widget(form.numAgrement, {'attr': {'class': 'form-control'}}) }} 
-                                {{ form_errors(form.numAgrement) }}
+                                {{ form_errors(form.numAgrement)}}
                         </div>
                         <div class="col-sm-6">
                             <label>Date d'agrement</label>
@@ -89,7 +93,7 @@
                             {% if centre.attestationAgrement.webPath is not defined %}
                             <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                             {% else %}
-                            <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.doc" class="btn btn-link">Attestation d'agrément
+                            <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.{{ centre.attestationAgrement.url }}" class="btn btn-link">Attestation d'agrément
                             </a>
                             {% endif %}
                             {{ form_widget(form.attestationAgrement, {'attr': {'class': 'form-control'}}) }}   
@@ -121,6 +125,7 @@
                             <div class="col-sm-6">
                                 <label>Code postal</label>
                                 {{ form_widget(form.adresse.codePostal, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.adresse.codePostal)}}
                             </div>    
                             <div class="col-sm-6">
                                 <label>Ville</label>
@@ -147,9 +152,9 @@
                             <div class="col-sm-6"></div>
                             <div align="right" class="col-sm-6">
                                 <a href="{{ path('eb_pret_controleur_Centre') }}">
-                                    <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                                    <button class="btn-u btn-u-red" type="button">Précédent</button>
                                 </a>
-                                {{ form_widget(form.enregistrer, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                                {{ form_widget(form.enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                             </div>
                         </div>
                     </div>

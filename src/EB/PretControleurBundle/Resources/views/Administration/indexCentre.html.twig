@@ -1,13 +1,13 @@
-{% extends 'EBPretControleurBundle::layout.html.twig' %}
+{% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
 
 {% block EBPretcontroleur_body %}
                 <div class="panel panel-green margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de vos centres</h3>
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de tous les centres </h3>
                     </div>
                     <div class="panel-body">
                         <p>Légende : </p>
-                        <span class="label label-info">En cours de validation.</span>Nos services vérifie votre dossier.
+                        <span class="label label-info">Non validé</span> Centre non validé.
                     </div>                                      
                     <table class="table">
                         <thead>
@@ -27,14 +27,14 @@
                             <td>{{ centre.dateCreation|date('d/m/Y') }}</td>
                             <td>
                                {% if centre.statut == false %}
-                                <span class="label label-info">En cours de validation.</span>
+                                <span class="label label-info">Non validé</span>
                                 {% else %}
                                 <span class="label label-success">Validé</span>
                                 {% endif %}
                             </td>
                             <td>
-                            <a href="{{ path('eb_pret_controleur_EditCentre', {'id': centre.id}) }}">
-                             <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Editer</button>
+                            <a href="{{ path('eb_pret_controleur_Administration_EditCentre', {'id': centre.id}) }}">
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Valider</button>
                             </a>
                             </td>
                             </tr>

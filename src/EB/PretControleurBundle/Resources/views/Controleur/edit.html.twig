@@ -1,4 +1,5 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
+{% form_theme form 'EBPretControleurBundle:Form:error.html.twig' %}
 
 {% block EBPretcontroleur_stylesheets %}
     {{ parent() }}
@@ -97,7 +98,7 @@
                                 {% if controleur.AttestationAgrement.webPath is not defined %}
                                   <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                                 {% else %}
-                                  <a rel="pulse-grow" href="{{ asset(controleur.AttestationAgrement.webPath) }}" download="AttestationAgrement.doc" class="btn btn-link">Attestation d'agrément
+                                  <a rel="pulse-grow" href="{{ asset(controleur.AttestationAgrement.webPath) }}" download="AttestationAgrement.{{ controleur.AttestationAgrement.url }}" class="btn btn-link">Attestation d'agrément
                                   </a>
                                 {% endif %}
                                 {{ form_widget(form.AttestationAgrement, {'attr': {'class': 'form-control'}}) }}  
@@ -157,7 +158,7 @@
                                   <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                                 {% else %}
                                   <a rel="pulse-grow" href="{{ asset(controleur.AttestationFormationVingtHeure.webPath) }}" 
-                                  download="AttestationFormationVingtHeure.doc" class="btn btn-link">Attestation formation 20H</a>
+                                  download="AttestationFormationVingtHeure.{{ controleur.AttestationFormationVingtHeure.url }}" class="btn btn-link">Attestation formation 20H</a>
                                 {% endif %}
                                 {{ form_widget(form.AttestationFormationVingtHeure, {'attr': {'class': 'form-control'}}) }} 
                             </div>
@@ -170,7 +171,7 @@
                                   <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                                 {% else %}
                                   <a rel="pulse-grow" href="{{ asset(controleur.AttestationTroisCentControle.webPath) }}" 
-                                  download="AttestationTroisCentControle.doc" class="btn btn-link">Attestation des 300 contrôles</a>
+                                  download="AttestationTroisCentControle.{{ controleur.AttestationTroisCentControle.url }}"  class="btn btn-link">Attestation des 300 contrôles</a>
                                 {% endif %}
                                 {{ form_widget(form.AttestationTroisCentControle, {'attr': {'class': 'form-control'}}) }} 
                             </div>
@@ -183,7 +184,7 @@
                                   <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                                 {% else %}
                                   <a rel="pulse-grow" href="{{ asset(controleur.AttestationBonPourAccord.webPath) }}" 
-                                  download="AttestationBonPourAccord.doc" class="btn btn-link">Attestation de l'accord signé par le contrôleur</a>
+                                  download="AttestationBonPourAccord.{{ controleur.AttestationBonPourAccord.url }}"  class="btn btn-link">Attestation de l'accord signé par le contrôleur</a>
                                 {% endif %}
                                 {{ form_widget(form.AttestationBonPourAccord, {'attr': {'class': 'form-control'}}) }} 
                             </div>

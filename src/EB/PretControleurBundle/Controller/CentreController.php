@@ -18,6 +18,8 @@ class CentreController extends Controller
        $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Centre');
        $user=$this->container->get('security.context')->getToken()->getUser();
        $listeCentres=$em->LstCentreByUser($user);
+
+       
         return $this->render('EBPretControleurBundle:Centre:index.html.twig',array('listeCentres' => $listeCentres));
     }
 

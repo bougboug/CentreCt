@@ -3,6 +3,7 @@
 namespace EB\PretControleurBundle\Controller;
 
 use EB\PretControleurBundle\Entity\Centre;
+use EB\PretControleurBundle\Entity\Controleur;
 use EB\UserBundle\Entity\User;
 use EB\PretControleurBundle\Form\CentreType; 
 use EB\PretControleurBundle\Form\AdminCentreType;
@@ -16,9 +17,22 @@ class AdministrationController extends Controller
     public function indexAction()
     {
        $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Centre');
-       $user=$this->container->get('security.context')->getToken()->getUser();
-       $listeCentres=$em->LstCentre();
+       $listeCentres=$em->LstCentreInValide();
         return $this->render('EBPretControleurBundle:Administration:index.html.twig',array('listeCentres' => $listeCentres));
+    }
+
+    public function indexCentreAction()
+    {
+       $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Centre');
+       $listeCentres=$em->LstAllCentre();
+        return $this->render('EBPretControleurBundle:Administration:indexCentre.html.twig',array('listeCentres' => $listeCentres));
+    }
+
+    public function indexControleurAction()
+    {
+       $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Controleur');
+       $listeControleurs=$em->findAll();
+       return $this->render('EBPretControleurBundle:Administration:indexControleur.html.twig',array('listeControleurs' => $listeControleurs));
     }
 
     public function editAction(Request $request,$id)

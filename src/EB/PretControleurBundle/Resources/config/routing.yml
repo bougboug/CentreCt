@@ -7,6 +7,18 @@ eb_pret_controleur_contact:
 eb_pret_controleur_Administration:
     path:     /Administration
     defaults: { _controller: EBPretControleurBundle:Administration:index }
+eb_pret_controleur_Abonnement:
+    path:     /Administration/abonnement
+    defaults: { _controller: EBPretControleurBundle:Abonnement:index }
+eb_pret_controleur_AjoutAbonnement:
+    path:     /Administration/abonnement/ajout
+    defaults: { _controller: EBPretControleurBundle:Abonnement:ajout }
+eb_pret_controleur_Administration_Controleur:
+    path:     /Administration/controleur
+    defaults: { _controller: EBPretControleurBundle:Administration:indexControleur }
+eb_pret_controleur_Administration_Centre:
+    path:     /Administration/centre
+    defaults: { _controller: EBPretControleurBundle:Administration:indexCentre }
 eb_pret_controleur_Administration_EditCentre:
     path:     /Administration/centre/edit/{id}
     defaults: { _controller: EBPretControleurBundle:Administration:edit }
@@ -52,6 +64,11 @@ eb_pret_controleur_EditControleur:
     defaults: { _controller: EBPretControleurBundle:Controleur:edit }
     requirements:
         id: \d+
+eb_pret_controleur_ErreurAbonnement:
+    path:     /Gestion/disponibilite/erreur/abonnement
+    defaults: { _controller: EBPretControleurBundle:Abonnement:erreurAbonnement}
+    requirements:
+        idDisponibilite: \d+
 eb_pret_controleur_DemandeRecuControleur:
     path:     /Gestion/disponibilite/demande/liste
     defaults: { _controller: EBPretControleurBundle:Disponibilite:demandeRecu }
