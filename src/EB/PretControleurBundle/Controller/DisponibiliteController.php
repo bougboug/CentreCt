@@ -241,7 +241,7 @@ class DisponibiliteController extends Controller
          $listeDemandeRecu=$em->LstDemandeRecu($user, new \DateTime('now'));
          return $this->render('EBPretControleurBundle:Disponibilite:LstDemandeRecu.html.twig',array('listeDemandeRecu' => $listeDemandeRecu));   
         }
-        return $this->render('EBPretControleurBundle:Disponibilite:annulerDemande.html.twig', array('form' => $form->createView(),'demande' => $disponibilite));
+        return $this->render('EBPretControleurBundle:Disponibilite:AnnulerDemande.html.twig', array('form' => $form->createView(),'demande' => $disponibilite));
     }
 
    /**
@@ -280,7 +280,7 @@ class DisponibiliteController extends Controller
          return $this->render('EBPretControleurBundle:Disponibilite:LstDemandeNonValide.html.twig',array('listeDemandeRecu' => $listeDemandeRecu));
 
         }
-        return $this->render('EBPretControleurBundle:Disponibilite:annulerDemandeNonValide.html.twig', array('form' => $form->createView(),'demande' => $disponibilite));
+        return $this->render('EBPretControleurBundle:Disponibilite:AnnulerDemandeNonValide.html.twig', array('form' => $form->createView(),'demande' => $disponibilite));
     }
 
     public function demandeRecuAction(Request $request)
