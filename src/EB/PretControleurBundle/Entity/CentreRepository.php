@@ -26,15 +26,25 @@ class CentreRepository extends EntityRepository
   {
     $qb = $this->createQueryBuilder('a');   
     $qb->where('a.user = :user')
+       ->andWhere('a.abonne = true')
        ->setParameter('user', $user);
     return $qb;
   }
 
-  // retouen la liste de tous mes centres,liste destiné à la partie administration
+  // retouen la liste de tous les centres pas encore validé,liste destiné à la partie administration
   public function LstCentreInValide()
   {
     return  $this->createQueryBuilder('a')
                  -> where('a.statut = false')
+                 ->getQuery()
+                 ->getResult();
+  }
+
+  // retouen la liste de tous les centres validé,liste destiné à la partie administration
+  public function LstCentreValide()
+  {
+    return  $this->createQueryBuilder('a')
+                 -> where('a.statut = true')
                  ->getQuery()
                  ->getResult();
   }

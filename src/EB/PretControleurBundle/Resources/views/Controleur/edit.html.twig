@@ -53,6 +53,16 @@
             {{ form_errors(form) }}
             <h3 class="panel-title"><i class="fa fa-tasks"></i>Modifier le formulaire pour mettre à jour votre contrôleur</h3>
         </div>
+        <div class="panel-body">
+                {% if controleur.reponse == true %}
+                    {% if controleur.statut == false %}
+                     {% if controleur.commentaire is not empty %}
+                        <p style="color: red"> Le controleur n'a pas été validé pour les causes suivantes : </br>
+                         - {{ controleur.commentaire }} </p>
+                     {% endif %}
+                    {% endif %}  
+                {% endif %}       
+            </div>  
             <div class="panel-body"> 
                    <div class="form-group">
                                 <label>Vous pouvez affecter un controleur à un autre de vos centres</label>
@@ -192,9 +202,9 @@
                     </div> 
                     <div align="right">
                         <a href="{{ path('eb_pret_controleur_Controleur') }}">
-                            <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                            <button class="btn-u btn-u-red" type="button">Précédent</button>
                         </a> 
-                            {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                            {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                     </div>
                             {{ form_end(form) }}
             </div>   

@@ -1,0 +1,36 @@
+{% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+                <div class="panel panel-blue margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i>Liste des emprunts terminés.</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Liste des emprunt terminés </p>
+                    </div>                                      
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Centre emprunteur</th>
+                                <th>Controleur emprunter</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for demande in listeDemandes %}
+                            <tr>
+                            <td>{{ demande.centre.nom }} ({{demande.centre.user.Username}})</td>
+                            <td>{{ demande.controleur.nom }} {{ demande.controleur.prenom }}</td>
+                            <td>{{ demande.date|date('d/m/Y') }}</td>
+                            <td>
+                              <a href="{{ path('eb_pret_controleur_Administration_EnvoieQuestionnaire', {'idDisponibilite': demande.id}) }}">
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Envoyer questionnaire</button>
+                              </a>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+{% endblock %}

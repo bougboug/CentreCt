@@ -50,9 +50,9 @@ class Controleur
     private $dateAgrement;
     
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="telephone", type="integer", length=10)
+     * @ORM\Column(name="telephone", type="string", length=10)
      */
     private $telephone;
 
@@ -101,6 +101,27 @@ class Controleur
      * @ORM\OneToOne(targetEntity="EB\PretControleurBundle\Entity\Fichier", cascade={"persist", "remove"})
      */
     private $AttestationBonPourAccord;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=255)
+     */
+    private $commentaire;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="reponse", type="boolean")
+     */
+    private $reponse = false;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="statut", type="boolean")
+     */
+    private $statut = false;
 
     /**
      * Get id
@@ -184,7 +205,7 @@ class Controleur
     /**
      * Set telephone
      *
-     * @param integer $telephone
+     * @param string $telephone
      * @return Controleur
      */
     public function setTelephone($telephone)
@@ -197,7 +218,7 @@ class Controleur
     /**
      * Get telephone
      *
-     * @return integer 
+     * @return string 
      */
     public function getTelephone()
     {
@@ -433,4 +454,75 @@ class Controleur
     {
         return $this->AttestationBonPourAccord;
     }
+
+        /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Centre
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string 
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+
+    /**
+     * Set reponse
+     *
+     * @param boolean $reponse
+     * @return Centre
+     */
+    public function setReponse($reponse)
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    /**
+     * Get reponse
+     *
+     * @return boolean 
+     */
+    public function getReponse()
+    {
+        return $this->reponse;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param boolean $statut
+     * @return Centre
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return boolean 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+    
 }

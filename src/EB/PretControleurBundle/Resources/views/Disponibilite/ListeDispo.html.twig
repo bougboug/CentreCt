@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             {% if estAbonne %} 
-                <div class="panel panel-green margin-bottom-40">
+                <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste des contrôleurs disponibles </h3>
                     </div>
@@ -24,7 +24,7 @@
                                 <td><span class="label label-info">Disponible</span></td><td>Le contrôleur est disponible.</td>
                             </tr>
                             <tr>
-                                <td><span class="label label-success">En cours de validation</span></td><td>Le contrôleur est réservé, son centre d'affiliation doit valider ou non la réservation.</td>
+                                <td><span class="label label-success">En cours de validation</span></td><td>Le contrôleur est réservé, son centre doit valider ou non la réservation.</td>
                             </tr>
                         </table>
                     </div>                                    
@@ -75,8 +75,8 @@
                         <h4>Vous n'êtes pas encore abonné !</h4></br>
                         <p>Sur ce département il y'a actuellement {{ nbDispo}} contrôleur(s) disponible.</p>
                         <p></br>
-                            <a class="btn-u btn-u-xs btn-u-default" href="{{ path('eb_pret_controleur_emprunter') }}">Précédent</a> 
-                            <a class="btn-u btn-u-xs btn-u-dark" href="{{ path('fos_user_registration_register') }}">Pour vous abonner</a>
+                            <a class="btn-u btn-u-xs btn-u-red" href="{{ path('eb_pret_controleur_emprunter') }}">Précédent</a> 
+                            <a class="btn-u btn-u-xs btn-u-red" href="{{ path('fos_user_registration_register') }}">Pour vous abonner</a>
                         </p>
                     </div>
             {% endif %}

@@ -13,9 +13,11 @@ eb_pret_controleur_Abonnement:
 eb_pret_controleur_AjoutAbonnement:
     path:     /Administration/abonnement/ajout
     defaults: { _controller: EBPretControleurBundle:Abonnement:ajout }
-eb_pret_controleur_Administration_Controleur:
-    path:     /Administration/controleur
-    defaults: { _controller: EBPretControleurBundle:Administration:indexControleur }
+eb_pret_controleur_SupprimerAbonnement:
+    path:     /Administration/abonnement/suppression/{idAbonnement}
+    defaults: { _controller: EBPretControleurBundle:Abonnement:supprimer }
+    requirements:
+        idAbonnement: \d+
 eb_pret_controleur_Administration_Centre:
     path:     /Administration/centre
     defaults: { _controller: EBPretControleurBundle:Administration:indexCentre }
@@ -24,6 +26,27 @@ eb_pret_controleur_Administration_EditCentre:
     defaults: { _controller: EBPretControleurBundle:Administration:edit }
     requirements:
         id: \d+
+eb_pret_controleur_Administration_Controleur:
+    path:     /Administration/centre/{id}/liste-des-controleurs
+    defaults: { _controller: EBPretControleurBundle:Administration:indexControleur }
+    requirements:
+        id: \d+   
+eb_pret_controleur_Administration_EditControleur:
+    path:     /Administration/centre/liste-des-controleurs/controleur/{id}
+    defaults: { _controller: EBPretControleurBundle:Administration:editControleur }
+    requirements:
+        id: \d+  
+eb_pret_controleur_Administration_EmpruntTraite:
+    path:     /Administration/suivi/emprunt-traite
+    defaults: { _controller: EBPretControleurBundle:Administration:indexEmpruntTraite }
+eb_pret_controleur_Administration_EmpruntAVenir:
+    path:     /Administration/suivi/emprunt-a-venir
+    defaults: { _controller: EBPretControleurBundle:Administration:indexEmpruntAVenir }
+eb_pret_controleur_Administration_EnvoieQuestionnaire:
+    path:     /Administration/suivi/emprunt-traite/envoie-questionnaire/{idDisponibilite}
+    defaults: { _controller: EBPretControleurBundle:Administration:EnvoieMailQuestionnaire }
+    requirements:
+        id: \d+  
 eb_pret_controleur_emprunter:
     path:     /Gestion/emprunter
     defaults: { _controller: EBPretControleurBundle:Emprunter:index }
@@ -70,11 +93,30 @@ eb_pret_controleur_ErreurAbonnement:
     requirements:
         idDisponibilite: \d+
 eb_pret_controleur_DemandeRecuControleur:
-    path:     /Gestion/disponibilite/demande/liste
+    path:     /Gestion/disponibilite/demande-recu/liste
     defaults: { _controller: EBPretControleurBundle:Disponibilite:demandeRecu }
+eb_pret_controleur_DemandeValideControleur:
+    path:     /Gestion/disponibilite/demande-valide/liste
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:demandeValide }
+eb_pret_controleur_DemandeNonValideControleur:
+    path:     /Gestion/disponibilite/demande-en-cours-de-validation/liste
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:demandeNonValide }
+eb_pret_controleur_ControleurReserveControleur:
+    path:     /Gestion/disponibilite/reservation-controleur
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:controleurReserverValide }
 eb_pret_controleur_ReponseDemandeDisponibilite:
     path:     /Gestion/disponibilite/demande/reponse/{idDisponibilite}
-    defaults: { _controller: EBPretControleurBundle:Disponibilite:ReponseDispo }
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:reponseDispo }
+    requirements:
+        idControleur: \d+
+eb_pret_controleur_AnnulerDemandeDisponibilite:
+    path:     /Gestion/disponibilite/demande/annuler/{idDisponibilite}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:annulerDemandeValide }
+    requirements:
+        idControleur: \d+
+eb_pret_controleur_AnnulerDemandeNonValideDisponibilite:
+    path:     /Gestion/disponibilite/demande-non-valider/annuler/{idDisponibilite}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:annulerDemandeNonValide }
     requirements:
         idControleur: \d+
 eb_pret_controleur_AjoutDisponibilite:

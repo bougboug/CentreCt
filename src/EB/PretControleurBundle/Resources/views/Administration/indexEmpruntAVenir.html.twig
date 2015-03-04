@@ -1,0 +1,31 @@
+{% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+                <div class="panel panel-blue margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i>Liste des emprunts à venir.</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Liste des emprunts à venir.</p>
+                        </table>
+                    </div>                                      
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Centre emprunteur</th>
+                                <th>Controleur emprunter</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for demande in listeDemandes %}
+                            <tr>
+                            <td>{{ demande.centre.nom }} ({{demande.centre.user.Username}})</td>
+                            <td>{{ demande.controleur.nom }} {{ demande.controleur.prenom }} ({{ demande.controleur.centre.nom }})</td>
+                            <td>{{ demande.date|date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+{% endblock %}

@@ -16,7 +16,10 @@ class ReponseDisponibiliteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('statut','checkbox', array('required' => false, 'label' => 'Accepter la demande ?'))
+            /*->add('statut','checkbox', array('required' => false, 'label' => 'Accepter la demande ?'))*/
+            ->add('statut',     'choice', array('expanded'=>false,//affiche des checkbox plutot qu'un select
+                                                'multiple'=>false,
+                                                'choices'=>array('a' => 'accepter', 'r' => 'refuser')))
             ->add('Enregistrer',      'submit')
         ;
     }

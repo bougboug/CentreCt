@@ -1,0 +1,25 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+
+{% block EBPretcontroleur_body %}
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+            <div class="panel-body">  
+                <label>
+                  Votre demande d'emprunt du {{ demande.date|date('d/m/Y') }}, pour le contrôleur {{demande.controleur.nom}} {{demande.controleur.prenom}} du centre {{demande.controleur.centre.nom}} n'a pas encore été validée.</br>
+                  Vous pouvez annuler cette demande d'emprunt si vous le souhaitez.
+                </label>
+                    <div class="form-group">
+                                <label>Voulez-vous annuler la demande d'emprunt ?   </label>
+                                {{ form_widget(form.statut) }} 
+                    </div>
+                    <a href="{{ path('eb_pret_controleur_DemandeNonValideControleur') }}">
+                                    <button class="btn-u btn-u-red" type="button">Précédent</button>
+                    </a>
+                    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
+                    {{ form_end(form) }}
+            </div>   
+            {{ form_rest(form._token) }}
+    </div>
+
+{% endblock %}

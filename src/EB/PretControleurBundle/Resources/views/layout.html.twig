@@ -22,9 +22,11 @@
                 <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
                     <!-- Typography -->
                     <li class="list-group-item list-toggle">                   
-                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography">Centres</a>
-                        <ul id="collapse-typography" class="collapse">
-                            <li><a href="{{ path('eb_pret_controleur_Centre') }}">Liste de vos centre</a></li>
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-centre">Centres</a>
+                        <ul id="Gestion-centre" class="collapse">
+                            <li>
+                                <a href="{{ path('eb_pret_controleur_Centre') }}">Liste de vos centre</a>
+                            </li>
                             <li>
                                 <a href="{{ path('eb_pret_controleur_AjoutCentre') }}">Ajouter un centre</a>
                             </li>
@@ -32,16 +34,32 @@
                     </li>
                     <!-- End Typography -->
                      <li class="list-group-item list-toggle">                   
-                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-buttons">Controleurs</a>
-                        <ul id="collapse-buttons" class="collapse">
-                            <li><a href="{{ path('eb_pret_controleur_Controleur') }}"> Listes de vos controleur</a></li>
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-controleur">Controleurs</a>
+                        <ul id="Gestion-controleur" class="collapse">
+                            <li>
+                                <a href="{{ path('eb_pret_controleur_Controleur') }}"> Listes de vos controleur</a>
+                            </li>
                             <li>                          
                                 <a href="{{ path('eb_pret_controleur_AjoutControleur') }}">Ajouter un controleur</a>
                             </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-emprunt">Gestion emprunt</a>
+                        <ul id="Gestion-emprunt" class="collapse">
                             <li>
                                 <span class="badge badge-u">New</span>                            
                                 <a href="{{ path('eb_pret_controleur_DemandeRecuControleur') }}"></i> Demande reçu</a>
-                            </li>
+                            </li> 
+                            <li>                          
+                                <a href="{{ path('eb_pret_controleur_DemandeNonValideControleur') }}"></i> Demandes d'emprunt non validé</a>
+                            </li> 
+                            <li>                          
+                                <a href="{{ path('eb_pret_controleur_DemandeValideControleur') }}"></i> Demandes d'emprunt validé</a>
+                            </li> 
+                            <li>                          
+                                <a href="{{ path('eb_pret_controleur_ControleurReserveControleur') }}"></i> Mes contrôleurs réservés</a>
+                            </li> 
                         </ul>
                     </li>
                     <!-- end controleurs-->

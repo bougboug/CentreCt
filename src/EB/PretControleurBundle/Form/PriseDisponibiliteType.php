@@ -17,14 +17,16 @@ class PriseDisponibiliteType extends AbstractType
     {
         $user = $this->utilisateur;
         $builder
-            ->add('pris','checkbox', array('required' => false))
+            ->add('pris',     'choice', array('expanded'=>false,//affiche des checkbox plutot qu'un select
+                                                'multiple'=>false,
+                                                'choices'=>array('o' => 'Oui', 'n' => 'Non')))
             ->add('centre', 'entity', array(
                   'class'         => 'EBPretControleurBundle:Centre',
                   'property'      => 'nom',
                   'query_builder' => function(CentreRepository $repo) use($user) {
                                       return $repo->LstCentreByUserQb($user);
                                      }))
-            ->add('save',      'submit')
+            ->add('Enregistrer',      'submit')
         ;
     }
     

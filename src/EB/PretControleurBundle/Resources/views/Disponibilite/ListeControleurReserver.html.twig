@@ -1,0 +1,45 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+                   <div class="panel panel-blue margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de mes contrôleur réservés </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Liste de mes contrôleur avec réservé ou non.</p>
+                    </div>                                      
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Contrôleur emprunté</th>
+                                <th>Centre emprunteur</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for dispo in listeDispo %}
+                            <tr>
+                            <td>{{ dispo.date|date('d/m/Y')  }}</td>
+                            <td>{{ dispo.controleur.nom }} {{ dispo.controleur.prenom }} </td>
+                            <td>
+                                {% if dispo.centre  is empty %}
+                                    Non reservée 
+                                {% else %}
+                                  {{ dispo.centre.nom }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if dispo.pris == false %}
+                                <span class="label label-info">Disponible</span>
+                                {% else %}
+                                <span class="label label-success">Reservé</span>
+                                {% endif %}
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>             
+</div>    
+{% endblock %}

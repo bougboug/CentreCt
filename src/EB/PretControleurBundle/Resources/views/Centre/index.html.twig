@@ -1,13 +1,13 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
 
 {% block EBPretcontroleur_body %}
-                <div class="panel panel-green margin-bottom-40">
+                <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de vos centres</h3>
                     </div>
                     <div class="panel-body">
                         <p>Légende : </p>
-                        <span class="label label-info">En cours de validation.</span>Nos services vérifie votre dossier.
+                        <span class="label label-info">En cours de validation.</span>Nos services vérifient votre dossier.
                     </div>                                      
                     <table class="table">
                         <thead>
@@ -26,10 +26,19 @@
                             <td>{{ centre.numAgrement }}</td>
                             <td>{{ centre.dateCreation|date('d/m/Y') }}</td>
                             <td>
-                               {% if centre.statut == false %}
-                                <span class="label label-info">En cours de validation.</span>
+                               {% if centre.reponse == false %}
+                                        <span class="label label-info">En cours de validation</span>
                                 {% else %}
-                                <span class="label label-success">Validé</span>
+                                    {% if centre.statut == false %}
+                                        <span class="label label-danger">Refuser</span>
+                                    {% else %}
+                                        <span class="label label-success">Validé</span>
+                                    {% endif %}
+                                {% endif %}
+                                {% if centre.abonne == false %}
+                                        <span class="label label-danger">Non abonné</span>
+                                {% else %}
+                                        <span class="label label-success">Abonné</span>
                                 {% endif %}
                             </td>
                             <td>

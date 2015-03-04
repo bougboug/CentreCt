@@ -22,4 +22,13 @@ class ControleurRepository extends EntityRepository
         ->getResult();
   }
 
+  public function LstControleurByCentre($centre)
+  {
+    return  $this->createQueryBuilder('a')
+        ->where('a.centre = :centre ')
+        ->setParameter('centre', $centre)
+        ->getQuery()
+        ->getResult();
+  }
+
 }

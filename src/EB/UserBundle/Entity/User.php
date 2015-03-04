@@ -62,7 +62,7 @@ class User extends BaseUser
     protected $numAgrement;
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @ORM\Column(type="string", length=10)
      *
      * @Assert\NotBlank(message="Veuillez entrer votre numéro de téléphone.", groups={"Registration", "Profile"})
      * @Assert\Length(

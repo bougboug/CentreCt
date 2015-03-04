@@ -90,7 +90,7 @@
                             {% if centre.attestationAgrement.webPath is not defined %}
                               <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                             {% else %}
-                              <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.doc" class="btn btn-link">Attestation d'agrément
+                              <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.{{ centre.attestationAgrement.url }}" class="btn btn-link">Attestation d'agrément
                               </a>
                             {% endif %}
                                 {{ form_widget(form.attestationAgrement, {'attr': {'class': 'form-control'}}) }}   
@@ -146,19 +146,23 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
-                                <label>Le dossier est-il complet ?
-                                {{ form_widget(form.statut) }} </label>
+                                <label >Acceptez-vous ce centre ?</label>
+                              {{ form_widget(form.statut) }} 
                             </div>
                         </div>
+                    </div>      
+                    <div class="form-group">
+                                <label>Commentaire en cas de refus</label>
+                                {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }} 
                     </div>
                     <div class="form-group">
                        <div class="row"> 
                             <div class="col-sm-6"></div>
                             <div align="right" class="col-sm-6">
                                 <a href="{{ path('eb_pret_controleur_Administration') }}">
-                                  <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                                  <button class="btn-u btn-u-red" type="button">Précédent</button>
                                 </a>
-                                {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                                {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                             </div>
                         </div>
                     </div>

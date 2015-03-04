@@ -11,10 +11,13 @@
                   {{ demande.date|date('d/m/Y') }}.
                 </label>
                     <div class="form-group">
-                                <label>Acceptez vous la demande ? (Laissez decocher si vous refusez la demande)</label>
+                                <label>Acceptez vous la demande ?   </label>
                                 {{ form_widget(form.statut) }} 
                     </div>
-                    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                    <a href="{{ path('eb_pret_controleur_DemandeRecuControleur') }}">
+                        <button class="btn-u btn-u-red" type="button">Précédent</button>
+                    </a>
+                    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                     {{ form_end(form) }}
             </div>   
             {{ form_rest(form._token) }}

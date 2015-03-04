@@ -25,22 +25,12 @@
                         <ul id="collapse-typography" class="collapse">
                             <li><a href="{{ path('eb_pret_controleur_Administration') }}">Liste des centres à valider</a></li>
                             <li>
-                                <a href="{{ path('eb_pret_controleur_Administration_Centre') }}">Liste de tous les centres</a>
+                                <a href="{{ path('eb_pret_controleur_Administration_Centre') }}">Liste de tous les centres validés</a>
                             </li>
                         </ul>
                     </li>
-                    <!-- End Typography -->
-                     <li class="list-group-item list-toggle">                   
-                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-buttons">Controleurs</a>
-                        <ul id="collapse-buttons" class="collapse">
-                            <li><a href="{{ path('eb_pret_controleur_Administration_Controleur') }}"> Listes des contrôleurs à valider</a></li>
-                            <li>                          
-                                <a href="{{ path('eb_pret_controleur_AjoutControleur') }}">Liste de tous les contrôleurs</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                      <li class="list-group-item list-toggle">                   
+                   
+                    <li class="list-group-item list-toggle">                   
                         <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-Abonnements">Abonnements</a>
                         <ul id="collapse-Abonnements" class="collapse">
                             <li><a href="{{ path('eb_pret_controleur_Abonnement') }}">Liste de tous les abonnements</a></li>
@@ -49,7 +39,18 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- end controleurs-->
+                    
+                    <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-buttons">Suivi</a>
+                        <ul id="collapse-buttons" class="collapse">
+                            <li>                          
+                                <a href="{{ path('eb_pret_controleur_Administration_EmpruntTraite') }}">Liste des emprunts terminés</a>
+                            </li>
+                            <li>                          
+                                <a href="{{ path('eb_pret_controleur_Administration_EmpruntAVenir') }}">Liste des emprunts à venir</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div> 
             {% endif %}    

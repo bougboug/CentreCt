@@ -14,17 +14,17 @@
                   {{ disponibilite.controleur.adresse.ville }}</br></br>
                 </label>
                     <div class="form-group">
-                        <label>Pour quel centre voulez vous affecter le controleur ? </label>
+                        <label>Pour quel centre voulez vous affecter le contrôleur ? </label>
                         {{ form_widget(form.centre, {'attr': {'class': 'form-control'}}) }} 
                    </div>
                      <div class="form-group">
-                        <label>Souhaitez-vous emprunter ce controleur ?</label>
+                        <label>Souhaitez-vous emprunter ce contrôleur ?</label>
                         {{ form_widget(form.pris) }} 
                     </div>
                       <a href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': departement} ) }}">
-                        <button class="btn-u btn-u-blue" type="button">Précédent</button>
+                        <button class="btn-u btn-u-red" type="button">Précédent</button>
                       </a>      
-                    {{ form_widget(form.save, {'attr': {'class': 'btn-u btn-u-blue'}}) }}
+                    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                     {{ form_end(form) }}
             </div>   
             {{ form_rest(form._token) }}

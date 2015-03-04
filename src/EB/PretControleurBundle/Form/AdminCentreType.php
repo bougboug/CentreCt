@@ -15,17 +15,20 @@ class AdminCentreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('siret','text', array('max_length' => 14))
-            ->add('nom',         'text')
-            ->add('telephone',   'text', array('max_length' => 10))
-            ->add('email',       'text')
-            ->add('numAgrement', 'text', array('max_length' => 8))
-            ->add('dateAgrement','date')
-            ->add('dateCreation','date')
-            ->add('statut', 'checkbox', array('label' => 'Le dossier est-il complet ?', 'required' => false))
-            ->add('adresse',      new AdresseType())
+            ->add('siret','text', array('max_length' => 14,'required' => false))
+            ->add('nom',         'text', array('required' => false))
+            ->add('telephone',   'text', array('max_length' => 10, 'required' => false))
+            ->add('email',       'text', array('required' => false))
+            ->add('numAgrement', 'text', array('max_length' => 8,'required' => false))
+            ->add('dateAgrement','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd','required' => false))
+            ->add('dateCreation','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd','required' => false))
+            ->add('adresse',      new AdresseType(),array('required' => false))
             ->add('attestationAgrement',      new FichierType(),array('required' => false)) 
-            ->add('save',        'submit')
+            ->add('commentaire',         'text',array('required' => false))
+            ->add('statut',     'choice', array('expanded'=>false,//affiche des checkbox plutot qu'un select
+                                                'multiple'=>false,
+                                                'choices'=>array('a' => 'accepter', 'r' => 'refuser')))
+            ->add('Enregistrer',        'submit')
         ;
     }
     

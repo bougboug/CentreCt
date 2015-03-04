@@ -45,6 +45,6 @@ assetic:
     use_controller: true
 
 swiftmailer:
-    transport: gmail
-    username:  enis.boughanmi@gmail.com
-    password:  91374476800
+    transport: smtp
+    username:  contact@controlisor.com
+    password:  contact-controlisor

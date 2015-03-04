@@ -55,6 +55,16 @@
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-tasks"></i>Completer le formulaire pour modifier les informations de votre centre</h3>
         </div>
+            <div class="panel-body">
+                {% if centre.reponse == true %}
+                    {% if centre.statut == false %}
+                     {% if centre.commentaire is not empty %}
+                        <p style="color: red"> Le centre n'a pas été validé pour les causes suivantes : </br>
+                         - {{ centre.commentaire }} </p>
+                     {% endif %}
+                    {% endif %}  
+                {% endif %}       
+            </div>  
             <div class="panel-body">  
                     <div class="form-group">
                         <div class="row">
@@ -154,7 +164,7 @@
                                 <a href="{{ path('eb_pret_controleur_Centre') }}">
                                     <button class="btn-u btn-u-red" type="button">Précédent</button>
                                 </a>
-                                {{ form_widget(form.enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
+                                {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                             </div>
                         </div>
                     </div>

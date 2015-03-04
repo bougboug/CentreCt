@@ -29,16 +29,16 @@ class Centre
     private $nom;
 
     /**
-     * @var integer
+     * @var bigint
      *
-     * @ORM\Column(name="siret", type="integer", length=14)
+     * @ORM\Column(name="siret", type="bigint", length=14)
      */
     private $siret;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="telephone", type="integer", length=10)
+     * @ORM\Column(name="telephone", type="string", length=10)
      */
     private $telephone;
 
@@ -55,6 +55,13 @@ class Centre
      * @ORM\Column(name="statut", type="boolean")
      */
     private $statut = false;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="reponse", type="boolean")
+     */
+    private $reponse = false;
 
     /**
      * @var string
@@ -93,7 +100,22 @@ class Centre
      */
     private $AttestationAgrement;
 
-    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=255)
+     */
+    private $commentaire;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abonne", type="boolean")
+     */
+    private $abonne = false;
+
+
     public function __construct()
     {
       // Par défaut, la date de l'annonce est la date d'aujourd'hui
@@ -158,7 +180,7 @@ class Centre
     /**
      * Set telephone
      *
-     * @param integer $telephone
+     * @param string $telephone
      * @return Centre
      */
     public function setTelephone($telephone)
@@ -171,7 +193,7 @@ class Centre
     /**
      * Get telephone
      *
-     * @return integer 
+     * @return string 
      */
     public function getTelephone()
     {
@@ -383,6 +405,75 @@ class Centre
     public function getDateAgrement()
     {
         return $this->dateAgrement;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Centre
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string 
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set reponse
+     *
+     * @param boolean $reponse
+     * @return Centre
+     */
+    public function setReponse($reponse)
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    /**
+     * Get reponse
+     *
+     * @return boolean 
+     */
+    public function getReponse()
+    {
+        return $this->reponse;
+    }
+
+    /**
+     * Set abonne
+     *
+     * @param boolean $abonne
+     * @return Centre
+     */
+    public function setAbonne($abonne)
+    {
+        $this->abonne = $abonne;
+
+        return $this;
+    }
+
+    /**
+     * Get abonne
+     *
+     * @return boolean 
+     */
+    public function getAbonne()
+    {
+        return $this->abonne;
     }
 
 }

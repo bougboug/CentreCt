@@ -1,20 +1,18 @@
 {% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
 
 {% block EBPretcontroleur_body %}
-                <div class="panel panel-green margin-bottom-40">
+                <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de tous les abonnements</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Légende : </p>
-                        <span class="label label-info">Demande reçu</span> Abonnement pas encore validé.
+                        <p>Liste de tous les abonnements payés et validés.</p>
                     </div>                                      
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Nom du centre</th>
                                 <th>Responsable</th>
-                                <th>Statut</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -23,16 +21,10 @@
                             <tr>
                             <td>{{ abonnement.centre.nom }}</td>
                             <td>{{ abonnement.centre.user.nom }}</td>
-                            <td>  {% if abonnement.payer == false %}
-                                <span class="label label-info">Non payé</span>
-                                {% else %}
-                                <span class="label label-success">payé</span>
-                                {% endif %}
-                            </td>
                             <td>
-                            <a>
-                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Valider</button>
-                            </a>
+                                <a href="{{ path('eb_pret_controleur_SupprimerAbonnement', {'idAbonnement': abonnement.id}) }}">
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Supprimer</button>
+                                </a>
                             </td>
                             </tr>
                         {% endfor %}

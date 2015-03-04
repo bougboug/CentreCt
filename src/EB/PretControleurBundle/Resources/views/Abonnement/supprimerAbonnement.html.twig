@@ -1,0 +1,44 @@
+{% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
+
+{% block EBPretcontroleur_stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block EBPretcontroleur_javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block EBPretcontroleur_body %}
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>   
+        </div>    
+    </div>
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>Supprimer un abonnement</h3>
+        </div>
+            <div class="panel-body"> 
+                   
+                   <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Vous êtes sur le point de supprimer l'abonnement pour le centre {{ Abonnement.centre.nom }}.</label>
+                                <label>Si c'est ce que vous voulez faire, il vous suffi d'appuyer sur le boutton supprimer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="right">
+                        <a href="{{ path('eb_pret_controleur_Abonnement') }}">
+                            <button class="btn-u btn-u-red" type="button">Précédent</button>
+                        </a>
+                            {{ form_widget(form.Supprimer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
+                    </div>
+                            {{ form_end(form) }}
+            </div>   
+                            {{ form_rest(form._token) }}
+    </div>
+{% endblock %}

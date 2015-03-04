@@ -1,7 +1,7 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
 
 {% block EBPretcontroleur_body %}
-                   <div class="panel panel-green margin-bottom-40">
+                   <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste des dates disponibles </h3>
                     </div>
@@ -35,16 +35,19 @@
                                   {{ dispo.centre.nom }}
                                 {% endif %}
                             </td>
-                            <td>
-                              <a href="{{ path('eb_pret_controleur_EditDisponibilite', {'idDisponibilite': dispo.id}) }}">
-                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Modifier</button>
-                              </a>
+                            <td>  
+                                <a href="{{ path('eb_pret_controleur_EditDisponibilite', {'idDisponibilite': dispo.id}) }}">
+                                    <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Modifier</button>
+                                </a>
                             </td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
+                <a href="{{ path('eb_pret_controleur_Controleur') }}">
+                    <button class="btn-u btn-u-red" type="button">Précédent</button>
+                </a> 
                 <a href="{{ path('eb_pret_controleur_AjoutDisponibilite', {'idControleur' : idControleur }) }}">
                     <button class="btn-u"><i class="fa fa-pencil"></i> Ajouter une date</button>
                 </a>                

@@ -13,7 +13,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class DisponibiliteRepository extends EntityRepository
 {
-  public function LstDemandeRecu($user)
+  public function LstDemandeRecu($user,$date)
   {
     return  $this->createQueryBuilder('a')
         ->leftJoin('a.controleur', 'controleur')
@@ -22,7 +22,67 @@ class DisponibiliteRepository extends EntityRepository
         ->addSelect('centre')
         ->where('centre.user = :user ')
         ->andWhere('a.centre IS NOT NULL')
+        ->andWhere('a.date >= :date')
+        ->andWhere('a.statut = false')
         ->setParameter('user', $user)
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->orderBy('a.date','ASC')
+        ->getQuery()
+        ->getResult();
+  }
+
+  public function LstDemandeByCentre($user,$date)
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.controleur', 'controleur')
+        ->leftJoin('a.centre', 'centre')
+        ->leftJoin('controleur.centre', 'centreControleur')
+        ->addSelect('controleur')
+        ->addSelect('centre')
+        ->addSelect('centreControleur')
+        ->where('centre.user = :user ')
+        ->andWhere('a.date >= :date')
+        ->andWhere('a.statut = true')
+        ->setParameter('user', $user)
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->orderBy('a.date','ASC')
+        ->getQuery()
+        ->getResult();
+  }
+
+  public function LstDemandeNonValideByCentre($user,$date)
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.controleur', 'controleur')
+        ->leftJoin('a.centre', 'centre')
+        ->leftJoin('controleur.centre', 'centreControleur')
+        ->addSelect('controleur')
+        ->addSelect('centre')
+        ->addSelect('centreControleur')
+        ->where('centre.user = :user ')
+        ->andWhere('a.date >= :date')
+        ->andWhere('a.pris = true')
+        ->setParameter('user', $user)
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->orderBy('a.date','ASC')
+        ->getQuery()
+        ->getResult();
+  }
+
+  public function LstControleurReserver($user,$date)
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.controleur', 'controleur')
+        ->leftJoin('a.centre', 'centre')
+        ->leftJoin('controleur.centre', 'centreControleur')
+        ->addSelect('controleur')
+        ->addSelect('centre')
+        ->addSelect('centreControleur')
+        ->where('centreControleur.user = :user ')
+        ->andWhere('a.date >= :date')
+        ->setParameter('user', $user)
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->orderBy('a.date','ASC')
         ->getQuery()
         ->getResult();
   }
@@ -45,9 +105,9 @@ class DisponibiliteRepository extends EntityRepository
         	  ->addSelect('c')
         	  ->where('e.user != :user')
             ->andWhere('dep.code = :code')
-            ->andWhere('d.statut = false')
             ->andWhere('d.date >= :date')
-            ->orderBy('d.date','DESC')
+            ->andWhere('d.statut = false')
+            ->orderBy('d.date','asc')
         	  ->setParameter('user', $user)
             ->setParameter('code', $codeDep)
             ->setParameter('date', $date->format('Y-m-d'));
@@ -76,4 +136,44 @@ class DisponibiliteRepository extends EntityRepository
   	return $query->getQuery()->getSingleScalarResult();
   }
 
+  public function lstTouteDemandeTraite($date)
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.controleur', 'controleur')
+        ->leftJoin('controleur.centre', 'centre')
+        ->addSelect('controleur')
+        ->addSelect('centre')
+        ->where('a.date <= :date')
+        ->andWhere('a.centre IS NOT NULL')
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->getQuery()
+        ->getResult();
+  }
+
+  // partie administration : listes des emprunts a venir
+  public function lstTouteDemandeAVenir($date)
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.controleur', 'controleur')
+        ->leftJoin('controleur.centre', 'centre')
+        ->addSelect('controleur')
+        ->addSelect('centre')
+        ->where('a.date >= :date')
+        ->andWhere('a.centre IS NOT NULL')
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->getQuery()
+        ->getResult();
+  }
+
+  public function lstTouteDemande()
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.controleur', 'controleur')
+        ->leftJoin('controleur.centre', 'centre')
+        ->addSelect('controleur')
+        ->addSelect('centre')
+        ->where('a.centre IS NOT NULL')
+        ->getQuery()
+        ->getResult();
+  }
 }

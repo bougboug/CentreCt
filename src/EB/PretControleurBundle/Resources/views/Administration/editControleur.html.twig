@@ -1,0 +1,211 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+{% form_theme form 'EBPretControleurBundle:Form:error.html.twig' %}
+
+{% block EBPretcontroleur_stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block EBPretcontroleur_javascripts %}
+    {{ parent() }}
+                <script type="text/javascript">
+        $("#eb_pretcontroleurbundle_edit_controleur_adresse_region").change(function() {
+         
+            var vendor = $("#eb_pretcontroleurbundle_edit_controleur_adresse_region option:selected").val();
+            var DATA = 'id=' + vendor;
+            var path = Routing.generate('eb_pret_controleur_DepByRegion');
+         
+            $.ajax({
+                url:  Routing.generate('eb_pret_controleur_DepByRegion', { 'regionId': vendor }),
+                type: 'POST',
+                dataType: 'json',
+                data: DATA,
+                success: function(data)
+                {
+                    $('#eb_pretcontroleurbundle_edit_controleur_adresse_departement').find("option").remove();
+                    $.each(data, function(cle, valeur){     
+                        var item = valeur;
+                        item = $.parseJSON(item);  
+                    $('#eb_pretcontroleurbundle_edit_controleur_adresse_departement').append(new Option(item.libelle, item.id));    
+                    });
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+        }); 
+    </script>
+{% endblock %}
+
+{% block EBPretcontroleur_body %}
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>   
+        </div>    
+    </div>
+   {{ form_start(form)}}
+    <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            {{ form_errors(form) }}
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>Modifier le formulaire pour mettre à jour votre contrôleur</h3>
+        </div>
+            <div class="panel-body"> 
+                   <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Nom </label>
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Prénom </label>
+                                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Expérience </label>
+                                {{ form_widget(form.experience, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.experience) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Numéro d'agrement</label>
+                               {{ form_widget(form.numAgrement, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.numAgrement) }}
+                            </div>
+                            <div class="col-sm-6">
+                               <label>Date d'agrement</label>
+                              {{ form_widget(form.dateAgrement, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {% if controleur.AttestationAgrement.webPath is not defined %}
+                                  <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
+                                {% else %}
+                                  <a rel="pulse-grow" href="{{ asset(controleur.AttestationAgrement.webPath) }}" download="AttestationAgrement.{{ controleur.AttestationAgrement.url }}" class="btn btn-link">Attestation d'agrément
+                                  </a>
+                                {% endif %}
+                                {{ form_widget(form.AttestationAgrement, {'attr': {'class': 'form-control'}}) }}  
+                            </div>
+                        </div>
+                    </div>        
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Région</label>
+                                {{ form_widget(form.adresse.region, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Département</label>
+                                {{ form_widget(form.adresse.departement, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                                <label>Adresse</label>
+                                {{ form_widget(form.adresse.adresse, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                    <div class="form-group">
+                                <label>Complément d'adresse</label>
+                                {{ form_widget(form.adresse.adresse2, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Code postal</label>
+                                {{ form_widget(form.adresse.codePostal, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Ville</label>
+                                {{ form_widget(form.adresse.ville, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Téléphone</label>
+                              {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }} 
+                                {{ form_errors(form.telephone) }}
+                            </div>
+                            <div class="col-sm-6">
+                                <label>E-mail</label>
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.email, {'attr': {'color': 'red'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {% if controleur.AttestationFormationVingtHeure.webPath is not defined %}
+                                  <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
+                                {% else %}
+                                  <a rel="pulse-grow" href="{{ asset(controleur.AttestationFormationVingtHeure.webPath) }}" 
+                                  download="AttestationFormationVingtHeure.{{ controleur.AttestationFormationVingtHeure.url }}" class="btn btn-link">Attestation formation 20H</a>
+                                {% endif %}
+                                {{ form_widget(form.AttestationFormationVingtHeure, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                       <div class="row">
+                            <div class="col-sm-6">
+                                {% if controleur.AttestationTroisCentControle.webPath is not defined %}
+                                  <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
+                                {% else %}
+                                  <a rel="pulse-grow" href="{{ asset(controleur.AttestationTroisCentControle.webPath) }}" 
+                                  download="AttestationTroisCentControle.{{ controleur.AttestationTroisCentControle.url }}"  class="btn btn-link">Attestation des 300 contrôles</a>
+                                {% endif %}
+                                {{ form_widget(form.AttestationTroisCentControle, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {% if controleur.AttestationBonPourAccord.webPath is not defined %}
+                                  <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
+                                {% else %}
+                                  <a rel="pulse-grow" href="{{ asset(controleur.AttestationBonPourAccord.webPath) }}" 
+                                  download="AttestationBonPourAccord.{{ controleur.AttestationBonPourAccord.url }}"  class="btn btn-link">Attestation de l'accord signé par le contrôleur</a>
+                                {% endif %}
+                                {{ form_widget(form.AttestationBonPourAccord, {'attr': {'class': 'form-control'}}) }} 
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label >Acceptez-vous ce contrôleur ?</label>
+                              {{ form_widget(form.statut) }} 
+                            </div>
+                        </div>
+                    </div>      
+                    <div class="form-group">
+                                <label>Commentaire en cas de refus</label>
+                                {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }} 
+                    </div>
+                    <div align="right">
+                        <a href="{{ path('eb_pret_controleur_Administration_Controleur', {'id': controleur.centre.id}) }}">
+                                  <button class="btn-u btn-u-red" type="button">Précédent</button>
+                        </a>
+                            {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
+                    </div>
+                            {{ form_end(form) }}
+            </div>   
+                            {{ form_rest(form._token) }}
+    </div>
+{% endblock %}

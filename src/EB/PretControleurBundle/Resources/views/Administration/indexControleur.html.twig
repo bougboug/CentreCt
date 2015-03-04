@@ -1,9 +1,9 @@
 {% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
 
 {% block EBPretcontroleur_body %}
-                <div class="panel panel-green margin-bottom-40">
+                <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de tous les contrôleurs</h3>
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de tous les contrôleurs du centre {{ centre.nom }}</h3>
                     </div>
                     <div class="panel-body">
                         <p>Légende : </p>
@@ -11,55 +11,48 @@
                           <tr>
                             <td><button class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> 
-                                  <font color="white">Editer</font>
+                                  <font color="white">Valider</font>
                                   </button></td>
                             <td>
-                                Modifier le profil de votre controleur.
+                                Valider le profil du controleur.
                             </td>
                           </tr>
-                          <tr>
-                            <td><button class="btn btn-info btn-xs">
-                                  <i class="fa fa-share"></i> 
-                                  <font color="white">Disponibilité</font>
-                                </button>
-                            </td>
-                            <td>
-                                Ajouter une date de disponibilité pour votre contrôleur.
-                            </td>
                         </table>
                     </div>                                      
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Centre</th>
                                 <th>Nom</th>
                                 <th>N° agrement</th>
-                                <th>Téléphone</th>
-                                <th>E-mail</th>
-                                <th>Exp.</th>
+                                <th>Statut</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         {% for controleur in listeControleurs %}
                             <tr>
-                            <td>{{ controleur.centre.nom }}</td>
                             <td>{{ controleur.nom }} {{ controleur.prenom }}</td>
                             <td>{{ controleur.numAgrement }}</td>
-                            <td>{{ controleur.telephone}}</td>
-                            <td>{{ controleur.email }}</td>
-                            <td>{{ controleur.experience }}</td>
+                            <td> 
+                                {% if controleur.statut == false %}
+                                        <span class="label label-danger">non validé</span>
+                                {% else %}
+                                        <span class="label label-success">Validé</span>
+                                {% endif %}
+                            </td>
                             <td>
-                              <a href="{{ path('eb_pret_controleur_EditControleur', {'id': controleur.id}) }}">
-                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Editer</button>
-                              </a>
-                              <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
-                                <button class="btn btn-info btn-xs"><i class="fa fa-share"></i> Disponibilité</button>
+                              <a href="{{ path('eb_pret_controleur_Administration_EditControleur', {'id': controleur.id}) }}">
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Valider</button>
                               </a>
                             </td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
+                </div>
+                <div class="row"> 
+                            <div align="left" class="col-sm-6">
+                                <a class="btn-u btn-u-red" href="{{ path('eb_pret_controleur_Administration_Centre') }}">Précédent</a> 
+                            </div>
                 </div>
 {% endblock %}

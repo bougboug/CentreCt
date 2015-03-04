@@ -248,6 +248,7 @@ class Abonnement
     public function ajouterAbonnement()
     {
         if ($this->enCours) {
+        $this->getCentre()->setAbonne(true);    
         $this->getCentre()->getUser()->ajoutAbonnement(); }
     }
 
@@ -256,6 +257,7 @@ class Abonnement
      */
     public function suprimerAbonnement()
     {
+        $this->getCentre()->setAbonne(false);  
         $this->getCentre()->getUser()->retirerAbonnement();
     }
 }

@@ -26,7 +26,7 @@ class EditCentreType extends AbstractType
                                                'format' => 'yyyy-MM-dd',))
             ->add('adresse',      new AdresseType())
             ->add('attestationAgrement',  new FichierType(),array('required' => false)) 
-            ->add('enregistrer',        'submit')
+            ->add('Enregistrer',        'submit')
         ;
     }
     
