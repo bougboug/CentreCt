@@ -106,6 +106,7 @@ class Controleur
      * @var string
      *
      * @ORM\Column(name="commentaire", type="string", length=255)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $commentaire;
 

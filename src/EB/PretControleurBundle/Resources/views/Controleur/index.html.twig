@@ -68,12 +68,12 @@
                               <a href="{{ path('eb_pret_controleur_EditControleur', {'id': controleur.id}) }}">
                                 <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Editer</button>
                               </a>
-                                {% if controleur.reponse == false %}
+                                {% if controleur.centre.abonne == false %}
                                         <a href="#">
                                          <button class="btn btn-warning btn-xs disabled" disabled="disabled"><i class="fa fa-pencil"></i> Disponibilité</button>
                                         </a>
                                 {% else %}
-                                    {% if controleur.statut == false %}
+                                    {% if controleur.centre.abonne == false %}
                                         <a href="#">
                                          <button class="btn btn-warning btn-xs disabled" disabled="disabled"><i class="fa fa-pencil"></i> Disponibilité</button>
                                         </a>

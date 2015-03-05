@@ -26,7 +26,6 @@ class CentreRepository extends EntityRepository
   {
     $qb = $this->createQueryBuilder('a');   
     $qb->where('a.user = :user')
-       ->andWhere('a.abonne = true')
        ->setParameter('user', $user);
     return $qb;
   }
