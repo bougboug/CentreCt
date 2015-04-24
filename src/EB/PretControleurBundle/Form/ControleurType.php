@@ -35,6 +35,7 @@ class ControleurType extends AbstractType
             ->add('AttestationFormationVingtHeure',      new FichierType()) 
             ->add('AttestationTroisCentControle',      new FichierType()) 
             ->add('AttestationBonPourAccord',      new FichierType()) 
+            ->add('AttestationSupervision',      new FichierType()) 
             ->add('Enregistrer',      'submit')
         ;
     }

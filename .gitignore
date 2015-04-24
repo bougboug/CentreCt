@@ -32,3 +32,10 @@
 
 # Composer PHAR
 /composer.phar
+
+app/config/parameters - copie.yml
+src/EB/PretControleurBundle/Controller/DisponibiliteController - copie.php
+src/EB/PretControleurBundle/Resources/views/Disponibilite/ListeDispo.html.twig - copie
+src/EB/PretControleurBundle/Resources/views/Disponibilite/PriseDispo.html.twig - copie
+src/EB/PretControleurBundle/Resources/views/Disponibilite/PriseDispo.html.twig - copie 2
+src/EB/UserBundle/Resources/config/validation.yml

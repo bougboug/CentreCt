@@ -103,6 +103,11 @@ class Controleur
     private $AttestationBonPourAccord;
 
     /**
+     * @ORM\OneToOne(targetEntity="EB\PretControleurBundle\Entity\Fichier", cascade={"persist", "remove"})
+     */
+    private $AttestationSupervision;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="commentaire", type="string", length=255)
@@ -456,11 +461,34 @@ class Controleur
         return $this->AttestationBonPourAccord;
     }
 
-        /**
+    /**
+     * Set AttestationSupervision
+     *
+     * @param \EB\PretControleurBundle\Entity\Fichier $AttestationSupervision
+     * @return Controleur
+     */
+    public function setAttestationSupervision(\EB\PretControleurBundle\Entity\Fichier $AttestationSupervision = null)
+    {
+        $this->AttestationSupervision = $AttestationSupervision;
+
+        return $this;
+    }
+
+    /**
+     * Get AttestationSupervision
+     *
+     * @return \EB\PretControleurBundle\Entity\Fichier 
+     */
+    public function getAttestationSupervision()
+    {
+        return $this->AttestationSupervision;
+    }
+
+    /**
      * Set commentaire
      *
      * @param string $commentaire
-     * @return Centre
+     * @return Controleur
      */
     public function setCommentaire($commentaire)
     {

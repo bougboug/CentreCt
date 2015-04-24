@@ -35,6 +35,7 @@ class EditControleurType extends AbstractType
             ->add('AttestationFormationVingtHeure',      new FichierType(), array('required' => false)) 
             ->add('AttestationTroisCentControle',      new FichierType(), array('required' => false)) 
             ->add('AttestationBonPourAccord',      new FichierType(), array('required' => false)) 
+            ->add('AttestationSupervision',      new FichierType(), array('required' => false)) 
             ->add('Enregistrer',      'submit')
         ;
     }

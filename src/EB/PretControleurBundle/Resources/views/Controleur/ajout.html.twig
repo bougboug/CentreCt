@@ -153,6 +153,10 @@
                         <label>Attestation de l'accord signé par le contrôleur</label>
                         {{ form_widget(form.AttestationBonPourAccord, {'attr': {'class': 'form-control'}}) }} 
                     </div> 
+                    <div class="form-group">
+                        <label>Attestation de supervision du contrôleur</label>
+                        {{ form_widget(form.AttestationSupervision, {'attr': {'class': 'form-control'}}) }} 
+                    </div> 
                     <div align="right">
                         <a href="{{ path('eb_pret_controleur_Controleur') }}">
                             <button class="btn-u btn-u-red" type="button">Précédent</button>
