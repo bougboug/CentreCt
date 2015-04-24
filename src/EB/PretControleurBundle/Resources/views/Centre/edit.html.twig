@@ -101,7 +101,7 @@
                      <div class="row">
                         <div class="col-sm-6">
                             {% if centre.attestationAgrement.webPath is not defined %}
-                            <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
+                            <a rel="pulse-grow" class="btn btn-link">Pas de fichier : Attestation d'agrément</a>
                             {% else %}
                             <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.{{ centre.attestationAgrement.url }}" class="btn btn-link">Attestation d'agrément
                             </a>
