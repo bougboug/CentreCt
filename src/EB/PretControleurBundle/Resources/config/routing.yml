@@ -144,6 +144,11 @@ eb_pret_controleur_DetailDisponibilite:
     defaults: { _controller: EBPretControleurBundle:Disponibilite:PriseDispo}
     requirements:
         idDisponibilite: \d+
+eb_pret_controleur_DetailDisponibiliteByControleur:
+    path:     /Gestion/disponibilite/Disponibilite-par-controleur/{idControleur}/{nbJoursDispo}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:DispoByControleur}
+    requirements:
+        idControleur: \d+
 eb_pret_controleur_ListDepParRegion:
     path:     /ListDepartement
     defaults: { _controller: EBPretControleurBundle:Departement:lstdep }
@@ -152,5 +157,20 @@ eb_pret_controleur_ListDepParRegion:
 eb_pret_controleur_DepByRegion:
     pattern:   /adresse/rempliProduct/{regionId}
     defaults: { _controller: EBPretControleurBundle:Adresse:rempliProduct }
+    options:
+        expose: true
+eb_pret_centre_DepByUser:
+    pattern:   /disponibilite/centre/liste-centre-by-user
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:lstCentreByUser }
+    options:
+        expose: true
+eb_pret_Disponibilite_ReserverByUser:
+    pattern:   /disponibilite/Prise-disponibilite-by-Users/{dispoId}/{centreId}/{statut}/{pris}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:priseDispoByUser }
+    options:
+        expose: true
+eb_pret_controleur_NbDispoParRegion:
+    pattern:   /disponibilite/calculNbControleurDispoParRegion/{departement}
+    defaults: { _controller: EBPretControleurBundle:Disponibilite:calculNbControleurDispoParRegion }
     options:
         expose: true

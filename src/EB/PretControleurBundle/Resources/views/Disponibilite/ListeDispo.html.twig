@@ -6,6 +6,38 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+    var tabid = [];
+    function toggle_bg(id, nomControleur, centre){
+        //sur le onchange de la checkbox
+        $("#check_"+id).change(
+            function(){
+                var trouve = false;
+                if(this.checked){
+                    for(var i=0;i<tabid.length;i++)
+                        if(tabid[i]===id) trouve = true;
+
+                    if(!trouve){
+                        ligne = new Array;
+                        ligne["id"]=id;
+                        ligne["nomControleur"]=nomControleur;
+                        ligne["centre"]=centre;
+                        tabid.push(ligne);
+                    }
+
+                }else{
+                    for(var i=0;i<tabid.length;i++)
+                        if(tabid[i]===id) tabid.splice( i, 1 );;
+                    //alert("non checked");
+                } 
+            }
+        );
+    }
+
+    function envoieListeDate(){
+        location.href=Routing.generate('eb_pret_controleur_ListeTabId', {'lstId':tabid});  
+    }
+</script>
 {% endblock %}
 
 {% block body %}
@@ -13,7 +45,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             {% if estAbonne %} 
-                <div class="panel panel-blue margin-bottom-40">
+                <div class="panel panel-green margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste des contrôleurs disponibles </h3>
                     </div>
@@ -25,45 +57,33 @@
                                 <td><span class="label label-info">Disponible</span></td><td>Le contrôleur est disponible.</td>
                             </tr>
                             <tr>
-                                <td><span class="label label-success">En cours de validation</span></td><td>Le contrôleur est réservé, son centre doit valider ou non la réservation.</td>
+                                <td><span class="label label-success">En cours de validation</span></td><td>Le contrôleur est réservé, son centre d'affiliation doit valider ou non la réservation.</td>
                             </tr>
                         </table>
                         </div>
-                    </div>   
-                    <div class="table-responsive">                                    
+                    </div> 
+                    <div class="table-responsive">                                      
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Centre</th>
                                 <th>Controleur</th>
-                                <th>Statut</th>
+                                <th>Date début</th>
+                                <th>Date fin</th>
+                                <th title="nombre de jours restant">Jours</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                         {% for dispo in listeDispo %}
                             <tr>
+                                <td>{{ dispo.nom  }} {{dispo.prenom}}</td>
                                 <td>{{ dispo.date|date('d/m/Y')  }}</td>
-                                <td>{{ dispo.controleur.centre.nom  }} </td>
-                                <td>{{ dispo.controleur.nom  }} {{dispo.controleur.prenom}}</td>
+                                <td>{{ dispo.datefin|date('d/m/Y')  }}</td>
+                                <td title="nombre de jours restant">{{ dispo.nbJourDispo  }} </td>
                                 <td>
-                                    {% if dispo.pris == false %}
-                                       <span class="label label-info">Disponible</span>
-                                    {% else %}
-                                      <span class="label label-success">En cours de validation</span>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                     {% if dispo.pris == false %}
-                                       <a href="{{ path('eb_pret_controleur_DetailDisponibilite', {'idDisponibilite': dispo.id}) }}">
-                                        <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Emprunter</button>
+                                       <a href="{{ path('eb_pret_controleur_DetailDisponibiliteByControleur', {'idControleur': dispo.idControleur, 'nbJoursDispo': dispo.nbJourDispo}) }}">
+                                        <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>date(s)</button>
                                        </a>
-                                    {% else %}
-                                        <a href="#">
-                                         <button class="btn btn-warning btn-xs disabled" disabled="disabled"><i class="fa fa-pencil"></i> Emprunter</button>
-                                        </a>
-                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -79,8 +99,8 @@
                         <h4>Vous n'êtes pas encore abonné !</h4></br>
                         <p>Sur ce département il y'a actuellement {{ nbDispo}} contrôleur(s) disponible.</p>
                         <p></br>
-                            <a class="btn-u btn-u-xs btn-u-red" href="{{ path('eb_pret_controleur_emprunter') }}">Précédent</a> 
-                            <a class="btn-u btn-u-xs btn-u-red" href="{{ path('fos_user_registration_register') }}">Pour vous abonner</a>
+                            <a class="btn-u btn-u-xs btn-u-default" href="{{ path('eb_pret_controleur_emprunter') }}">Précédent</a> 
+                            <a class="btn-u btn-u-xs btn-u-dark" href="{{ path('fos_user_registration_register') }}">Pour vous abonner</a>
                         </p>
                     </div>
             {% endif %}

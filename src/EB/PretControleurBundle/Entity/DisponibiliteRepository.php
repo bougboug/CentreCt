@@ -176,4 +176,35 @@ class DisponibiliteRepository extends EntityRepository
         ->getQuery()
         ->getResult();
   }
+
+  public function listeDateDispoByControleur($controleur, $date)
+  {
+    return  $this->createQueryBuilder('a')
+        ->select('a')
+        ->where('a.controleur = :controleur')
+        ->andWhere('a.date >= :date')
+        ->andWhere('a.statut = false')
+        ->orderBy('a.date','asc')
+        ->setParameter('controleur', $controleur)
+        ->setParameter('date', $date->format('Y-m-d'))
+        ->getQuery()
+        ->getResult();
+
+  }
+
+  public function updateDisponibilite($dispoId,$centre,$statut,$pris)
+  {
+    return $this->createQueryBuilder('d')
+                ->update('EBPretControleurBundle:Disponibilite', 'd')
+                ->set('d.centre', '?1')
+                ->set('d.statut', '?2')
+                ->set('d.pris', '?3')
+                ->where('d.id = ?4')
+                ->setParameter(1, $centre)
+                ->setParameter(2, $statut)
+                ->setParameter(3, $pris)
+                ->setParameter(4, $dispoId)
+                ->getQuery()
+                ->execute();
+  }
 }

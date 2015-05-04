@@ -5,6 +5,7 @@ namespace EB\PretControleurBundle\Controller;
 use EB\PretControleurBundle\Entity\Disponibilite;
 use EB\PretControleurBundle\Entity\Controleur;
 use EB\PretControleurBundle\Entity\Centre;
+use EB\PretControleurBundle\Entity\lstControleurWithNbDispo;
 use EB\UserBundle\Entity\User;
 use EB\PretControleurBundle\Form\DisponibiliteType;
 use EB\PretControleurBundle\Form\PriseDisponibiliteType;
@@ -15,6 +16,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class DisponibiliteController extends Controller
 {
@@ -43,15 +51,19 @@ class DisponibiliteController extends Controller
        
         $user=$this->container->get('security.context')->getToken()->getUser();
         $estAbonne = false;
+        $iduser = 0;
+
        if ($this->get('security.context')->isGranted('ROLE_USER')) {
             if ($user->getNbAbonnement() > 0) {
                 $estAbonne = true;
             }
+            $iduser = $user->getId();
         }
+
         //calcul le nombre de controleur par departement (ne prd pas en compte les controleur du responsable), pr la pagination
         $dispo_count = $this->getDoctrine()
-                            ->getRepository('EBPretControleurBundle:Disponibilite')
-                            ->countDispos($user, $departement, new \DateTime('now'));
+                            ->getRepository('EBPretControleurBundle:lstControleurWithNbDispo')
+                            ->countControleurWithNbDispos($iduser, $departement);
 
         $pagination = array(
             'page'         => $page,
@@ -61,8 +73,10 @@ class DisponibiliteController extends Controller
         );
         //liste pour la pagination
         $listeDispo = $this->getDoctrine()
-                           ->getRepository('EBPretControleurBundle:Disponibilite')
-                           ->LstDispoByUser($user, $departement, $page, $maxDispo,new \DateTime('now'));
+                           ->getRepository('EBPretControleurBundle:lstControleurWithNbDispo')
+                           ->LstDispoByUser($iduser, $departement, $page, $maxDispo);
+
+ 
  
         return $this->render('EBPretControleurBundle:Disponibilite:ListeDispo.html.twig', array(
             'listeDispo' => $listeDispo,
@@ -93,6 +107,38 @@ class DisponibiliteController extends Controller
          return $this->redirect($this->generateUrl('eb_pret_controleur_Disponibilite', array('idControleur' => $controleur->getId())));
         }
         return $this->render('EBPretControleurBundle:Disponibilite:ajout.html.twig', array('form' => $form->createView(),));
+    }
+
+    /**
+     * @ParamConverter("controleur", options={"mapping": {"idControleur": "id"}})
+     */
+    public function DispoByControleurAction(Request $request, Controleur $controleur, $nbJoursDispo)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if (null === $controleur) {
+            throw new NotFoundHttpException("le controleur d'id ".$id." n'existe pas.");
+        }
+
+        $user=$this->container->get('security.context')->getToken()->getUser();
+
+       if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            if ($user->getNbAbonnement() > 0) {
+                $estAbonne = true;
+            }
+        }
+        $codeDepControleur = $controleur->getAdresse()->getDepartement()->getCode();
+        $listeDateDispoByControleur= $this->getDoctrine()
+                                          ->getRepository('EBPretControleurBundle:Disponibilite')
+                                          ->listeDateDispoByControleur($controleur, new \DateTime('now'));
+
+        return $this->render('EBPretControleurBundle:Disponibilite:ListeDispoByControleur.html.twig', array(
+            'listeDateDispoByControleur' => $listeDateDispoByControleur,
+            'controleur' => $controleur,
+            'estAbonne'  => $estAbonne,
+            'nbJoursDispo' => $nbJoursDispo,
+            'codeDep' => $codeDepControleur));
+
     }
 
     /**
@@ -281,6 +327,67 @@ class DisponibiliteController extends Controller
 
         }
         return $this->render('EBPretControleurBundle:Disponibilite:AnnulerDemandeNonValide.html.twig', array('form' => $form->createView(),'demande' => $disponibilite));
+    }
+
+    public function calculNbControleurDispoParRegionAction($departement) {
+      $request = $this->getRequest();
+      $em = $this->getDoctrine()->getManager();
+      if($request->isXmlHttpRequest()) {
+        $departements = $em->getRepository('EBPretControleurBundle:Departement')->findOneBy(array('code' => $departement));
+        $region = $departements->getLibelle();
+        $user=$this->container->get('security.context')->getToken()->getUser();
+        $dispo_count = $this->getDoctrine()
+                            ->getRepository('EBPretControleurBundle:Disponibilite')
+                            ->countDispos($user, $departement, new \DateTime('now'));
+
+        
+        $data = $region.' : '.$dispo_count.' contrôleur(s) disponible(s).';
+         $request->getSession()->getFlashBag()->add('data', $data);
+        $reponse = new JsonResponse($data); 
+        return $reponse;   
+      }
+      return new Response('No Result');
+    }
+
+    public function lstCentreByUserAction() {
+      $request = $this->getRequest();
+      $em = $this->getDoctrine()->getManager();
+      if($request->isXmlHttpRequest()) {
+       //  $id = $request->get('id');
+        $user=$this->container->get('security.context')->getToken()->getUser();
+        //$departements = $em->getRepository('EBPretControleurBundle:Departement')->findAll();
+        $centres = $em->getRepository('EBPretControleurBundle:Centre')->findBy(array('user' => $user));
+        $serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new JsonEncoder()));     
+        foreach($centres as $key=>$centre){     
+           $centres[$key] = $serializer->serialize($centre, "json");
+        }
+         
+        $reponse = new JsonResponse($centres); 
+        return $reponse;  
+
+       // return new JsonResponse($departements);
+      }
+      return new Response('No Result');
+    }
+
+    
+    public function priseDispoByUserAction(Request $request,$dispoId,$centreId,$statut,$pris)
+    {
+      $request = $this->getRequest();
+      $em = $this->getDoctrine()->getManager();
+      if($request->isXmlHttpRequest()) {
+            $serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new JsonEncoder()));  
+            
+            $em = $this->getDoctrine()->getManager();
+            $region = $em->getRepository('EBPretControleurBundle:Region')->find($centreId);
+            $this->getDoctrine()->getRepository('EBPretControleurBundle:Disponibilite')
+                            ->updateDisponibilite($dispoId,$region,$statut,$pris);
+            
+            $reponse = new JsonResponse(); 
+            return $reponse; 
+        }
+        return new Response('No Result');
+
     }
 
     public function demandeRecuAction(Request $request)

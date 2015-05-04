@@ -156,29 +156,6 @@ class Centre
     }
 
     /**
-     * Set responsable
-     *
-     * @param string $responsable
-     * @return Centre
-     */
-    public function setResponsable($responsable)
-    {
-        $this->responsable = $responsable;
-
-        return $this;
-    }
-
-    /**
-     * Get responsable
-     *
-     * @return string 
-     */
-    public function getResponsable()
-    {
-        return $this->responsable;
-    }
-
-    /**
      * Set telephone
      *
      * @param string $telephone

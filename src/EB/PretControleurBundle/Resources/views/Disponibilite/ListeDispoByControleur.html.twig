@@ -1,0 +1,174 @@
+{% extends '::layout.html.twig' %}
+{% block title %}Liste des dates disponible pour un contrôleur{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+    window.onload = function ()
+    {
+            var path = Routing.generate('eb_pret_centre_DepByUser');
+         
+            $.ajax({
+                url:  Routing.generate('eb_pret_centre_DepByUser'),
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                success: function(data)
+                {
+                    $('#centreSelect').find("option").remove();
+                    $.each(data, function(cle, valeur){     
+                        var item = valeur;
+                        item = $.parseJSON(item);  
+                    $('#centreSelect').append(new Option(item.nom, item.id));    
+                    });
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+    function Update(id,idcentre,statut,pris)
+    {
+        $.ajax({
+                url:  Routing.generate('eb_pret_Disponibilite_ReserverByUser', {"dispoId":id, "centreId":idcentre, "statut":statut, "pris":pris}),
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                success: function(data)
+                {
+                    if(pris == "1") {
+                        $("#lblreserver_"+id).show();
+                        $("#lblannuler_"+id).hide();
+                    }else {
+                        $("#lblreserver_"+id).hide();
+                        $("#lblannuler_"+id).show();
+                    }
+                
+                },
+                error : function(data,resultat, statut, erreur){
+                    var message = 'Resultat "'
+                    + resultat 
+                    + '" statut: '
+                    + statut + 'data ' + data;
+                    console.log(message);
+                }
+            });
+
+    }
+    function toggle_bg(id){
+        //sur le onchange de la checkbox
+        var $checkbox = $("#check_"+id);
+        var trouve = false;
+        if($checkbox.prop('checked')){
+            var $idcentre = $('#centreSelect').val();
+            var $statut = "1";
+            var $pris = "1";
+            Update(id,$idcentre,$statut,$pris)
+        }
+        else
+        {
+            var $idcentre = "0";
+            var $statut = "0";
+            var $pris = "0";
+            Update(id,$idcentre,$statut,$pris)  
+        } 
+    }
+    
+</script>
+{% endblock %}
+
+{% block body %}
+ <div class="container content" align="centre">
+    <div class="row">
+                   
+        <div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-2">
+            {% if estAbonne %} 
+                <div class="panel panel-blue margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Dates disponibles pour le controleur : {{controleur.nom}} {{ controleur.prenom}} (centre {{controleur.centre.nom}})  </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Sélectionner votre centre : </p>
+                        <div class="table-responsive">                                    
+                        <table class="table">
+                            <tr>
+                                <td><select id="centreSelect" name="centreSelect" required="required" class="form-control"></select></td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>   
+                    <div class="table-responsive">                               
+                     {% set nbmois = 0 %}
+                    <table class="table">
+                        <tr>
+                                {% set mois = '' %}
+                                {% for dispo in listeDateDispoByControleur %}
+                                    {% if (mois != dispo.date|date('F')) %}
+                                        {% if (mois == '') %}
+                                           <td width="50px"> 
+                                                <table>
+                                        {% else %}
+                                                </table>
+                                            </td>
+                                            <td width="50px">
+                                                {% if (nbmois == 6) %}
+                                                    </br></br><tr><td><table>
+                                                {% else %}
+                                                    <table>
+                                                {% endif %}
+                                        {% endif %}
+                                            {% set nbmois = nbmois + 1 %}
+                                        <thead>
+                                            <tr>
+                                                <th>{{ dispo.date|date('F')  }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ dispo.date|date('d/m/Y')  }}
+                                                <input type="checkbox" id="check_{{ dispo.id}}" name="check_{{ dispo.id}}" onchange="toggle_bg('{{ dispo.id}}')"/></input>
+                                                <label id="lblreserver_{{ dispo.id}}" style="display:none; color:red">réservé</label>
+                                                <label id="lblannuler_{{ dispo.id}}" style="display:none; color:red">annulé</label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    {% else %}
+                                           <tr>
+                                                <td >{{ dispo.date|date('d/m/Y')  }} 
+                                                <input type="checkbox" id="check_{{ dispo.id}}" name="check_{{ dispo.id}}" onchange="toggle_bg('{{ dispo.id}}')"/></input>
+                                                <label id="lblreserver_{{ dispo.id}}" style="display:none; color:red">réservé</label>
+                                                <label id="lblannuler_{{ dispo.id}}" style="display:none; color:red">annulé</label>
+                                                </td>
+                                            </tr>
+                                    {% endif %}
+                                    {% set mois = dispo.date|date('F') %}
+                                {% endfor %}
+                                                </table>
+                                            </td>
+                        </tr>
+                    </table></br>  
+                    </div>
+                </div> <a class="btn-u btn-u-red" href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': codeDep} ) }}">Précédent</a>
+                {% else %}
+                    <div class="alert alert-info fade in">
+                        <h4>Vous n'êtes pas encore abonné !</h4></br>
+                        <p></br>
+                            <a class="btn-u btn-u-xs btn-u-default" href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': codeDep} ) }}">Précédent</a> 
+                            <a class="btn-u btn-u-xs btn-u-dark" href="{{ path('fos_user_registration_register') }}">Pour vous abonner</a>
+                        </p>
+                    </div>
+            {% endif %}
+        </div> 
+    </div>
+</div>
+{% endblock %}

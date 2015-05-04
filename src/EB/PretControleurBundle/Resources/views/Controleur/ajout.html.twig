@@ -8,6 +8,8 @@
 {% block EBPretcontroleur_javascripts %}
     {{ parent() }}
                 <script type="text/javascript">
+                window.onload = function ()
+{
         $("#eb_pretcontroleurbundle_controleur_adresse_region").change(function() {
          
             var vendor = $("#eb_pretcontroleurbundle_controleur_adresse_region option:selected").val();
@@ -37,6 +39,7 @@
                 }
             });
         }); 
+}
     </script>
 {% endblock %}
 
