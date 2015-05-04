@@ -121,7 +121,7 @@ class DisponibiliteController extends Controller
         }
 
         $user=$this->container->get('security.context')->getToken()->getUser();
-
+        $estAbonne = false;
        if ($this->get('security.context')->isGranted('ROLE_USER')) {
             if ($user->getNbAbonnement() > 0) {
                 $estAbonne = true;
