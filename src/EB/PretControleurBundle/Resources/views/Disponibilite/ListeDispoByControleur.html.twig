@@ -98,11 +98,25 @@
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Dates disponibles pour le controleur : {{controleur.nom}} {{ controleur.prenom}} (centre {{controleur.centre.nom}})  </h3>
                     </div>
                     <div class="panel-body">
-                        <p>Sélectionner votre centre : </p>
+                         {{ controleur.nom }} {{ controleur.prenom }} est disponible aux dates suivantes.</br>
+                        Ce contrôleur possède {{ controleur.experience }} d'année(s) d'expérience.</br>
+                        Il habite au : {{ controleur.adresse.adresse }}, {{ controleur.adresse.codePostal }} à 
+                        {{ controleur.adresse.ville }}</br></br>
                         <div class="table-responsive">                                    
                         <table class="table">
                             <tr>
-                                <td><select id="centreSelect" name="centreSelect" required="required" class="form-control"></select></td>
+                                <th>
+                                    <p>Pour réserver ce contrôleur aux dates que vous souhaitez, il vous suffit de cliquer sur la case à cocher.</p>
+                                    <p>Pour annuler vos réservations, il vous suffit de désélectionner les cases cochées, ou de vous rendre sur votre
+                                    <a href="{{ path('eb_pret_controleur_DemandeNonValideControleur') }}"> interface de gestion.</a></p>
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Sélectionner votre centre : </p>
+                                    <select id="centreSelect" name="centreSelect" required="required" class="form-control"></select>
+                                </td>
                             </tr>
                         </table>
                         </div>
@@ -158,7 +172,7 @@
                         </tr>
                     </table></br>  
                     </div>
-                </div> <a class="btn-u btn-u-red" href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': codeDep} ) }}">Précédent</a>
+                </div> <a class="btn-u btn-u-red" href="{{ path('eb_pret_controleur_ListeDisponibilite', {'departement': codeDep} ) }}">Terminer</a>
                 {% else %}
                     <div class="alert alert-info fade in">
                         <h4>Vous n'êtes pas encore abonné !</h4></br>
