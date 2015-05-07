@@ -1,0 +1,48 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+                <div class="panel panel-blue margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de vos controleurs validé</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Pour ajouter vos dates, il vous suffit d'appuyer sur le bouton "Ajouter dates"</p>
+                    </div>       
+                    <div class="table-responsive">                                  
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Centre</th>
+                                <th>Nom</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for controleur in listeControleurs %}
+                            <tr>
+                            <td>{{ controleur.centre.nom }}</td>
+                            <td>{{ controleur.nom }} {{ controleur.prenom }}</td>
+                            <td>
+                                {% if controleur.centre.abonne == false %}
+                                        <a href="#">
+                                         <button class="btn btn-warning btn-xs disabled" disabled="disabled"><i class="fa fa-pencil"></i> Ajouter dates</button>
+                                        </a>
+                                {% else %}
+                                    {% if controleur.centre.abonne == false %}
+                                        <a href="#">
+                                         <button class="btn btn-warning btn-xs disabled" disabled="disabled"><i class="fa fa-pencil"></i> Ajouter dates</button>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
+                                            <button class="btn-u btn-u-red"><i class="fa fa-share"></i> Ajouter dates</button>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+{% endblock %}

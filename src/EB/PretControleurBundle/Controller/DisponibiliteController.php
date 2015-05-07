@@ -44,6 +44,15 @@ class DisponibiliteController extends Controller
 
         return $this->render('EBPretControleurBundle:Disponibilite:ListeControleurReserver.html.twig', array('listeDispo' => $listeDispo));
     }
+    
+    public function ListeControleurAction(Request $request)
+    {
+       $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Controleur');
+       $user=$this->container->get('security.context')->getToken()->getUser();
+       $listeControleurs=$em->LstControleurValiderByUser($user);
+       return $this->render('EBPretControleurBundle:Disponibilite:ListeControleur.html.twig',array('listeControleurs' => $listeControleurs)); 
+    }
+
 
     public function listDispoAction(Request $request,$departement, $page = 1)
     {
@@ -219,6 +228,7 @@ class DisponibiliteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user=$this->container->get('security.context')->getToken()->getUser();
+        //$nom = $disponibilite->getCentre()->getNom();
 
         $form = $this->get('form.factory')->create(new ReponseDisponibiliteType(), $disponibilite);
 
@@ -238,10 +248,10 @@ class DisponibiliteController extends Controller
          $em->persist($disponibilite);
          $em->flush();
 
+
          if($disponibilite->getStatut() == 'a')
             $this->EnvoieMailReponseCentre($request, $disponibilite);
-         else if($disponibilite->getStatut()  == 'r')
-            $this->EnvoieMailReponseRefusCentre($request, $disponibilite);
+         else $this->EnvoieMailReponseRefusCentre($request, $disponibilite);
 
          $request->getSession()->getFlashBag()->add('disponibilite', 'la réponse a bien enregistrée.');
 
@@ -261,7 +271,7 @@ class DisponibiliteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user=$this->container->get('security.context')->getToken()->getUser();
-        $nom = $disponibilite->getCentre()->getNom();
+        //$nom = $disponibilite->getCentre()->getNom();
 
         $form = $this->get('form.factory')->create(new AnnulerDisponibiliteType(), $disponibilite);
 
@@ -279,7 +289,7 @@ class DisponibiliteController extends Controller
          $em->flush();
 
          if($disponibilite->getStatut() == 'o')
-            $this->EnvoieMailReponseRefusCentre($request, $disponibilite, $nom);
+            $this->EnvoieMailReponseRefusCentre($request, $disponibilite);
 
          $request->getSession()->getFlashBag()->add('disponibilite', 'la demande d emprunt a bien ete annulé.');
 
@@ -356,7 +366,7 @@ class DisponibiliteController extends Controller
        //  $id = $request->get('id');
         $user=$this->container->get('security.context')->getToken()->getUser();
         //$departements = $em->getRepository('EBPretControleurBundle:Departement')->findAll();
-        $centres = $em->getRepository('EBPretControleurBundle:Centre')->findBy(array('user' => $user));
+        $centres = $em->getRepository('EBPretControleurBundle:Centre')->findBy(array('user' => $user,'abonne' => true));
         $serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new JsonEncoder()));     
         foreach($centres as $key=>$centre){     
            $centres[$key] = $serializer->serialize($centre, "json");
@@ -449,13 +459,13 @@ class DisponibiliteController extends Controller
         $this->get('mailer')->send($message);
     }
 
-    private function EnvoieMailReponseRefusCentre(Request $request, $disponibilite, $nomCentre)
+    private function EnvoieMailReponseRefusCentre(Request $request, $disponibilite)
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')
         ->setFrom('contact@controlisor.com')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
-        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseRefusCentre.txt.twig', array('disponibilite' => $disponibilite, 'nomCentre' => $nomCentre))) ;
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseRefusCentre.txt.twig', array('disponibilite' => $disponibilite))) ;
         $this->get('mailer')->send($message);
     }
 
@@ -465,7 +475,7 @@ class DisponibiliteController extends Controller
         ->setSubject('Réponse reçu')
         ->setFrom('contact@controlisor.com')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
-        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseAnnulerCentre.txt.twig', array('disponibilite' => $disponibilite, 'nomCentre' => $nomCentre))) ;
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseAnnulerCentre.txt.twig', array('disponibilite' => $disponibilite))) ;
         $this->get('mailer')->send($message);
     }
 

@@ -3,7 +3,7 @@
 {% block EBPretcontroleur_body %}
                    <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste des dates disponibles </h3>
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste des dates disponibles.</h3>
                     </div>
                     <div class="panel-body">
                         <p>liste</p>
@@ -23,11 +23,21 @@
                             <tr>
                             <td>{{ dispo.date|date('d/m/Y')  }}</td>
                             <td>
-                                {% if dispo.pris == false %}
-                                <span class="label label-info">Disponible</span>
+                                {% if dispo.centre  is empty %}
+                                    {% if(dispo.date|date('Ymd')  >= "now"|date('Ymd')) %}
+                                        <span class="label label-info">Disponible</span>
+                                    {%  else %}
+                                        <span class="label label-info">Indisponible (date expiré)</span>
+                                     {% endif %}
                                 {% else %}
-                                <span class="label label-success">Reservé</span>
+                                     {% if(dispo.statut) %}
+                                        <span class="label label-success">Réservation validée</span>
+                                    {%  else %}
+                                        <span class="label label-success">Réservation non traitée</span>
+                                     {% endif %}
+                                    
                                 {% endif %}
+
                             </td>
                             <td>
                                 {% if dispo.centre  is empty %}
@@ -47,7 +57,7 @@
                     </table>
                     </div>
                 </div>
-                <a href="{{ path('eb_pret_controleur_Controleur') }}">
+                <a href="{{ path('eb_pret_disponibilite_ListeControleur') }}">
                     <button class="btn-u btn-u-red" type="button">Précédent</button>
                 </a> 
                 <a href="{{ path('eb_pret_controleur_AjoutDisponibilite', {'idControleur' : idControleur }) }}">

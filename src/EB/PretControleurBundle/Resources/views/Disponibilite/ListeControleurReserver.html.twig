@@ -31,10 +31,19 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if dispo.pris == false %}
-                                <span class="label label-info">Disponible</span>
+                                {% if dispo.centre  is empty %}
+                                    {% if(dispo.date|date('Ymd')  >= "now"|date('Ymd')) %}
+                                        <span class="label label-info">Disponible</span>
+                                    {%  else %}
+                                        <span class="label label-info">Indisponible (date expiré)</span>
+                                     {% endif %}
                                 {% else %}
-                                <span class="label label-success">Reservé</span>
+                                     {% if(dispo.statut) %}
+                                        <span class="label label-success">Réservation validée</span>
+                                    {%  else %}
+                                        <span class="label label-success">Réservation non traitée</span>
+                                     {% endif %}
+                                    
                                 {% endif %}
                             </td>
                             </tr>

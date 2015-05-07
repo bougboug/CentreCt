@@ -34,7 +34,11 @@
                                 {% endif %}
                             </td>
                             <td>
-                            <a href="{{ path('eb_pret_controleur_Administration_EditCentre', {'id': centre.id}) }}">
+                            {# 
+                            lstValide sert de boolean, pour savoir sur quel page retourner.
+                            Si false reviens sur cette page,sinon sur la page indexcentre   
+                            #}
+                            <a href="{{ path('eb_pret_controleur_Administration_EditCentre', {'id': centre.id, 'lstValide': 'false'}) }}">
                                 <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Valider</button>
                             </a>
                             </td>

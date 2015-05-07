@@ -22,6 +22,17 @@ class ControleurRepository extends EntityRepository
         ->getResult();
   }
 
+ public function LstControleurValiderByUser($user)
+  {
+    return  $this->createQueryBuilder('a')
+        ->leftJoin('a.centre', 'c')
+        ->where('c.user = :user ')
+        ->andWhere('a.statut = true')
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getResult();
+  }
+
   public function LstControleurByCentre($centre)
   {
     return  $this->createQueryBuilder('a')

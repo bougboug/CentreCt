@@ -45,6 +45,14 @@
                         </ul>
                     </li>
                     <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-disponibilite">Disponibilité</a>
+                        <ul id="Gestion-disponibilite" class="collapse">
+                            <li>                          
+                                <a href="{{ path('eb_pret_disponibilite_ListeControleur') }}"> Ajouter des disponibilités</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item list-toggle">                   
                         <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-emprunt">Gestion emprunt</a>
                         <ul id="Gestion-emprunt" class="collapse">
                             <li>
@@ -52,13 +60,13 @@
                                 <a href="{{ path('eb_pret_controleur_DemandeRecuControleur') }}"></i> Demande reçu</a>
                             </li> 
                             <li>                          
-                                <a href="{{ path('eb_pret_controleur_DemandeNonValideControleur') }}"></i> Demandes d'emprunt non validé</a>
+                                <a href="{{ path('eb_pret_controleur_DemandeNonValideControleur') }}"></i> Réservations (en cours) non validées</a>
                             </li> 
                             <li>                          
-                                <a href="{{ path('eb_pret_controleur_DemandeValideControleur') }}"></i> Demandes d'emprunt validé</a>
+                                <a href="{{ path('eb_pret_controleur_DemandeValideControleur') }}"></i> Réservations (en cours) validées</a>
                             </li> 
                             <li>                          
-                                <a href="{{ path('eb_pret_controleur_ControleurReserveControleur') }}"></i> Mes contrôleurs réservés</a>
+                                <a href="{{ path('eb_pret_controleur_ControleurReserveControleur') }}"></i> Récapitulatif </a>
                             </li> 
                         </ul>
                     </li>

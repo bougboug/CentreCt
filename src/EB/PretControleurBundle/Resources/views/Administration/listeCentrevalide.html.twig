@@ -3,10 +3,10 @@
 {% block EBPretcontroleur_body %}
                 <div class="panel panel-blue margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste de tous les centres validés </h3>
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Liste des centres validés </h3>
                     </div>
                     <div class="panel-body">
-                        <p>Voiçi la liste de tous les centres validés.</br>
+                        <p>Chosir le centre pour lequel vous souhaitez valider les contrôleurs</p>
                     </div>   
                     <div class="table-responsive">                                    
                     <table class="table">
@@ -23,8 +23,8 @@
                             <td>{{ centre.nom }}</td>
                             <td>{{ centre.numAgrement }}</td>
                             <td>
-                                <a href="{{ path('eb_pret_controleur_Administration_EditCentre', {'id': centre.id, 'lstValide': 'true'}) }}">
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editer</button>
+                                <a href="{{ path('eb_pret_controleur_Administration_Controleur', {'id': centre.id}) }}">
+                                    <button class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Valider contrôleur</button>
                                 </a>
                             </td>
                             </tr>

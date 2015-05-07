@@ -29,6 +29,13 @@ class AdministrationController extends Controller
        $listeCentres=$em->LstCentreValide();
         return $this->render('EBPretControleurBundle:Administration:indexCentre.html.twig',array('listeCentres' => $listeCentres));
     }
+    
+    public function listeCentreValideForValideControleurAction()
+    {
+       $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Centre');
+       $listeCentres=$em->LstCentreValide();
+        return $this->render('EBPretControleurBundle:Administration:listeCentrevalide.html.twig',array('listeCentres' => $listeCentres));
+    }
 
     public function indexControleurAction($id)
     {
@@ -54,7 +61,7 @@ class AdministrationController extends Controller
         return $this->render('EBPretControleurBundle:Administration:indexEmpruntAVenir.html.twig',array('listeDemandes' => $listeDemandes));
     }
 
-    public function editAction(Request $request,$id)
+    public function editAction(Request $request,$id,$lstValide)
     {
         $centre = new Centre;
         $em = $this->getDoctrine()->getManager();
@@ -80,10 +87,13 @@ class AdministrationController extends Controller
             $em->flush();
             $request->getSession()->getFlashBag()->add('centre', 'le centre a bien été validé.');
 
-            return $this->redirect($this->generateUrl('eb_pret_controleur_Administration'));
+            if($lstValide == "true") 
+             return $this->redirect($this->generateUrl('eb_pret_controleur_Administration_Centre'));
+            else 
+                return $this->redirect($this->generateUrl('eb_pret_controleur_Administration'));
         }
         
-        return $this->render('EBPretControleurBundle:Administration:edit.html.twig', array('form' => $form->createView(),'centre' => $centre));
+        return $this->render('EBPretControleurBundle:Administration:edit.html.twig', array('form' => $form->createView(),'centre' => $centre,'lstcentrevalide' => $lstValide));
     }
 
     public function editControleurAction(Request $request,$id)
