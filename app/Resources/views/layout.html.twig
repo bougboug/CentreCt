@@ -70,12 +70,12 @@
                         <!--End Pages -->
                         <!-- Pages -->                        
                         {% if is_granted('ROLE_USER') %}   
-                        <li><a href="{{ path('eb_pret_controleur_Centre') }}">Gestion</a></li>
+                        <li><a href="{{ path('eb_pret_controleur_Gestion_TableauBord') }}">Gestion</a></li>
                         {% endif %}
                         <!-- End Pages -->
                         <!-- Pages -->   
                         {% if is_granted('ROLE_ADMIN') %}                     
-                        <li><a href="{{ path('eb_pret_controleur_Administration') }}">Administration</a></li>
+                        <li><a href="{{ path('eb_pret_controleur_Administration_TableauBord') }}">Administration</a></li>
                         {% endif %}
                         <!-- End Pages -->
                         <!-- Contacts -->

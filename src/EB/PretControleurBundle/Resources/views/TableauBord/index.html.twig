@@ -1,0 +1,26 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+        
+    <p>Bienvenue sur Controlisor {{recapUser.nom}} {{recapUser.prenom}}.</br></br>
+       Vous pouvez ajouter des centres et contrôleurs, ils seront étudier par nos services afin d'être validés. 
+       Une fois validés, vous pourrez vous abonner et emprunter/prêter des contrôleurs.</br>
+       Voiçi un bref récapitulatif de votre dossier.</br>
+    </p>
+    </br>
+    <div class="headline"><h2>Abonnements</h2></div>
+     <p>Vous avez actuellement {{recapUser.nbAbonnement}} abonnement(s).</p>
+         
+    </br>
+    <div class="headline"><h2>Centres</h2></div>
+     <p>Vous avez actuellement {{recapUser.nbCentre}} centre(s).</p>
+
+     </br>
+    <div class="headline"><h2>Controleurs</h2></div>
+     <p>Vous avez actuellement {{recapUser.nbControleur}} contrôleur(s).</p>
+
+     </br>
+    <div class="headline"><h2>Mentions légales</h2></div>
+        <p>Vous trouverez dans ce fichier les mentions légales pour le prêt d'un contrôleur.</p>
+        <a rel="pulse-grow" href="/uploads/documents/Fiche-Pratique.doc" download="Fiche pratique.doc" class="btn btn-link">Fiche Pratique - Le pret de main d'oeuvre à but non lucratif - MAJ Janvier 2013</a>
+{% endblock %}

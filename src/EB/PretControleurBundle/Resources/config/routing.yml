@@ -7,6 +7,12 @@ eb_pret_controleur_contact:
 eb_pret_controleur_Administration:
     path:     /Administration
     defaults: { _controller: EBPretControleurBundle:Administration:index }
+eb_pret_controleur_Gestion_TableauBord:
+    path:     /Gestion/Tableau-de-bord
+    defaults: { _controller: EBPretControleurBundle:TableauBord:index }
+eb_pret_controleur_Administration_TableauBord:
+    path:     /Administration/Tableau-de-bord
+    defaults: { _controller: EBPretControleurBundle:TableauBord:indexAdmin }
 eb_pret_controleur_Abonnement:
     path:     /Administration/abonnement
     defaults: { _controller: EBPretControleurBundle:Abonnement:index }

@@ -21,6 +21,14 @@
                 <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
                     <!-- Typography -->
                     <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Administration-TableauBord">Tableau de Bord</a>
+                        <ul id="Administration-TableauBord" class="collapse">
+                            <li>
+                                <a href="{{ path('eb_pret_controleur_Administration_TableauBord') }}">Accueil</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item list-toggle">                   
                         <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography">Centres</a>
                         <ul id="collapse-typography" class="collapse">
                             <li><a href="{{ path('eb_pret_controleur_Administration') }}">Liste des centres à valider</a></li>

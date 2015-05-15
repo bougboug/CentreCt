@@ -1,0 +1,56 @@
+{% extends 'EBPretControleurBundle::layoutAdmin.html.twig' %}
+
+{% block EBPretcontroleur_body %}
+                <div class="panel panel-blue margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Tableau de bord</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Liste de tous vos utilisateurs.</p>
+                    </div> 
+                    <div class="table-responsive">                                        
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Téléphone</th>
+                                <th>Mail</th>
+                                <th>Abonnement</th>
+                                <th>Centre</th>
+                                <th>Controleur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in lstUser %}
+                            <tr>
+                            <td>{{ user.nom }} {{ user.prenom }}</td>
+                            <td>{{ user.telephone }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                               {% if user.nbAbonnement > 0 %}
+                                       {{user.nbAbonnement}} abonnement(s)
+                                {% else %}
+                                    pas abonné
+                                {% endif %}
+                            </td>
+                            <td>
+                               {% if user.nbCentre > 0 %}
+                                       {{user.nbCentre}} centre(s)
+                                {% else %}
+                                    aucun centre
+                                {% endif %}
+                            </td>
+                            <td>
+                               {% if user.nbControleur > 0 %}
+                                       {{user.nbControleur}} controleur(s)
+                                {% else %}
+                                    aucun controleur
+                                {% endif %}
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+{% endblock %}

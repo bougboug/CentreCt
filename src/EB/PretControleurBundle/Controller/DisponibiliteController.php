@@ -229,6 +229,7 @@ class DisponibiliteController extends Controller
 
         $user=$this->container->get('security.context')->getToken()->getUser();
         //$nom = $disponibilite->getCentre()->getNom();
+        $centre=$disponibilite->getCentre();
 
         $form = $this->get('form.factory')->create(new ReponseDisponibiliteType(), $disponibilite);
 
@@ -250,13 +251,14 @@ class DisponibiliteController extends Controller
 
 
          if($disponibilite->getStatut() == 'a')
-            $this->EnvoieMailReponseCentre($request, $disponibilite);
-         else $this->EnvoieMailReponseRefusCentre($request, $disponibilite);
+            $this->EnvoieMailReponseCentre($request, $disponibilite,$centre);
+         else $this->EnvoieMailReponseRefusCentre($request, $disponibilite,$centre);
 
          $request->getSession()->getFlashBag()->add('disponibilite', 'la réponse a bien enregistrée.');
 
          $em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Disponibilite');
          $listeDemandeRecu=$em->LstDemandeRecu($user, new \DateTime('now'));
+
          return $this->render('EBPretControleurBundle:Disponibilite:LstDemandeRecu.html.twig',array('listeDemandeRecu' => $listeDemandeRecu));   
         }
         return $this->render('EBPretControleurBundle:Disponibilite:reponseDemande.html.twig', array('form' => $form->createView(),'demande' => $disponibilite));
@@ -272,6 +274,7 @@ class DisponibiliteController extends Controller
 
         $user=$this->container->get('security.context')->getToken()->getUser();
         //$nom = $disponibilite->getCentre()->getNom();
+        $centre=$disponibilite->getCentre();
 
         $form = $this->get('form.factory')->create(new AnnulerDisponibiliteType(), $disponibilite);
 
@@ -288,8 +291,8 @@ class DisponibiliteController extends Controller
          $em->persist($disponibilite);
          $em->flush();
 
-         if($disponibilite->getStatut() == 'o')
-            $this->EnvoieMailReponseRefusCentre($request, $disponibilite);
+         if($disponibilite->getStatut() == false)
+            $this->EnvoieMailAnnulationDemandeCentre($request, $disponibilite, $centre);
 
          $request->getSession()->getFlashBag()->add('disponibilite', 'la demande d emprunt a bien ete annulé.');
 
@@ -310,6 +313,7 @@ class DisponibiliteController extends Controller
 
         $user=$this->container->get('security.context')->getToken()->getUser();
         $nom = $disponibilite->getCentre()->getNom();
+        
 
         $form = $this->get('form.factory')->create(new AnnulerDisponibiliteType(), $disponibilite);
 
@@ -326,8 +330,8 @@ class DisponibiliteController extends Controller
          $em->persist($disponibilite);
          $em->flush();
 
-         if($disponibilite->getStatut() == 'o')
-            $this->EnvoieMailReponseAnnulationCentre($request, $disponibilite, $nom);
+         if($disponibilite->getStatut() == false)
+            $this->EnvoieMailReponseAnnulationCentre($request, $disponibilite);
 
          $request->getSession()->getFlashBag()->add('disponibilite', 'la demande d emprunt non validéé a bien ete annulé.');
 
@@ -391,7 +395,7 @@ class DisponibiliteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $region = $em->getRepository('EBPretControleurBundle:Region')->find($centreId);
             $this->getDoctrine()->getRepository('EBPretControleurBundle:Disponibilite')
-                            ->updateDisponibilite($dispoId,$region,$statut,$pris);
+                                ->updateDisponibilite($dispoId,$region,$statut,$pris);
             
             $reponse = new JsonResponse(); 
             return $reponse; 
@@ -435,41 +439,42 @@ class DisponibiliteController extends Controller
         $this->get('mailer')->send($message);
     }
 
-    private function EnvoieMailReponseCentre(Request $request, $disponibilite)
-    {
-        //$webPath = $this->container->getParameter('kernel.root_dir').'/web/uploads/FichePratique.doc';
-        //$webpath2='/Applications/MAMP/htdocs/centrect/web/uploads/FichePratique.doc';
-        $message = \Swift_Message::newInstance()
-        ->setSubject('Réponse reçu')
-        ->setFrom('contact@controlisor.com')
-        ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
-        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseCentre.txt.twig', array('disponibilite' => $disponibilite)));
-       // ->attach(\Swift_Attachment::fromPath($webpath2, "application/octet-stream"));
-        $this->get('mailer')->send($message);
-    }
-
-    private function EnvoieMailAnnulationDemandeCentre(Request $request, $disponibilite)
+    //Envoie mail d'acceptation au centre emprunteur
+    private function EnvoieMailReponseCentre(Request $request, $disponibilite, $centre)
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')
         ->setFrom('contact@controlisor.com')
-        ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
-        ->setBody($this->renderView('EBPretControleurBundle:Email:emailAnnulationDemandeCentre.txt.twig', array('disponibilite' => $disponibilite)));
-       // ->attach(\Swift_Attachment::fromPath($webpath2, "application/octet-stream"));
+        ->setTo($centre->getEmail())
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre)));
         $this->get('mailer')->send($message);
     }
 
-    private function EnvoieMailReponseRefusCentre(Request $request, $disponibilite)
+    //Envoie mail d'acceptation au centre emprunteur
+    private function EnvoieMailReponseRefusCentre(Request $request, $disponibilite, $centre)
+    {
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Réponse reçu')
+        ->setFrom('contact@controlisor.com')
+        ->setTo($centre->getEmail())
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseRefusCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre))) ;
+        $this->get('mailer')->send($message);
+    }
+
+    //envoie mail annulation (annuler une dde validé par le centre emprunteur) au centre du controleur
+    private function EnvoieMailAnnulationDemandeCentre(Request $request, $disponibilite, $centre)
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')
         ->setFrom('contact@controlisor.com')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
-        ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseRefusCentre.txt.twig', array('disponibilite' => $disponibilite))) ;
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailAnnulationDemandeCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre)));
         $this->get('mailer')->send($message);
     }
 
-    private function EnvoieMailReponseAnnulationCentre(Request $request, $disponibilite, $nomCentre)
+
+    //envoie mail annulation (annuler une dde pas encore validé par le centre emprunteur) au centre du controleur
+    private function EnvoieMailReponseAnnulationCentre(Request $request, $disponibilite)
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')

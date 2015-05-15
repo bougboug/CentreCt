@@ -1,0 +1,86 @@
+<?php
+
+namespace EB\PretControleurBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * lstUserRecap
+ *
+ * @ORM\Table(name="lstuserrecap")
+ * @ORM\Entity(repositoryClass="EB\PretControleurBundle\Entity\lstUserRecapRepository")
+ */
+class lstUserRecap
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="iduser", type="integer")
+     * @ORM\Id
+     */
+    private $idUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=255)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=10)
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numAgrementUser", type="string", length=8)
+     */
+    private $numAgrement;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbAbonnement", type="integer")
+     */
+    private $nbAbonnement;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbCentre", type="integer")
+     */
+    private $nbCentre;  
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbControleur", type="integer")
+     */
+    private $nbControleur;  
+
+}

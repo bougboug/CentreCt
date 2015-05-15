@@ -20,6 +20,14 @@
             {% if is_granted('ROLE_USER') %}
             <div class="col-md-3">
                 <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+                    <li class="list-group-item list-toggle">                   
+                        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-TableauBord">Tableau de Bord</a>
+                        <ul id="Gestion-TableauBord" class="collapse">
+                            <li>
+                                <a href="{{ path('eb_pret_controleur_Gestion_TableauBord') }}">Accueil</a>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- Typography -->
                     <li class="list-group-item list-toggle">                   
                         <a data-toggle="collapse" data-parent="#sidebar-nav" href="#Gestion-centre">Centres</a>
