@@ -48,3 +48,10 @@ EB\PretControleurBundle\Entity\Centre:
                 pattern: "/([0-9]{10})/"
                 match:   true
                 message: Veuillez saisir un numéro de téléphone valide.
+EB\UserBundle\Entity\User:
+    properties:
+        numAgrement:
+            - Regex:
+                pattern: "/([A-Z]{1})([0-9]{3})([A-Z]{1})([0-9]{3})/"
+                match:   true
+                message: Votre numéro d'agrement n'est pas valide.

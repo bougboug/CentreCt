@@ -48,7 +48,9 @@ class User extends BaseUser
     protected $prenom;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * @var string
+     *
+     * @ORM\Column(name="numAgrement", type="string", length=8)
      *
      * @Assert\NotBlank(message="Veuillez entrer votre numéro d'agrement.", groups={"Registration", "Profile"})
      * @Assert\Length(

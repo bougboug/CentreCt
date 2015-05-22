@@ -90,3 +90,9 @@ fos_user:
             type:               eb_user_registration
             name:               fos_user_registration_form
             validation_groups:  [Registration, Default]
+
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

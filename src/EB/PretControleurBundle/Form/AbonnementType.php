@@ -16,10 +16,13 @@ class AbonnementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDebut','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
-            ->add('dateFin','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+           // ->add('dateDebut','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+            ->add('dateDebut','date',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
+           // ->add('dateFin','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+            ->add('dateFin','date',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
             ->add('montant', 'integer')
-            ->add('datepaiement','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+           // ->add('datepaiement','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+            ->add('datepaiement','date',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
             ->add('centre', 'entity', array(
                   'class'         => 'EBPretControleurBundle:Centre',
                   'property'      => 'nom',

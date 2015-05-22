@@ -15,7 +15,9 @@ class DisponibiliteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', 'date',array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+            //->add('date', 'date',array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
+        ->add('date','date',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
+        //->add('date', 'text')
            // ->add('pris','checkbox', array('required' => false))
             //->add('controleur')
             //->add('centre')

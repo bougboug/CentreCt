@@ -11,6 +11,7 @@ var Datepicker = function () {
 	            nextText: '<i class="fa fa-angle-right"></i>'
 	        });
 	        
+
 	        // Date range
 	        $('#start').datepicker({
 	            dateFormat: 'dd.mm.yy',

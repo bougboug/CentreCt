@@ -1,5 +1,19 @@
 {% extends 'EBPretControleurBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+      {{ parent() }}
+      {% block EBPretcontroleur_stylesheets %}
+                 
+     {% endblock %}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+      {% block EBPretcontroleur_javascripts %}
+                 
+     {% endblock %}
+{% endblock %}
+
 {# Dans notre layout, il faut définir le block body #}
 {% block body %}
 

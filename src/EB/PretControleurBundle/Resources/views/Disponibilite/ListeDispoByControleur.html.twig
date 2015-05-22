@@ -33,7 +33,7 @@
                     console.log(message);
                 }
             });
-        }
+    }
     </script>
 
     <script type="text/javascript">
@@ -84,6 +84,13 @@
         } 
     }
     
+    function convert_Mois_Fr(numMois){
+        var $moisFr = "";
+        if(numMois == "1") {
+             $moisFr="janvier";
+        }
+        return $moisFr;
+    }
 </script>
 {% endblock %}
 
@@ -144,7 +151,9 @@
                                             {% set nbmois = nbmois + 1 %}
                                         <thead>
                                             <tr>
-                                                <th>{{ dispo.date|date('F')  }}</th>
+                                                <th>{% set moisdate = dispo.date|date('F')  %} 
+                                                    {{ moisdate|trans }}
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>

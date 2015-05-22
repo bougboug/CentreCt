@@ -3,11 +3,18 @@
 
 {% block EBPretcontroleur_stylesheets %}
     {{ parent() }}
+    <link src="{{ asset('bundles/ebpretcontroleur/js/plugins/jquery-ui-1.11.4.custom/jquery-ui.css') }}">
 {% endblock %}
 
 {% block EBPretcontroleur_javascripts %}
     {{ parent() }}
-                <script type="text/javascript">
+    <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/jquery-ui-1.11.4.custom/jquery-ui.js') }}"></script>
+    <script src="{{ asset('bundles/ebpretcontroleur/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('bundles/ebpretcontroleur/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/ebpretcontroleur/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/jquery.ui.datepicker-fr.js') }}"></script>
+
+    <script type="text/javascript">
         $("#eb_pretcontroleurbundle_edit_controleur_adresse_region").change(function() {
          
             var vendor = $("#eb_pretcontroleurbundle_edit_controleur_adresse_region option:selected").val();
@@ -37,6 +44,11 @@
                 }
             });
         }); 
+
+        $(function() {
+        $.datepicker.setDefaults( $.datepicker.regional[ "" ] );
+        $( "#eb_pretcontroleurbundle_admin_controleur_dateAgrement" ).datepicker( $.datepicker.regional[ "fr" ] );
+    });
     </script>
 {% endblock %}
 

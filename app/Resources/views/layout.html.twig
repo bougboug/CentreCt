@@ -4,6 +4,7 @@
 <!--[if !IE]><!--> <html lang="fr"> <!--<![endif]-->  
 <head>
         <title>{% block title %} Chercher, trouver un controleur prêt de chez vous sur controlisor {% endblock %}</title>
+ 
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/bootstrap/css/bootstrap.min.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/style.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/line-icons/line-icons.css') }}" type="text/css" />
@@ -12,7 +13,13 @@
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/owl-carousel/owl-carousel/owl.carousel.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/css/layerslider.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/theme-colors/default.css') }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/custom.css') }}" type="text/css" />    
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/custom.css') }}" type="text/css" />   
+
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/headers/header-default.css') }}" type="text/css" />  
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/css/footers/footer-v1.css') }}" type="text/css" />  
+        <link rel="stylesheet" href="{{ asset('bundles/ebpretcontroleur/plugins/animate.css') }}" type="text/css" />   
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         {% block stylesheets %}
  
         {% endblock %} 
@@ -180,6 +187,7 @@
     </div>     
     <!--=== End Footer Version 1 ===-->
 </div><!--/wrapper-->
+
   <script src="{{ asset('bundles/ebpretcontroleur/plugins/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/plugins/jquery/jquery-migrate.min.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -189,6 +197,9 @@
   <script src="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/js/greensock.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/js/layerslider.transitions.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/plugins/layer-slider/layerslider/js/layerslider.kreaturamedia.jquery.js') }}"></script>
+ 
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/smoothScroll.js') }}"></script>
+  
   <script src="{{ asset('bundles/ebpretcontroleur/js/custom.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/js/app.js') }}"></script>
   <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/layer-slider.js') }}"></script>

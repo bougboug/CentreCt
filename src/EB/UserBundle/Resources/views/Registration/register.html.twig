@@ -2,6 +2,7 @@
 {% form_theme form 'EBPretControleurBundle:Form:error.html.twig' %}
 
 {% block fos_user_content %} 
+{{ form_start(form)}}
 	<div class="container content">
    	  <div class="row">
          <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -11,29 +12,26 @@
                         <p>Si vous en posséder un, cliquer <a href="{{ path('fos_user_security_login') }}" style="color: #2512aa;">ici</a> pour vous connecter.</p>  
                     </div>    
                     <h2>Informations vous concernant </h2>
-                    {{ form_errors(form) }}           
-                    {{ form_errors(form.nom) }}
+                            
+                {{ form_errors(form.nom) }}
             		{{ form_label(form.nom) }}
             		{{ form_widget(form.nom, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
 
-            		{{ form_errors(form) }}           
-                    {{ form_errors(form.prenom) }}
+            	          
+                {{ form_errors(form.prenom) }}
             		{{ form_label(form.prenom) }}
             		{{ form_widget(form.prenom, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
-
-            		{{ form_errors(form) }}           
-                    {{ form_errors(form.numAgrement) }}
+          
+                {{ form_errors(form.numAgrement) }}     
             		{{ form_label(form.numAgrement) }}
             		{{ form_widget(form.numAgrement, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
-
-            		{{ form_errors(form) }}           
-                    {{ form_errors(form.telephone) }}
+               
+            		{{ form_errors(form.telephone) }}
             		{{ form_label(form.telephone) }}
             		{{ form_widget(form.telephone, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
 
                     <h2>Informations concernant votre compte</h2>
-                    {{ form_errors(form) }}           
-                    {{ form_errors(form.username) }}
+                {{ form_errors(form.username) }}
             		{{ form_label(form.username) }}
             		{{ form_widget(form.username, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
 
@@ -65,5 +63,5 @@
         </div>
       </div>
     </div>
-        
+    {{ form_end(form) }}     
 {% endblock fos_user_content %}
