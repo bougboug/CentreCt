@@ -23,17 +23,41 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use \DateTime;
 
 class DisponibiliteController extends Controller
 {
     /**
      * @ParamConverter("controleur", options={"mapping": {"idControleur": "id"}})
      */
-    public function indexAction(Request $request, Controleur $controleur)
+    public function indexAction(Request $request, Controleur $controleur, $page = 1)
     {
-      $em = $this->getDoctrine()->getManager();
-      $listeDispo=$em->getRepository('EBPretControleurBundle:Disponibilite')->findBy(array('controleur' => $controleur), array('date' => 'asc'));
-      return $this->render('EBPretControleurBundle:Disponibilite:index.html.twig', array('listeDispo' => $listeDispo,'idControleur' => $controleur->getId()));
+        $em = $this->getDoctrine()->getManager();
+        //calcul le nombre de controleur par departement (ne prd pas en compte les controleur du responsable), pr la pagination
+        $dispo_count = $this->getDoctrine()
+                            ->getRepository('EBPretControleurBundle:Disponibilite')
+                            ->countDisponibilite($controleur);
+
+        $maxDispo = $this->container->getParameter('max_dispo_par_page');
+
+        $pagination = array(
+            'page'         => $page,
+            'route'        => 'eb_pret_controleur_Disponibilite',
+            'pages_count'  => ceil($dispo_count / $maxDispo),
+            'route_params' => array('idControleur' => $controleur->getId(),'page' => $page)
+        );
+
+        //liste pour la pagination
+        $listeDispo = $this->getDoctrine()
+                           ->getRepository('EBPretControleurBundle:Disponibilite')
+                           ->LstDispoControleurByUser($controleur, $page, $maxDispo);
+
+     // $listeDispo=$em->getRepository('EBPretControleurBundle:Disponibilite')->findBy(array('controleur' => $controleur), array('date' => 'asc'));
+      return $this->render('EBPretControleurBundle:Disponibilite:index.html.twig', array(
+        'listeDispo' => $listeDispo,
+        'idControleur' => $controleur->getId(),
+        'pagination' => $pagination,
+        'nbDispo'    => $dispo_count));
     }
     
     public function controleurReserverValideAction(Request $request)
@@ -100,22 +124,103 @@ class DisponibiliteController extends Controller
      */
     public function ajoutAction(Request $request,Controleur $controleur)
     {
-    	  $disponibilite = new Disponibilite;
+    	$disponibilite = new Disponibilite;
         $em = $this->getDoctrine()->getManager();
+
+        if (null === $controleur) {
+            throw new NotFoundHttpException("le controleur d'id ".$id." n'existe pas.");
+        }
 
         $disponibilite->setControleur($controleur);     
         $form = $this->get('form.factory')->create(new DisponibiliteType, $disponibilite);
 
         if ($form->handleRequest($request)->isValid()) {
+            $repository = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Disponibilite');
+            //Liste des dates dispo des controleur
+            $listDispo = $repository->findBy(
+            array('controleur' => $controleur), // Critere
+            array('date' => 'desc')        // Tri
+            );
+            $dteExist = $this->dateExist($listDispo,$disponibilite->getDate());
+            if($dteExist!= true)
+            {
+                $em->persist($disponibilite);
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('disponibilite', 'le disponibilite a bien été ajouté.');
 
-         $em->persist($disponibilite);
-         $em->flush();
-
-         $request->getSession()->getFlashBag()->add('disponibilite', 'le disponibilite a bien enregistrée.');
+            }
 
          return $this->redirect($this->generateUrl('eb_pret_controleur_Disponibilite', array('idControleur' => $controleur->getId())));
         }
-        return $this->render('EBPretControleurBundle:Disponibilite:ajout.html.twig', array('form' => $form->createView(),));
+        return $this->render('EBPretControleurBundle:Disponibilite:ajout.html.twig', array('form' => $form->createView(),'controleur' => $controleur));
+    }
+
+    /**
+     * @ParamConverter("controleur", options={"mapping": {"idControleur": "id"}})
+     */
+    public function ajoutCreneauAction(Request $request,Controleur $controleur)
+    {
+        if (null === $controleur) {
+            throw new NotFoundHttpException("le controleur d'id ".$id." n'existe pas.");
+        }
+
+       return $this->render('EBPretControleurBundle:Disponibilite:ajoutCreneau.html.twig', array('controleur' => $controleur));
+    }
+
+    public function ajoutCreneauControleurAction(Request $request,$idControleur, $dateDebut, $dateFin)
+    {
+        $request = $this->getRequest();
+         $em = $this->getDoctrine()->getManager();
+
+        $begin = new DateTime( $dateDebut );
+        $end = new DateTime( $dateFin );
+        $end = $end->modify( '+1 day' ); 
+
+        $interval = new \DateInterval('P1D');
+        $daterange = new \DatePeriod($begin, $interval ,$end);
+
+        $controleur = $em->getRepository('EBPretControleurBundle:Controleur')->find($idControleur);
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Disponibilite');
+
+        //Liste des dates dispo des controleur
+        $listDispo = $repository->findBy(
+            array('controleur' => $controleur), // Critere
+            array('date' => 'desc')        // Tri
+        );
+
+        foreach($daterange as $date){
+            //regarde si la date existe deja pour ce controleur
+            $dteExist = $this->dateExist($listDispo,$date);
+            if (($date->format('w') != 0) && ($dteExist != true))
+            {
+                $disponibilite = new disponibilite();  
+                $disponibilite->setControleur($controleur);
+                $disponibilite->setDate($date);
+                $em->persist($disponibilite); 
+            }
+        } 
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('eb_pret_controleur_Disponibilite', array('idControleur' => $controleur->getId())));
+       //$em = $this->getDoctrine()->getManager()->getRepository('EBPretControleurBundle:Controleur');
+       //$user=$this->container->get('security.context')->getToken()->getUser();
+       //$listeControleurs=$em->LstControleurValiderByUser($user);
+       //return $this->render('EBPretControleurBundle:Disponibilite:ListeControleur.html.twig',array('listeControleurs' => $listeControleurs)); 
+
+    }
+
+    //Fonction qui permet de chercher si une date existe deja pour un controleur.
+    public function dateExist($listDispo, $date)
+    {
+        $request = $this->getRequest();
+        $trouve = false;
+        foreach ($listDispo as $dispo) {
+              if($dispo->getDate() == $date)
+                $trouve = true;
+        }
+
+        return $trouve;
     }
 
     /**
@@ -168,7 +273,7 @@ class DisponibiliteController extends Controller
          $idControleur = $disponibilite->getControleur()->getId();
          return $this->redirect($this->generateUrl('eb_pret_controleur_Disponibilite', array('idControleur' => $idControleur)));
         }
-        return $this->render('EBPretControleurBundle:Disponibilite:edit.html.twig', array('form' => $form->createView(),));
+        return $this->render('EBPretControleurBundle:Disponibilite:edit.html.twig', array('form' => $form->createView(),'controleur' => $disponibilite->getControleur()));
     }
 
     /**
@@ -384,21 +489,24 @@ class DisponibiliteController extends Controller
       return new Response('No Result');
     }
 
-    
+
     public function priseDispoByUserAction(Request $request,$dispoId,$centreId,$statut,$pris)
     {
-      $request = $this->getRequest();
-      $em = $this->getDoctrine()->getManager();
-      if($request->isXmlHttpRequest()) {
-            $serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new JsonEncoder()));  
-            
-            $em = $this->getDoctrine()->getManager();
-            $region = $em->getRepository('EBPretControleurBundle:Region')->find($centreId);
-            $this->getDoctrine()->getRepository('EBPretControleurBundle:Disponibilite')
-                                ->updateDisponibilite($dispoId,$region,$statut,$pris);
-            
-            $reponse = new JsonResponse(); 
-            return $reponse; 
+        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        if($request->isXmlHttpRequest()) {
+                $serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new JsonEncoder()));  
+                $em = $this->getDoctrine()->getManager();
+
+                $centre = $em->getRepository('EBPretControleurBundle:Centre')->find($centreId);
+                $disponibilite = $em->getRepository('EBPretControleurBundle:Disponibilite')->find($dispoId);
+                $disponibilite->setCentre($centre);
+                $disponibilite->setStatut($statut);
+                $disponibilite->setPris($pris);
+
+                $em->flush();            
+                $reponse = new JsonResponse(); 
+                return $reponse; 
         }
         return new Response('No Result');
 

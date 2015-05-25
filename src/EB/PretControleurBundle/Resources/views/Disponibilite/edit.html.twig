@@ -40,6 +40,9 @@
                 <label>Saisir une nouvelle date</label>
                     {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }} 
             </div>
+                <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
+                    <button class="btn-u btn-u-red" type="button">Précédent</button>
+                </a> 
                 {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                 {{ form_end(form) }}
             </div>   

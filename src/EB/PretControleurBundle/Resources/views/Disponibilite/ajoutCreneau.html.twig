@@ -1,0 +1,75 @@
+{% extends 'EBPretControleurBundle::layout.html.twig' %}
+
+{% block EBPretcontroleur_stylesheets %}
+    {{ parent() }}
+            <link src="{{ asset('bundles/ebpretcontroleur/js/plugins/jquery-ui-1.11.4.custom/jquery-ui.css') }}">
+{% endblock %}
+
+{% block EBPretcontroleur_javascripts %}
+    {{ parent() }}
+  <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/jquery-ui-1.11.4.custom/jquery-ui.js') }}"></script>
+
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('bundles/ebpretcontroleur/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js') }}"></script>
+
+  <script src="{{ asset('bundles/ebpretcontroleur/js/plugins/jquery.ui.datepicker-fr.js') }}"></script>
+    <script type="text/javascript">
+    var $datedeb = '';
+    var $datefin = '';
+    $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        $datedeb = selectedDate;
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        $datefin = selectedDate;
+      }
+    });
+  });
+
+    function ClicButton(id){
+        location.href=Routing.generate('eb_pret_Disponibilite_AjoutCreneau', {'idControleur':id,'dateDebut':$datedeb ,'dateFin':$datefin});  
+    };
+    </script>
+{% endblock %}
+
+{% block EBPretcontroleur_body %}
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>   
+        </div>    
+    </div>
+    <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>Veuillez choisir un créneau pour le contrôleur {{ controleur.nom}} {{controleur.prenom}}</h3>
+        </div>
+        <div class="panel-body">  
+            <div class="form-group">
+                <label for="from">De</label>
+                <input type="text" id="from" name="from">
+                <label for="to">à</label>
+                <input type="text" id="to" name="to">
+            </div>             
+       
+            <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
+                <button class="btn-u btn-u-red" type="button">Précédent</button>
+            </a> 
+            <a>
+                <button class="btn-u btn-u-red" onclick="ClicButton('{{ controleur.id}}')"><i class="fa fa-share"></i> Enregistrer</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+

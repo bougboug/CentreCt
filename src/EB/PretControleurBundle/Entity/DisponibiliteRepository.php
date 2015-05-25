@@ -95,7 +95,7 @@ class DisponibiliteRepository extends EntityRepository
    * @param string $sortby
    * @return Paginator
    */
-  public function LstDispoByUser($user, $codeDep, $page=1, $maxperpage=4, $date)
+  public function LstDispoByUser($user, $codeDep, $page=1, $maxperpage=25, $date)
   {
     $q = $this->createQueryBuilder('d')
         	  ->leftJoin('d.controleur', 'c')
@@ -193,19 +193,36 @@ class DisponibiliteRepository extends EntityRepository
 
   }
 
-  public function updateDisponibilite($dispoId,$centre,$statut,$pris)
+  //pour la pagination , liste des dates de disponibilité pour un conroleur
+  public function countDisponibilite($controleur)
   {
-    return $this->createQueryBuilder('d')
-                ->update('EBPretControleurBundle:Disponibilite', 'd')
-                ->set('d.centre', '?1')
-                ->set('d.statut', '?2')
-                ->set('d.pris', '?3')
-                ->where('d.id = ?4')
-                ->setParameter(1, $centre)
-                ->setParameter(2, $statut)
-                ->setParameter(3, $pris)
-                ->setParameter(4, $dispoId)
-                ->getQuery()
-                ->execute();
+    $query = $this->createQueryBuilder('a')
+                  ->select('COUNT(a)')  
+                  ->where('a.controleur = :controleur')
+                  ->setParameter('controleur', $controleur);
+           
+    return $query->getQuery()->getSingleScalarResult();
   }
+
+   /**
+   * retourne la liste des disponibilitées à l'exception des dispo des centre de l'utilisateur connecté 
+   *
+   * @param int $page
+   * @param int $maxperpage
+   * @param string $sortby
+   * @return Paginator
+   */
+  public function LstDispoControleurByUser($controleur, $page=1, $maxperpage=25)
+  {
+    $q = $this->createQueryBuilder('d')
+            ->where('d.controleur = :controleur')
+            ->orderBy('d.date','asc')
+            ->setParameter('controleur', $controleur);
+
+    $q->setFirstResult(($page-1) * $maxperpage)
+      ->setMaxResults($maxperpage);
+ 
+    return new Paginator($q);
+  }
+
 }

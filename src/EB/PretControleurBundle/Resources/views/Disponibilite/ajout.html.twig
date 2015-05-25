@@ -33,13 +33,16 @@
    {{ form_start(form)}}
     <div class="panel panel-blue margin-bottom-40">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-tasks"></i>Ajouter une date pour votre contrôleur</h3>
+            <h3 class="panel-title"><i class="fa fa-tasks"></i>Ajouter une date pour le contrôleur {{ controleur.nom}} {{controleur.prenom}}</h3>
         </div>
         <div class="panel-body">  
             <div class="form-group">
                 <label>Séléctionner une date</label>
                 {{ form_widget(form.date)}} 
-            </div>             
+            </div>    
+                <a href="{{ path('eb_pret_controleur_Disponibilite', {'idControleur': controleur.id}) }}">
+                    <button class="btn-u btn-u-red" type="button">Précédent</button>
+                </a>            
                 {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn-u btn-u-red'}}) }}
                 {{ form_end(form) }}  
         </div>

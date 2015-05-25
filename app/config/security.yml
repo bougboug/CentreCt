@@ -42,6 +42,7 @@ security:
     # http://symfony.com/doc/current/book/security.html#security-book-access-control-matching-options
     access_control:
         # Partie Administration reserver à l'administrateur
-        - { path: ^/Administration/, roles: ROLE_ADMIN}
+        - { path: ^/administration/, roles: ROLE_ADMIN}
         # Pour voir le détail d'un controleur, faut être connecter donc inscrit
-        - { path: ^/Gestion/disponibilite/detailControleur/, roles: ROLE_USER }
+        - { path: ^/gestion/, roles: ROLE_USER }
+        - { path: ^/rechercher/emprunter-reserver-un-controleur/, roles: ROLE_USER }
