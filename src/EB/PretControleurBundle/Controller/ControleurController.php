@@ -33,7 +33,8 @@ class ControleurController extends Controller
          $em->persist($controleur);
          $em->flush();
 
-         $request->getSession()->getFlashBag()->add('controleur', 'le controleur a bien enregistrée.');
+         $this->EnvoieMailCreationControleur($request,$user);
+         $request->getSession()->getFlashBag()->add('controleur', 'le controleur a été bien crée.');
 
          return $this->redirect($this->generateUrl('eb_pret_controleur_Controleur'));
         }
@@ -64,5 +65,15 @@ class ControleurController extends Controller
          return $this->redirect($this->generateUrl('eb_pret_controleur_Controleur'));
         }
         return $this->render('EBPretControleurBundle:Controleur:edit.html.twig', array('form' => $form->createView(),'controleur' => $controleur));
+    }
+
+    private function EnvoieMailCreationControleur(Request $request,$user)
+    {
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Création controlleur')
+        ->setFrom('contact@controlisor.com')
+        ->setTo($user->getEmail())
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailCreationControleur.txt.twig')) ;
+        $this->get('mailer')->send($message);
     }
 }

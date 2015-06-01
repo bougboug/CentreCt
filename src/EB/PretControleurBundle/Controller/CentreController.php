@@ -36,7 +36,9 @@ class CentreController extends Controller
          $em->persist($centre);
          $em->flush();
 
-         $request->getSession()->getFlashBag()->add('centre', 'le centre a bien enregistrée.');
+
+         $this->EnvoieMailCreationCentre($request);
+         $request->getSession()->getFlashBag()->add('centre', 'le centre a bien été crée.');
 
          return $this->redirect($this->generateUrl('eb_pret_controleur_Centre'));
         }
@@ -62,10 +64,22 @@ class CentreController extends Controller
         // $em->persist($centre->getRegion());
          $em->flush();
 
-         $request->getSession()->getFlashBag()->add('controleur', 'le controleur a bien modifié.');
+         $request->getSession()->getFlashBag()->add('centre', 'le centre a bien modifié.');
 
          return $this->redirect($this->generateUrl('eb_pret_controleur_Centre'));
         }
         return $this->render('EBPretControleurBundle:Centre:edit.html.twig', array('form' => $form->createView(),'centre' => $centre));
     }
+
+    private function EnvoieMailCreationCentre(Request $request)
+    {
+        $user=$this->container->get('security.context')->getToken()->getUser();
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Création centre')
+        ->setFrom('contact@controlisor.com')
+        ->setTo($user->getEmail())
+        ->setBody($this->renderView('EBPretControleurBundle:Email:emailCreationCentre.txt.twig')) ;
+        $this->get('mailer')->send($message);
+    }
+
 }

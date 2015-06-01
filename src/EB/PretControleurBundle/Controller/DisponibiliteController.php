@@ -24,6 +24,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use \DateTime;
+use \Swift_Image;
 
 class DisponibiliteController extends Controller
 {
@@ -551,9 +552,12 @@ class DisponibiliteController extends Controller
     private function EnvoieMailReponseCentre(Request $request, $disponibilite, $centre)
     {
         $message = \Swift_Message::newInstance()
+        //$image = $message->embed(Swift_Image::fromPath('http://controlisor.fr/img/logo.png'));
+        //$message->setSubject('Réponse reçu')
         ->setSubject('Réponse reçu')
         ->setFrom('contact@controlisor.com')
         ->setTo($centre->getEmail())
+        //->attach(\Swift_Attachment::fromPath('uploads/documents/fiche-Pratique.doc')->setFilename('fiche-Pratique.doc'))
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre)));
         $this->get('mailer')->send($message);
     }

@@ -52,6 +52,8 @@ class RegistrationController extends BaseController
             }
 
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+            //envoie mail.
+            $this->EnvoieMailCreationCompte($request,$user);
 
             return $response;
         }
@@ -59,6 +61,16 @@ class RegistrationController extends BaseController
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    private function EnvoieMailCreationCompte(Request $request, $user)
+    {
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Création de compte')
+        ->setFrom('contact@controlisor.com')
+        ->setTo($user->getEmail())
+        ->setBody($this->renderView('EBUserBundle:Email:emailCreationCompte.txt.twig', array('user' => $user)));
+        $this->get('mailer')->send($message);
     }
 
 }
