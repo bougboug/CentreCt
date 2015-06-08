@@ -96,11 +96,11 @@
                 </div> 
             {% else %}
                     <div class="alert alert-info fade in">
-                        <h4>Vous n'êtes pas encore abonné !</h4></br>
+                        <h4>Vous n'avez pas encore de compte !</h4></br>
                         <p>Sur ce département il y'a actuellement {{ nbDispo}} contrôleur(s) disponible.</p>
                         <p></br>
                             <a class="btn-u btn-u-xs btn-u-default" href="{{ path('eb_pret_controleur_emprunter') }}">Précédent</a> 
-                            <a class="btn-u btn-u-xs btn-u-dark" href="{{ path('fos_user_registration_register') }}">Pour vous abonner</a>
+                            <a class="btn-u btn-u-xs btn-u-dark" href="{{ path('fos_user_registration_register') }}">Pour créer votre compte.</a>
                         </p>
                     </div>
             {% endif %}
