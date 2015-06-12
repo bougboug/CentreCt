@@ -19,9 +19,9 @@ class AdresseType extends AbstractType
     {
         $builder
             ->add('adresse','text')
-            ->add('adresse2','text')
+            ->add('adresse2','text',array('required' => false))
             ->add('codePostal','integer')
-            ->add('ville','text', array('required' => false))  
+            ->add('ville','text')  
             ->add('region', 'entity', array(
                   'class'    => 'EBPretControleurBundle:Region',
                   'property' => 'libelle',
