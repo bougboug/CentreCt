@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use EB\PretControleurBundle\Entity\DepartementRepository;
 
-class AdresseType extends AbstractType
+class AdresseControleurType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,10 +18,6 @@ class AdresseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('adresse','text')
-            ->add('adresse2','text')
-            ->add('codePostal','integer')
-            ->add('ville','text', array('required' => false))  
             ->add('region', 'entity', array(
                   'class'    => 'EBPretControleurBundle:Region',
                   'property' => 'libelle',
@@ -51,7 +47,7 @@ class AdresseType extends AbstractType
      */
     public function getName()
     {
-        return 'eb_pretcontroleurbundle_adresse';
+        return 'eb_pretcontroleurbundle_adresse_controleur';
     }
 
 }

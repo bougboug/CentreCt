@@ -22,7 +22,7 @@ class ControleurType extends AbstractType
             ->add('numAgrement','text', array('max_length' => 8))
             //->add('dateAgrement','date', array('widget' => 'single_text','format' => 'yyyy-MM-dd',))
             ->add('dateAgrement','date',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
-            ->add('adresse',new AdresseType())
+            ->add('adresse',new AdresseControleurType())
             ->add('telephone', 'text', array('max_length' => 10))
             ->add('email','text')
             ->add('experience','text', array('max_length' => 2))
