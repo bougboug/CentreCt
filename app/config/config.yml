@@ -82,14 +82,19 @@ fos_user:
     registration:
         confirmation:
             from_email: # Use this node only if you don't want the global email address for the confirmation email
-                address:        enis.boughanmi@gmail.com
-                sender_name:    "Enis Boughanmi"
+                address:        contact@controlisor.com
+                sender_name:    "Controlisor"
             enabled:    false # change to true for required email confirmation
             template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type:               eb_user_registration
             name:               fos_user_registration_form
             validation_groups:  [Registration, Default]
+    resetting: 
+        email: 
+            from_email: 
+                address: contact@controlisor.com 
+                sender_name: Controlisor
 
 services:
     twig.extension.intl:
