@@ -68,4 +68,9 @@ class AbonnementController extends Controller
         }
         return $this->render('EBPretControleurBundle:Abonnement:supprimerAbonnement.html.twig', array('form' => $form->createView(),'Abonnement' => $Abonnement));
     }
+
+    public function prixAbonnementAction()
+    {
+        return $this->render('EBPretControleurBundle:Abonnement:prixAbonnement.html.twig');
+    }
 }

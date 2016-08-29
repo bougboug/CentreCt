@@ -1,9 +1,12 @@
 eb_pret_controleur_homepage:
     path:     /
     defaults: { _controller: EBPretControleurBundle:Accueil:index }
-eb_pret_controleur_contact:
-    path:     /contact
-    defaults: { _controller: EBPretControleurBundle:contact:index }
+#eb_pret_controleur_contact:
+#    path:     /contact
+#    defaults: { _controller: EBPretControleurBundle:contact:index }
+eb_pret_controleur_prix:
+    path:     /nos-tarifs
+    defaults: { _controller: EBPretControleurBundle:Abonnement:prixAbonnement }
 eb_pret_controleur_Administration:
     path:     /administration/centre/liste-des-centres-de-controle-technique-a-valide
     defaults: { _controller: EBPretControleurBundle:Administration:index }

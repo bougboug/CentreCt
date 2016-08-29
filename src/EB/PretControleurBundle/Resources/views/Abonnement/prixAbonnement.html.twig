@@ -1,0 +1,88 @@
+{% extends '::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/parallax-slider.css') }}" type="text/css" >
+
+    <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/pages/pricing/pricing_v1.css') }}" type="text/css" >
+   <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/pages/pricing/pricing_v2.css') }}" type="text/css" >
+   <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/pages/pricing/pricing_v3.css') }}" type="text/css" >
+   <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/pages/pricing/pricing_v4.css') }}" type="text/css" >
+   <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/pages/pricing/pricing_v5.css') }}" type="text/css" >
+
+    <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/theme-colors/default.css') }}" id="style_color"  type="text/css" >
+   <link rel="stylesheet" src="{{ asset('bundles/ebpretcontroleur/css/theme-skins/dark.css') }}" type="text/css" >
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+
+     <div class="container content">
+
+        <!-- Pricing Table v1-->
+        <div class="row pricing-table-v1 no-space-pricing">
+
+            <div class="col-sm-offset-2 col-md-3 col-sm-3 col-xs-6">
+                <div class="pricing-v1 pricing-v1-green">
+                    <div class="pricing-v1-head text-center" style="padding: 1px 0; background: #c70817;">
+                        <h4 style="color: white">Pack premium</h4>
+                        </br>
+                    </div>
+                    <ul class="list-unstyled pricing-v1-content" style="margin-bottom: 0;background: #f9f9f9;">
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> 1 Centre de contrôle de technique</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> Plusieurs contrôleurs</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> Emprunter autant que vous voulez</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> 1 ans</li></br>
+                    </ul>
+                    <div class="pricing-v1-footer">
+                        <h5  class= "btn-u btn-block text-center" style="color: white">100<span>€ TTC </span></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="pricing-v1 pricing-v1-green">
+                    <div class="pricing-v1-head text-center" style="padding: 1px 0; background: #c70817;">
+                        <h4 style="color: white">Pack medium</h4>
+                        </br>
+                    </div>
+                    <ul class="list-unstyled pricing-v1-content" style="margin-bottom: 0;background: #f9f9f9;">
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> 1 Centre de contrôle de technique</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> Plusieurs contrôleurs</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> Emprunter autant que vous voulez</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> 6 mois</li></br>
+                    </ul>
+                    <div class="pricing-v1-footer">
+                        <h5 class= "btn-u btn-block text-center" style="color: white">65<span>€ TTC </span></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="pricing-v1 pricing-v1-green">
+                    <div class="pricing-v1-head text-center" style="padding: 1px 0; background: #c70817;">
+                        <h4 style="color: white">Pack découverte</h4>
+                       </br>
+                    </div>
+                    <ul class="list-unstyled pricing-v1-content" style="margin-bottom: 0;background: #f9f9f9;">
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> 1 Centre de contrôle de technique</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> Plusieurs contrôleurs</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> Emprunter autant que vous voulez</li></br>
+                        <li style="margin: 0;color: #888; padding: 13px 20px;"><i class="fa fa-check-circle-o" style="color: rgba(231,76,60, 1);"></i> 3 mois</li></br>
+                    </ul>
+                    <div class="pricing-v1-footer">
+                         <h5  class= "btn-u btn-block text-center" style="color: white">20<span>€ TTC </span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

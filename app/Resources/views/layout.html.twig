@@ -33,6 +33,7 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head> 
 <body>
+    
 <div class="wrapper">    
     <!--=== Header ===-->    
     <div class="header">
@@ -74,6 +75,7 @@
                         <!-- End Home -->
                         <!-- Pages -->                       
                         <li><a href="{{ path('eb_pret_controleur_emprunter') }}">Rechercher</a></li>
+                        <li><a href="{{ path('eb_pret_controleur_prix') }}">Nos tarifs</a></li>
                         <!--End Pages -->
                         <!-- Pages -->                        
                         {% if is_granted('ROLE_USER') %}   
@@ -84,10 +86,6 @@
                         {% if is_granted('ROLE_ADMIN') %}                     
                         <li><a href="{{ path('eb_pret_controleur_Administration_TableauBord') }}">Administration</a></li>
                         {% endif %}
-                        <!-- End Pages -->
-                        <!-- Contacts 
-                        <li><a href="{{ path('eb_pret_controleur_contact') }}">Nous contacter</a></li> -->                 
-                        <!-- End Contacts -->
                     </ul>
                 </div><!--/navbar-collapse-->
             </div>    
@@ -120,7 +118,7 @@
                         <div class="headline"><h2>Contact</h2></div>                         
                         <address class="md-margin-bottom-40">
                             Téléphone : 06.48.33.46.91<br />
-                            Email: <a href="mailto:info@controlisor.fr" style="color: white;">info@controlisor.fr</a>
+                            Email: <a href="mailto:info@controlisor.fr" style="color: white;">contact@controlisor.fr</a>
                         </address>
                     </div><!--/col-md-3-->
                     <!-- End Address -->
