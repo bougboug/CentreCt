@@ -103,7 +103,7 @@
                             {% if centre.attestationAgrement.webPath is not defined %}
                               <a rel="pulse-grow" class="btn btn-link">Pas de fichier</a>
                             {% else %}
-                              <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.{{ centre.attestationAgrement.url }}" class="btn btn-link">Attestation d'agrément
+                              <a rel="pulse-grow" href="{{ asset(centre.attestationAgrement.webPath) }}" download="AttestationAgrement.{{ centre.attestationAgrement.url }}" class="btn btn-link glyphicon glyphicon-download-alt">Attestation d'agrément
                               </a>
                             {% endif %}
                                 {{ form_widget(form.attestationAgrement, {'attr': {'class': 'form-control'}}) }}   

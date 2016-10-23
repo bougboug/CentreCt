@@ -136,7 +136,7 @@ class AdministrationController extends Controller
   
         $message = \Swift_Message::newInstance()
         ->setSubject('Questionnaire de satisfaction')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailQuestionnaire.txt.twig', array('disponibilite' => $disponibilite))) ;
         $this->get('mailer')->send($message);
