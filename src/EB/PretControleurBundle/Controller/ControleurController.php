@@ -71,7 +71,7 @@ class ControleurController extends Controller
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Création controlleur')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($user->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailCreationControleur.txt.twig')) ;
         $this->get('mailer')->send($message);

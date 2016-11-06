@@ -542,7 +542,7 @@ class DisponibiliteController extends Controller
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Demande reçu')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailDemandeCentre.txt.twig', array('disponibilite' => $disponibilite))) ;
         $this->get('mailer')->send($message);
@@ -555,7 +555,7 @@ class DisponibiliteController extends Controller
         //$image = $message->embed(Swift_Image::fromPath('http://controlisor.fr/img/logo.png'));
         //$message->setSubject('Réponse reçu')
         ->setSubject('Réponse reçu')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($centre->getEmail())
         //->attach(\Swift_Attachment::fromPath('uploads/documents/fiche-Pratique.doc')->setFilename('fiche-Pratique.doc'))
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre)));
@@ -567,7 +567,7 @@ class DisponibiliteController extends Controller
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($centre->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseRefusCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre))) ;
         $this->get('mailer')->send($message);
@@ -578,7 +578,7 @@ class DisponibiliteController extends Controller
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailAnnulationDemandeCentre.txt.twig', array('disponibilite' => $disponibilite, 'centre' => $centre)));
         $this->get('mailer')->send($message);
@@ -590,7 +590,7 @@ class DisponibiliteController extends Controller
     {
         $message = \Swift_Message::newInstance()
         ->setSubject('Réponse reçu')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($disponibilite->getControleur()->getCentre()->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailReponseAnnulerCentre.txt.twig', array('disponibilite' => $disponibilite))) ;
         $this->get('mailer')->send($message);

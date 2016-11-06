@@ -76,7 +76,7 @@ class CentreController extends Controller
         $user=$this->container->get('security.context')->getToken()->getUser();
         $message = \Swift_Message::newInstance()
         ->setSubject('Création centre')
-        ->setFrom('contact@controlisor.com')
+        ->setFrom('contact@controlisor.fr')
         ->setTo($user->getEmail())
         ->setBody($this->renderView('EBPretControleurBundle:Email:emailCreationCentre.txt.twig')) ;
         $this->get('mailer')->send($message);
